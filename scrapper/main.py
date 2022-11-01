@@ -32,6 +32,6 @@ for team in teams:
         continue
 
 if __name__ == "__main__":
-    with open('teams.json', 'w', encoding='latin-1') as f:
+    with open('scrapper/teams.json', 'w', encoding='latin-1') as f:
         json.dump(res, f, indent=4, ensure_ascii=False)
     print("Created JSON file")

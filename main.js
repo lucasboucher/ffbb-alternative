@@ -7,7 +7,7 @@ fetch("scrapper/teams.json")
                 `
                     <tr class="highlighted">
                         <td>` + data[team].classement + `</td>
-                        <td>` + data[team].club + `</td>
+                        <td><a href="` + data[team].lien_ffbb + `">` + data[team].club + `</a></td>
                         <td>` + data[team].points + `</td>
                         <td>` + data[team].matchs_joues + `</td>
                         <td>` + data[team].matchs_gagnes + `</td>
@@ -20,7 +20,7 @@ fetch("scrapper/teams.json")
                 `
                     <tr>
                         <td>` + data[team].classement + `</td>
-                        <td>` + data[team].club + `</td>
+                        <td><a href="` + data[team].lien_ffbb + `">` + data[team].club + `</a></td>
                         <td>` + data[team].points + `</td>
                         <td>` + data[team].matchs_joues + `</td>
                         <td>` + data[team].matchs_gagnes + `</td>
