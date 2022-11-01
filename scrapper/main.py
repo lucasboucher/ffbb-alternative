@@ -14,6 +14,13 @@ res = []
 for team in teams:
     try:
         team_name = team.find('a').contents[0]
+        search = re.search(r' - [0-9]', team_name)
+        team_name = re.sub(' - [0-9]', '', team_name)
+        if (search):
+            team_number = search.group()
+            team_number = re.sub('\A - ', '', team_number)
+        else:
+            team_number = False
 
         ffbb_team_link = team.find('a')['href']
         ffbb_team_link = "https://resultats.ffbb.com/championnat" + re.sub('\A\.\.', '',ffbb_team_link)
@@ -26,8 +33,9 @@ for team in teams:
         won_games = all_elements[4].contents[0]
         lost_games = all_elements[5].contents[0]
         draws = all_elements[6].contents[0]
+        difference = all_elements[17].contents[0]
 
-        data = {'club': team_name, 'lien_ffbb': ffbb_team_link, 'classement': ranking, 'points': points, 'matchs_joues': games_played, 'matchs_gagnes': won_games, 'matchs_perdus': lost_games, 'matchs_nuls': draws}
+        data = {'club': team_name, 'equipe': team_number, 'lien_ffbb': ffbb_team_link, 'classement': ranking, 'points': points, 'matchs_joues': games_played, 'matchs_gagnes': won_games, 'matchs_perdus': lost_games, 'matchs_nuls': draws, 'difference': difference}
         res.append(data)
     except:
         continue
