@@ -7,7 +7,7 @@ Technology & Librairies:
 
 All sources in /references.md
 
-Firstly, run scrapper/main.py to generate datas.
+Firstly, run scrapper/main.py to refresh datas every minutes.
 
 Need to run on a web server, with Python:
 ```bash
