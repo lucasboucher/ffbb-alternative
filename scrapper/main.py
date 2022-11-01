@@ -2,11 +2,11 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import re
+from config import league_id
 
-url = 'https://resultats.ffbb.com/championnat/classements/b5e6211fb466b5e621216574.html'
+url = 'https://resultats.ffbb.com/championnat/classements/' + league_id + '.html'
 page = requests.get(url)
 soup = BeautifulSoup(page.text, "html.parser")
-
 res = []
 teams = soup.select("table.liste tr")
 
@@ -32,7 +32,6 @@ for team in teams:
         continue
 
 if __name__ == "__main__":
-
     with open('teams.json', 'w', encoding='latin-1') as f:
         json.dump(res, f, indent=4, ensure_ascii=False)
-    print("Created Json File")
+    print("Created JSON file")

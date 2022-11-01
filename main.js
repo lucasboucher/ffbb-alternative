@@ -2,10 +2,10 @@ fetch("scrapper/teams.json")
     .then((response) => response.json())
     .then((data) => {
         for(team in data) {
-            if (data[team].club == "CHEMINOTS AMIENS SUD B.B. - 1") {
+            if (data[team].club == team_name_highlighted) {
                 document.querySelector('#classement').innerHTML +=
                 `
-                    <tr class="papa">
+                    <tr class="highlighted">
                         <td>` + data[team].classement + `</td>
                         <td>` + data[team].club + `</td>
                         <td>` + data[team].points + `</td>

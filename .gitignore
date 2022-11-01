@@ -1,2 +1,4 @@
 test
 scrapper/teams.json
+scrapper/config.py
+config.js
