@@ -3,7 +3,6 @@ import requests
 import json
 import re
 from config import league_id
-from aiocron import crontab
 
 url = 'https://resultats.ffbb.com/championnat/classements/' + league_id + '.html'
 page = requests.get(url)
