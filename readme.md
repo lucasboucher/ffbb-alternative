@@ -7,7 +7,7 @@ Technology & Librairies:
 
 All sources in /references.md
 
-Firstly, run scrapper/main.py to refresh datas every minutes.
+Firstly, run scrapper/main.py to refresh data.
 
 Need to run on a web server, with Python:
 ```bash

@@ -1,8 +1,10 @@
+from datetime import datetime
 from bs4 import BeautifulSoup
 import requests
 import json
 import re
 from config import league_id
+import time
 
 url = 'https://resultats.ffbb.com/championnat/classements/' + league_id + '.html'
 page = requests.get(url)
@@ -34,4 +36,4 @@ for team in teams:
 if __name__ == "__main__":
     with open('scrapper/teams.json', 'w', encoding='latin-1') as f:
         json.dump(res, f, indent=4, ensure_ascii=False)
-    print("Created JSON file")
+    print("Data refreshes on JSON file -", datetime.now().strftime("%H:%M:%S"))
