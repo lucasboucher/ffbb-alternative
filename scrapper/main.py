@@ -35,10 +35,7 @@ def getTeams():
     return res
 
 if __name__ == "__main__":
-    while True:
-        @crontab('* * * * *')
-        def refreshJson():
-            res = getTeams()
-            with open('scrapper/teams.json', 'w', encoding='latin-1') as f:
-                json.dump(res, f, indent=4, ensure_ascii=False)
-            print("Created JSON file")
+    res = getTeams()
+    with open('scrapper/teams.json', 'w', encoding='latin-1') as f:
+        json.dump(res, f, indent=4, ensure_ascii=False)
+    print("Created JSON file")
