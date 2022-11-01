@@ -4,7 +4,6 @@ import requests
 import json
 import re
 from config import league_id
-import time
 
 url = 'https://resultats.ffbb.com/championnat/classements/' + league_id + '.html'
 page = requests.get(url)
