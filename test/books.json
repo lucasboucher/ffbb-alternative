@@ -1,0 +1,162 @@
+[
+        {
+                "book no": "1",
+                "title": "A Light in the Attic",
+                "rating": "Three out of 5",
+                "price": "£51.77",
+                "link": "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "2",
+                "title": "Tipping the Velvet",
+                "rating": "One out of 5",
+                "price": "£53.74",
+                "link": "https://books.toscrape.com/catalogue/tipping-the-velvet_999/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "3",
+                "title": "Soumission",
+                "rating": "One out of 5",
+                "price": "£50.10",
+                "link": "https://books.toscrape.com/catalogue/soumission_998/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "4",
+                "title": "Sharp Objects",
+                "rating": "Four out of 5",
+                "price": "£47.82",
+                "link": "https://books.toscrape.com/catalogue/sharp-objects_997/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "5",
+                "title": "Sapiens: A Brief History of Humankind",
+                "rating": "Five out of 5",
+                "price": "£54.23",
+                "link": "https://books.toscrape.com/catalogue/sapiens-a-brief-history-of-humankind_996/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "6",
+                "title": "The Requiem Red",
+                "rating": "One out of 5",
+                "price": "£22.65",
+                "link": "https://books.toscrape.com/catalogue/the-requiem-red_995/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "7",
+                "title": "The Dirty Little Secrets of Getting Your Dream Job",
+                "rating": "Four out of 5",
+                "price": "£33.34",
+                "link": "https://books.toscrape.com/catalogue/the-dirty-little-secrets-of-getting-your-dream-job_994/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "8",
+                "title": "The Coming Woman: A Novel Based on the Life of the Infamous Feminist, Victoria Woodhull",
+                "rating": "Three out of 5",
+                "price": "£17.93",
+                "link": "https://books.toscrape.com/catalogue/the-coming-woman-a-novel-based-on-the-life-of-the-infamous-feminist-victoria-woodhull_993/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "9",
+                "title": "The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics",
+                "rating": "Four out of 5",
+                "price": "£22.60",
+                "link": "https://books.toscrape.com/catalogue/the-boys-in-the-boat-nine-americans-and-their-epic-quest-for-gold-at-the-1936-berlin-olympics_992/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "10",
+                "title": "The Black Maria",
+                "rating": "One out of 5",
+                "price": "£52.15",
+                "link": "https://books.toscrape.com/catalogue/the-black-maria_991/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "11",
+                "title": "Starving Hearts (Triangular Trade Trilogy, #1)",
+                "rating": "Two out of 5",
+                "price": "£13.99",
+                "link": "https://books.toscrape.com/catalogue/starving-hearts-triangular-trade-trilogy-1_990/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "12",
+                "title": "Shakespeare's Sonnets",
+                "rating": "Four out of 5",
+                "price": "£20.66",
+                "link": "https://books.toscrape.com/catalogue/shakespeares-sonnets_989/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "13",
+                "title": "Set Me Free",
+                "rating": "Five out of 5",
+                "price": "£17.46",
+                "link": "https://books.toscrape.com/catalogue/set-me-free_988/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "14",
+                "title": "Scott Pilgrim's Precious Little Life (Scott Pilgrim #1)",
+                "rating": "Five out of 5",
+                "price": "£52.29",
+                "link": "https://books.toscrape.com/catalogue/scott-pilgrims-precious-little-life-scott-pilgrim-1_987/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "15",
+                "title": "Rip it Up and Start Again",
+                "rating": "Five out of 5",
+                "price": "£35.02",
+                "link": "https://books.toscrape.com/catalogue/rip-it-up-and-start-again_986/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "16",
+                "title": "Our Band Could Be Your Life: Scenes from the American Indie Underground, 1981-1991",
+                "rating": "Three out of 5",
+                "price": "£57.25",
+                "link": "https://books.toscrape.com/catalogue/our-band-could-be-your-life-scenes-from-the-american-indie-underground-1981-1991_985/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "17",
+                "title": "Olio",
+                "rating": "One out of 5",
+                "price": "£23.88",
+                "link": "https://books.toscrape.com/catalogue/olio_984/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "18",
+                "title": "Mesaerion: The Best Science Fiction Stories 1800-1849",
+                "rating": "One out of 5",
+                "price": "£37.59",
+                "link": "https://books.toscrape.com/catalogue/mesaerion-the-best-science-fiction-stories-1800-1849_983/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "19",
+                "title": "Libertarianism for Beginners",
+                "rating": "Two out of 5",
+                "price": "£51.33",
+                "link": "https://books.toscrape.com/catalogue/libertarianism-for-beginners_982/index.html",
+                "stock": "In stock"
+        },
+        {
+                "book no": "20",
+                "title": "It's Only the Himalayas",
+                "rating": "Two out of 5",
+                "price": "£45.17",
+                "link": "https://books.toscrape.com/catalogue/its-only-the-himalayas_981/index.html",
+                "stock": "In stock"
+        }
+]
