@@ -13,16 +13,16 @@ html {
 .header {
     display: flex;
     align-items: center;
-    padding-bottom: 30px;
+    padding-bottom: 32px;
     border-bottom: 1px solid rgb(43, 43, 43);
     margin: 0;
-    margin-top: 30px;
+    margin-top: 32px;
 }
 
 .icon {
     width: 64px;
     margin-right: 16px;
-    margin-left: 5vw;
+    margin-left: 4vw;
 }
 
 .league_name {
@@ -47,8 +47,8 @@ html {
 .title {
     font-size: 1.125rem;
     line-height: 1.4em;
-    margin: 0 5vw;
-    margin-top: 30px;
+    margin: 0 4vw;
+    margin-top: 32px;
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -56,8 +56,7 @@ html {
 
 ul {
     padding: 0;
-    margin: 0 5vw;
-    margin-top: 30px;
+    margin: 0 4vw;
 }
 
 li {
@@ -71,13 +70,14 @@ li {
 a {
     color: rgb(243, 244, 245);;
     text-decoration: none;
-    padding: 20px 0;
+    padding: 16px 0;
 }
 
 .table_head {
+    margin-top: 32px;
     padding: 0;
     font-weight: 700;
-    padding-bottom: 10px;
+    padding-bottom: 8px;
     text-align: right;
     display: grid;
     grid-template-columns: 1fr 40px 40px 40px 40px 60px 40px;
@@ -130,9 +130,9 @@ a {
     background-color: rgb(184, 184, 184);
     color: rgb(0, 0, 0);
     border-radius: 16px;
-    padding: 0 10px;
+    padding: 0 8px;
     font-weight: 700;
-    margin-left: 5px;
+    margin-left: 4px;
     font-size: .75rem;
     align-items: center;
     -webkit-font-smoothing: antialiased;
@@ -141,6 +141,52 @@ a {
 
 .points {
     font-weight: 700;
+}
+
+.footer {
+    margin-top: 32px;
+    padding: 32px 4vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color:rgb(26, 26, 26);
+    gap: 16px;
+}
+
+.footer img {
+    width: 32px;
+    margin-right: 8px;
+}
+
+.footer div, .footer a {
+    color: rgb(184, 184, 184);
+    font-weight: 400;
+    line-height: 1.4em;
+    font-size: .875rem;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+.footer a:hover {
+    color: rgb(91, 186, 213);
+}
+
+.copyright {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.copyright div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.links {
+    margin: 0;
+    display: flex;
+    gap: 16px;
 }
 
 body {
