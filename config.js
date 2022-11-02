@@ -1,0 +1,1 @@
+const team_name_highlighted = "CHEMINOTS AMIENS SUD B.B."
