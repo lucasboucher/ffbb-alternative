@@ -1,3 +1,6 @@
+Overview of this side-project just [here (https://lucasboucher.fr/ffbb)](https://lucasboucher.fr/ffbb/)
+
+
 # Docs
 Firstly, run scrapper/main.py to refresh data.
 
