@@ -1,39 +1,45 @@
 fetch('scrapper/teams.json')
   .then((response) => response.json())
   .then((data) => {
-    var i = 0
+
+    i = 0
     for(team in data) {
-        team_class = "team "
-        team_number_class = undefined
-        if (data[team].club == team_name_highlighted) {
-            team_class += "highlighted "
+
+        highlighted_path = ""
+        if (data[team].club == team_name_to_highlight) {
+            highlighted_path = '_highlighted'
         }
+
+        if_first = ""
         if (i == 0) {
-            team_class += "first "
+            if_first += " first"
         }
-        if(data[team].equipe == false) {
-            team_number_class = "no_team_number"
+
+        team_number = ""
+        if(!data[team].equipe == false) {
+            team_number = ` <div class="team_number">${data[team].equipe}</div>`
         }
 
         document.querySelector('ul').innerHTML +=
         `
-        <a href="${data[team].lien_ffbb}" target="_blank">
-            <li class="${team_class}">
+        <li class="team${if_first}">
+            <a href="${data[team].lien_ffbb}" target="_blank">
                 <div class="rank">${data[team].classement}</div>
-                <div class="club">
-                    <div class="team_name">${data[team].club}</div>
-                    <div class="team_number ${team_number_class}">${data[team].equipe}</div>
+                <img class="team_icon" src="assets/team_icon${highlighted_path}.svg">
+                <div class="team_name">
+                    <div class="team_club">${data[team].club}</div>
+                    ${team_number}
                 </div>
                 <div>${data[team].matchs_joues}</div>
                 <div>${data[team].matchs_gagnes}</div>
                 <div>${data[team].matchs_perdus}</div>
                 <div>${data[team].matchs_nuls}</div>
                 <div>${data[team].difference}</div>
-                <div>${data[team].points}</div>
-            </li>
-        </a>
+                <div class="points">${data[team].points}</div>  
+            </a>
+        </li>
         `
+
         i++
-        console.log(team_class)
     }
 });

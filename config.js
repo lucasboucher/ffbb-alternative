@@ -1,1 +1,1 @@
-const team_name_highlighted = "CHEMINOTS AMIENS SUD B.B."
+const team_name_to_highlight = "CHEMINOTS AMIENS SUD B.B."
