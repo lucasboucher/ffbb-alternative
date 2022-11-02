@@ -13,7 +13,7 @@ You can modify some configuration files:
 - config.js - For your highlighted team name
 - scrapper/config.oy - For the ID of the league
 
-#Technology & Librairies:
+# Technology & Librairies:
 - Python
     - BeautifulSoup
     - requests
