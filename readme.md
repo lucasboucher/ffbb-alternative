@@ -10,8 +10,8 @@ python3 -m http.server
 
 # Config
 You can modify some configuration files:
-- config.js - For your highlighted team name
-- scrapper/config.oy - For the ID of the league
+- `./config.js` For your highlighted team name
+- `./scrapper/config.py` For the ID of the league
 
 # Technology & Librairies:
 - Python
