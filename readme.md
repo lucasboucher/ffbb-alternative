@@ -1,7 +1,9 @@
 # Docs
 Firstly, run scrapper/main.py to refresh data.
 
-Need to run on a web server, with Python:
+Need to run on a web server for Fetch API
+
+Example with Python locally:
 ```bash
 python3 -m http.server
 ```
