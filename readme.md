@@ -32,8 +32,3 @@ You can modify some configuration files:
 
 # Data
 - FFBB ranking : https://resultats.ffbb.com/championnat/classements/b5e6211fb466b5e621216574.html
-
-# Notes
-- re.sub()
-- try: except:
-- css selectors
