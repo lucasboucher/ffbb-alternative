@@ -1,1 +1,22 @@
-"{}"
+[
+    {
+        "jour": "1",
+        "paniers_marques": "92",
+        "paniers_encaisses": "49"
+    },
+    {
+        "jour": "2",
+        "paniers_marques": "120",
+        "paniers_encaisses": "79"
+    },
+    {
+        "jour": "3",
+        "paniers_marques": "143",
+        "paniers_encaisses": "37"
+    },
+    {
+        "jour": "8",
+        "paniers_marques": "91",
+        "paniers_encaisses": "52"
+    }
+]

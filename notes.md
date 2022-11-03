@@ -4,22 +4,16 @@
 - css selectors
 
 # TODO
-- Icon descente et monté dans le classement
-- Résultats et calendrier
-- Afficher comité et poule dans un cadre couleur gris 
-- Remplacer lien équipe FFBB par icon "vers lien" sur le classement et mettre lien vers page lucasboucher.fr de l'équipe
-- Page équipe lucasboucher.fr
-- Mettre les stats sur la page de l'équipe lucasboucher.fr
-- Bouton pour combiner les données des paniers
-- Revoir système de scheduling
-- Revoir path des fichiers Python
+- Down and up icon on ranking
+- Results, stats and calendar on new dedicated team page
+- Display committee and pool on ranking page (with callout)
+- Display committee and pool on ranking page (with callout)
+- Button combine both chart
+- New server scheduling system
+- New path python files
+- New design hover points on chart
+- **Scrap basket points and use them**
 
-## Done
-- Graphique qui suit le nombre de panier encaissé et marqué par match
-- Lowercase pour les noms des clubs
-- New config file
-- Affiche nom du championnat
-- Couleurs dans notes
 
 ## Bugs
 - Poule qui ne se scrappe pas

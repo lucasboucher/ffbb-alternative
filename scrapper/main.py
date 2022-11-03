@@ -1,17 +1,21 @@
+#import
 from datetime import datetime
 from bs4 import BeautifulSoup
 import requests
 import json
 import re
-from config import ranking_id, league_id, team_name_to_highlight
+from config import ranking_id, league_id, fixtures_id, team_name_to_highlight
 
-ranking_url = 'https://resultats.ffbb.com/championnat/classements/' + ranking_id + '.html'
+#urls
 league_url = 'https://resultats.ffbb.com/championnat/' + league_id + '.html'
+ranking_url = 'https://resultats.ffbb.com/championnat/classements/' + league_id + ranking_id + '.html'
+fixtures_url = "https://resultats.ffbb.com/championnat/equipe/division/" + league_id + ranking_id + fixtures_id + ".html"
 
+#teams
 page = requests.get(ranking_url)
 soup = BeautifulSoup(page.text, "html.parser")
-teams = soup.select("table.liste tr")
-all_teams_data = []
+teams = soup.select(".liste tr")
+teams_data = []
 
 for team in teams:
     team_number = False
@@ -43,10 +47,11 @@ for team in teams:
         difference = all_elements[17].contents[0]
 
         team_data = {'highlighted_team': highlighted_team, 'club': team_club, 'equipe': team_number, 'lien_ffbb': ffbb_team_link, 'classement': ranking, 'points': points, 'matchs_joues': games_played, 'matchs_gagnes': won_games, 'matchs_perdus': lost_games, 'matchs_nuls': draws, 'difference': difference}
-        all_teams_data.append(team_data)
+        teams_data.append(team_data)
     except:
         continue
 
+#league
 page = requests.get(league_url)
 soup = BeautifulSoup(page.text, "html.parser")
 
@@ -61,11 +66,35 @@ pool_name = pool_name[0].text
 
 league_data = {'nom_league': league_name, 'nom_comite': league_committee, 'nom_poule': pool_name}
 
+#stats
+page = requests.get(fixtures_url)
+soup = BeautifulSoup(page.text, "html.parser")
+fixtures = soup.select(".liste tr")
+stats_data = []
+for fixture in fixtures: 
+    all_fixtures = fixture.findAll('td')
+    try:
+        day_result = all_fixtures[0].contents[0]
+        fixture_result = all_fixtures[5].contents[0]
+        team_name = all_fixtures[3].contents[0].contents[0]
+        if (fixture_result != '-'):
+            if (team_name == team_name_to_highlight):
+                team_result = re.sub(r" - [0-9]+", "", fixture_result)
+                opponent_result = re.sub(r"[0-9]+ - ", "", fixture_result)
+            else:
+                team_result = re.sub(r"[0-9]+ - ", "", fixture_result)
+                opponent_result = re.sub(r" - [0-9]+", "", fixture_result)
+            fixture_data = {'jour': day_result, 'paniers_marques': team_result, 'paniers_encaisses': opponent_result}
+            stats_data.append(fixture_data)
+    except:
+        continue
+
+#execution
 if __name__ == "__main__":
     with open('scrapper/teams.json', 'w', encoding='latin-1') as f:
-        json.dump(all_teams_data, f, indent=4, ensure_ascii=False)
+        json.dump(teams_data, f, indent=4, ensure_ascii=False)
     with open('scrapper/league.json', 'w', encoding='latin-1') as f:
         json.dump(league_data, f, indent=4, ensure_ascii=False)
     with open('scrapper/stats.json', 'w', encoding='latin-1') as f:
-        json.dump("{}", f, indent=4, ensure_ascii=False)
-    print("Data refreshes on JSON file -", datetime.now().strftime("%H:%M:%S"))
+        json.dump(stats_data, f, indent=4, ensure_ascii=False)
+    print("Data refreshes on JSON files -", datetime.now().strftime("%H:%M:%S"))

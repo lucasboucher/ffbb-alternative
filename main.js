@@ -10,11 +10,6 @@ fetch('scrapper/teams.json')
                 highlighted_path = '_highlighted'
             }
 
-            if_first = ""
-            if (i == 0) {
-                if_first += " first"
-            }
-
             team_number = ""
             if(data[team].equipe) {
                 team_number = ` <div class="team_number">${data[team].equipe}</div>`
@@ -22,7 +17,7 @@ fetch('scrapper/teams.json')
 
             document.getElementsByClassName('ranking')[0].innerHTML +=
             `
-            <li class="team${if_first}">
+            <li class="team">
                 <a href="${data[team].lien_ffbb}" target="_blank">
                     <div class="rank">${data[team].classement}</div>
                     <img class="team_icon" src="assets/team_icon${highlighted_path}.svg">
@@ -57,13 +52,23 @@ fetch('scrapper/stats.json')
     .then((response) => response.json())
     .then((data) => {
 
+        day_data = []
+        baskets_scored_data = []
+        baskets_cashed_data = []
+
+        for (fixture in data) {
+            day_data.push(data[fixture].jour);
+            baskets_scored_data.push(data[fixture].paniers_marques);
+            baskets_cashed_data.push(data[fixture].paniers_encaisses);
+        }
+
         const ctx1 = document.getElementById('baskets_scored');
         const ctx2 = document.getElementById('baskets_cashed');
 
         const data_chart1 = {
-            labels: [1,2,3,4],
+            labels: day_data,
             datasets: [{
-                data: [92,120,143,91],
+                data: baskets_scored_data,
                 backgroundColor: 'rgba(99, 255, 143, 0.2)',
                 borderColor: "rgb(99, 255, 143)",
                 borderWidth: 1,
@@ -72,9 +77,9 @@ fetch('scrapper/stats.json')
         };
         
         const data_chart2 = {
-            labels: [1,2,3,4],
+            labels: day_data,
             datasets: [{
-                data: [49,79,37,52],
+                data: baskets_cashed_data,
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: "rgb(255, 99, 132)",
                 borderWidth: 1,
@@ -109,6 +114,9 @@ fetch('scrapper/stats.json')
                         y: {
                             suggestedMax: 200,
                             min: 0,
+                            ticks: {
+                                maxTicksLimit: 10
+                            },
                             grid: {
                                 color: "rgb(26, 26, 26)",
                                 drawTicks: false,
