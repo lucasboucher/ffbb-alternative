@@ -6,15 +6,15 @@
 # TODO
 - Down and up icon on ranking
 - Results, stats and calendar on new dedicated team page
-- **Display committee and pool on ranking page (with callout)**
-- Button combine both chart
+- **Button combine both chart**
 - New server scheduling system
 - New path python files
 - New design hover points on chart
 - require.js
 
 ## Bugs
-Any detected 😁
+- Charts responsivity first sequence
+- Icons for buttons mode stats
 
 # Colors :
 - Red : rgb(255, 99, 132)

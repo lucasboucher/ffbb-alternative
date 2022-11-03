@@ -1,3 +1,4 @@
+//teams
 fetch('scrapper/teams.json')
     .then((response) => response.json())
     .then((data) => {
@@ -39,7 +40,7 @@ fetch('scrapper/teams.json')
         }
     })
 
-
+//league
 fetch('scrapper/league.json')
     .then((response) => response.json())
     .then((data) => {
@@ -50,6 +51,7 @@ fetch('scrapper/league.json')
 
 })
 
+//stats
 fetch('scrapper/stats.json')
     .then((response) => response.json())
     .then((data) => {
@@ -64,81 +66,132 @@ fetch('scrapper/stats.json')
             baskets_cashed_data.push(data[fixture].paniers_encaisses);
         }
 
-        const ctx1 = document.getElementById('baskets_scored');
-        const ctx2 = document.getElementById('baskets_cashed');
-
-        const data_chart1 = {
-            labels: day_data,
-            datasets: [{
-                data: baskets_scored_data,
-                backgroundColor: 'rgba(99, 255, 143, 0.2)',
-                borderColor: 'rgb(99, 255, 143)',
-                borderWidth: 1,
-                fill: true
-            }]
-        };
-        
-        const data_chart2 = {
-            labels: day_data,
-            datasets: [{
-                data: baskets_cashed_data,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgb(255, 99, 132)',
-                borderWidth: 1,
-                fill: true
-            }]
-        };    
-
-        function getChartConfig(data_chart, title) {
-            config = {
-                type: 'line',
-                data: data_chart,
-                options: {
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: title,
-                            font: {
-                                weight: 600
-                            }
-                        },
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        x: {
-                            grid: {
-                                color: "rgb(26, 26, 26)",
-                                drawTicks: false,
-                            }
-                        },
-                        y: {
-                            suggestedMax: 200,
-                            min: 0,
-                            ticks: {
-                                maxTicksLimit: 10
-                            },
-                            grid: {
-                                color: "rgb(26, 26, 26)",
-                                drawTicks: false,
-                            }
-                        }
-                    }
-                }
-            }
-            return config
-        }
-
-        config1 = getChartConfig(data_chart1, "Paniers marqués")
-        config2 = getChartConfig(data_chart2, "Paniers encaissés")
-
         Chart.defaults.font.size = 14;
         Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
         Chart.defaults.font.weight = 400;
         Chart.defaults.font.lineHeight = "1.4em"
+        
+        function myFunction() {
+            if (document.getElementById('divide').checked) {
 
-        new Chart(ctx1, config1)
-        new Chart(ctx2, config2)
+                document.getElementsByClassName('stats')[0].innerHTML = 
+                `
+                    <div class="chart">
+                        <canvas id="baskets_scored"></canvas>
+                    </div>
+                    <div class="chart">
+                        <canvas id="baskets_cashed"></canvas>
+                    </div>
+                `
+    
+                const ctx1 = document.getElementById('baskets_scored')
+                const ctx2 = document.getElementById('baskets_cashed')
+    
+                const data_chart1 = {
+                    labels: day_data,
+                    datasets: [{
+                        data: baskets_scored_data,
+                        backgroundColor: 'rgba(99, 255, 143, 0.2)',
+                        borderColor: 'rgb(99, 255, 143)',
+                        borderWidth: 1,
+                        fill: true
+                    }]
+                };
+                
+                const data_chart2 = {
+                    labels: day_data,
+                    datasets: [{
+                        data: baskets_cashed_data,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        borderWidth: 1,
+                        fill: true
+                    }]
+                };
+                
+                config1 = getChartConfig(data_chart1, "Paniers marqués")
+                config2 = getChartConfig(data_chart2, "Paniers encaissés")
+    
+                new Chart(ctx1, config1)
+                new Chart(ctx2, config2)
+    
+            } else if (document.getElementById('combine').checked) {
+                document.getElementsByClassName('stats')[0].innerHTML =
+                `
+                    <div class="chart">
+                        <canvas id="baskets"></canvas>
+                    </div>
+                `
+                const ctx = document.getElementById('baskets');
+    
+                const data_chart = {
+                    labels: day_data,
+                    datasets: [{
+                        data: baskets_cashed_data,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        borderWidth: 1
+                    },
+                    {
+                        data: baskets_scored_data,
+                        backgroundColor: 'rgba(99, 255, 143, 0.2)',
+                        borderColor: 'rgb(99, 255, 143)',
+                        borderWidth: 1
+                    }
+                ]
+                }
+    
+                config = getChartConfig(data_chart, "Écarts de points")
+    
+                new Chart(ctx, config)
+            }
+        }
 
+        myFunction()
+
+        document.getElementById("divide").addEventListener("click", myFunction);
+        document.getElementById("combine").addEventListener("click", myFunction);
     })
+
+//config
+function getChartConfig(data_chart, title) {
+    config = {
+        type: 'line',
+        data: data_chart,
+        options: {
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: title,
+                    font: {
+                        weight: 600
+                    }
+                },
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        color: "rgb(26, 26, 26)",
+                        drawTicks: false,
+                    }
+                },
+                y: {
+                    suggestedMax: 160,
+                    min: 0,
+                    ticks: {
+                        maxTicksLimit: 9
+                    },
+                    grid: {
+                        color: "rgb(26, 26, 26)",
+                        drawTicks: false,
+                    }
+                }
+            }
+        }
+    }
+    return config
+}
