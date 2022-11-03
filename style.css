@@ -45,8 +45,7 @@ html {
     }
 }
 
-
-.label {
+.committee_name {
     text-transform: uppercase;
     font-size: .875rem;
     line-height: 1.5;
@@ -56,7 +55,7 @@ html {
 }
 
 .title {
-    font-size: 1.125rem;
+    font-size: 1.375rem;
     line-height: 1.4em;
     margin: 0 4vw;
     margin-top: 32px;
@@ -84,6 +83,16 @@ html {
     .table_head {
         grid-template-columns: 1fr 40px 60px 40px;
     }
+}
+
+.pool_name {
+    text-align: left;
+    font-size: .875rem;
+    line-height: 1.5;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    text-transform: uppercase;
 }
 
 .team {

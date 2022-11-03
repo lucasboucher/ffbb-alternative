@@ -45,6 +45,8 @@ fetch('scrapper/league.json')
     .then((data) => {
 
         document.getElementsByClassName('league_name')[0].innerHTML = data.nom_league
+        document.getElementsByClassName('committee_name')[0].innerHTML = data.nom_comite
+        document.getElementsByClassName('pool_name')[0].innerHTML += ` ${data.nom_poule}`
 
 })
 
@@ -70,7 +72,7 @@ fetch('scrapper/stats.json')
             datasets: [{
                 data: baskets_scored_data,
                 backgroundColor: 'rgba(99, 255, 143, 0.2)',
-                borderColor: "rgb(99, 255, 143)",
+                borderColor: 'rgb(99, 255, 143)',
                 borderWidth: 1,
                 fill: true
             }]
@@ -81,7 +83,7 @@ fetch('scrapper/stats.json')
             datasets: [{
                 data: baskets_cashed_data,
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: "rgb(255, 99, 132)",
+                borderColor: 'rgb(255, 99, 132)',
                 borderWidth: 1,
                 fill: true
             }]

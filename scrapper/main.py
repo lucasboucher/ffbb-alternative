@@ -60,9 +60,13 @@ league_name = league_name[0].text
 
 league_committee = soup.select(".cadre a")
 league_committee = league_committee[0].text
+league_committee = league_committee.title()
 
-pool_name = soup.select("#idTdPoule")
+pool_name = soup.select("#idTdDivision script")
 pool_name = pool_name[0].text
+pool_name = re.search("Poule \w+", pool_name)
+pool_name = pool_name.group()
+pool_name = re.sub("Poule ", "", pool_name)
 
 league_data = {'nom_league': league_name, 'nom_comite': league_committee, 'nom_poule': pool_name}
 
