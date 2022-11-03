@@ -73,6 +73,12 @@ html {
     grid-template-columns: 1fr 40px 40px 40px 40px 60px 40px;
 }
 
+@media screen and (max-width: 600px) {
+    .table_head {
+        grid-template-columns: 1fr 40px 60px 40px;
+    }
+}
+
 .team {
     list-style-type: none;
     font-size: 1rem;
@@ -91,6 +97,13 @@ html {
     grid-template-columns: 20px 30px 1fr 40px 40px 40px 40px 60px 40px;
     align-items: center;
 }
+
+@media screen and (max-width: 600px) {
+    .team a {
+        grid-template-columns: 20px 30px 1fr 40px 60px 40px;
+    }
+}
+
 
 .team:not(:nth-child(2)) a {
     border-top: 1px solid rgb(43, 43, 43);
@@ -217,4 +230,10 @@ html {
 
 body {
     margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .hide-mobile {
+        display: none;
+    }
 }

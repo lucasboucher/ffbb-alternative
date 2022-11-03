@@ -26,9 +26,9 @@ fetch('scrapper/teams.json')
                         ${team_number}
                     </div>
                     <div>${data[team].matchs_joues}</div>
-                    <div>${data[team].matchs_gagnes}</div>
-                    <div>${data[team].matchs_perdus}</div>
-                    <div>${data[team].matchs_nuls}</div>
+                    <div class="hide-mobile">${data[team].matchs_gagnes}</div>
+                    <div class="hide-mobile">${data[team].matchs_perdus}</div>
+                    <div class="hide-mobile">${data[team].matchs_nuls}</div>
                     <div>${data[team].difference}</div>
                     <div class="points">${data[team].points}</div>  
                 </a>

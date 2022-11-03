@@ -6,14 +6,11 @@
 # TODO
 - Down and up icon on ranking
 - Results, stats and calendar on new dedicated team page
-- Display committee and pool on ranking page (with callout)
-- Display committee and pool on ranking page (with callout)
-- Button combine both chart
+- **Display committee and pool on ranking page (with callout)**
+- **Button combine both chart**
 - New server scheduling system
 - New path python files
-- New design hover points on chart
-- **Scrap basket points and use them**
-
+- **New design hover points on chart**
 
 ## Bugs
 - Poule qui ne se scrappe pas
