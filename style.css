@@ -39,6 +39,13 @@ html {
     font-weight: 700;
 }
 
+@media screen and (max-width: 600px) {
+    .league_name {
+        font-size: 1.5rem;
+    }
+}
+
+
 .label {
     text-transform: uppercase;
     font-size: .875rem;
