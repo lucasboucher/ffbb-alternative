@@ -20,7 +20,8 @@ You can modify some configuration files:
 - Python
     - BeautifulSoup
     - requests
-- Vanilla JavaScript 
+- Vanilla JavaScript
+    - Chart.js
 - HTML & CSS
 
 # Sources

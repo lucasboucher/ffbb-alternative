@@ -4,21 +4,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Classement FFBB</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="main.js"></script>
     <link rel="mask-icon" href="assets/favicon.svg" color="#5bbad5">
     <link rel="stylesheet" href="style.css"/>
-    <script src="config.js"></script>
-    <script src="main.js"></script>
   </head>
   <body>
     <div class="header">
       <img class="icon" src="assets/favicon.svg" alt="FFBB logo">
       <div>
-        <div class="label">Competition</div>
-        <div class="league_name">Classement FFBB</div>
+        <div class="label">Compétition</div>
+        <div class="league_name"></div>
       </div>
     </div>
-    <div class="title">Positions</div>
-    <ul>
+    <div class="title">Classement</div>
+    <ul class="ranking">
       <li class="table_head">
         <div></div>
         <div>MJ</div>
@@ -29,6 +29,15 @@
         <div>PTS</div>
       </li>
     </ul>
+    <div class="title">Stats</div>
+    <div class="stats">
+      <div class="chart">
+        <canvas id="baskets_scored"></canvas>
+      </div>
+      <div class="chart">
+        <canvas id="baskets_cashed"></canvas>
+      </div>
+    </div>
     <div class="footer">
       <div class="copyright">
         <a href="https://lucasboucher.fr"><img src="assets/lb_logo.svg" alt="Lucas Boucher logo"></a>

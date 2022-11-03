@@ -1,1 +1,0 @@
-const team_name_to_highlight = "CHEMINOTS AMIENS SUD B.B."
