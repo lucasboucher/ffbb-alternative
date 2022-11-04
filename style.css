@@ -275,6 +275,12 @@ html {
     height: 400px;
 }
 
+@media screen and (max-width: 600px) {
+    .chart {
+        height: 200px;
+    }
+}
+
 
 .footer {
     margin-top: 32px;
@@ -335,4 +341,97 @@ body {
     .hide-mobile {
         display: none;
     }
+}
+
+
+/* Fixtures */
+
+.main-fixtures {
+    margin: 0 4vw;
+    margin-top: 32px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    font-size: .875rem;
+    font-weight: 500;
+}
+
+.fixtures-title {
+    font-size: 1.375rem;
+    line-height: 1.4em;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+.fixtures {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 16px;
+}
+
+@media screen and (max-width: 1200px) {
+    .fixtures {
+        grid-template-columns: repeat(2, auto);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .fixtures {
+        grid-template-columns: repeat(1, auto);
+    }
+}
+
+.fixture {
+    background-color: rgb(43, 43, 43);;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    padding: 32px 0;
+    border: 1px solid transparent;
+    min-width: 0;
+}
+
+.fixture:hover {
+    border: 1px solid rgb(243, 244, 245);
+    transition: 0.25s;
+}
+
+.fixture-teams{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 16px;
+    min-width: 0;
+    flex-grow: 1;
+}
+
+.fixture-team {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    gap: 8px;
+}
+
+.fixture-team-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fixture-result {
+    font-weight: 700;
+}
+
+.fixture-date {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    border-left: 1px solid rgb(26, 26, 26);
+    padding: 0 16px;
+}
+
+.fixture-day {
+    font-weight: 700;
 }

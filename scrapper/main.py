@@ -78,18 +78,27 @@ stats_data = []
 for fixture in fixtures: 
     all_fixtures = fixture.findAll('td')
     try:
-        day_result = all_fixtures[0].contents[0]
+        played_result = False
+        matchday_result = all_fixtures[0].contents[0]
+        date_result = all_fixtures[1].contents[0]
+        hour_result = all_fixtures[2].contents[0]
+        home_result = all_fixtures[3].contents[0].contents[0]
+        away_result = all_fixtures[4].contents[0].contents[0]
         fixture_result = all_fixtures[5].contents[0]
-        team_name = all_fixtures[3].contents[0].contents[0]
         if (fixture_result != '-'):
-            if (team_name == team_name_to_highlight):
-                team_result = re.sub(r" - [0-9]+", "", fixture_result)
-                opponent_result = re.sub(r"[0-9]+ - ", "", fixture_result)
-            else:
-                team_result = re.sub(r"[0-9]+ - ", "", fixture_result)
-                opponent_result = re.sub(r" - [0-9]+", "", fixture_result)
-            fixture_data = {'jour': day_result, 'paniers_marques': team_result, 'paniers_encaisses': opponent_result}
-            stats_data.append(fixture_data)
+            played_result = True
+        if (home_result == team_name_to_highlight):
+            team_result = re.sub(r" - [0-9]+", "", fixture_result)
+            opponent_result = re.sub(r"[0-9]+ - ", "", fixture_result)
+            home_game_result = True
+        else:
+            team_result = re.sub(r"[0-9]+ - ", "", fixture_result)
+            opponent_result = re.sub(r" - [0-9]+", "", fixture_result)
+            home_game_result = False
+        home_result = home_result.title()
+        away_result = away_result.title()
+        fixture_data = {'match_maison': home_game_result, 'joue': played_result, 'jour': matchday_result, 'heure': hour_result, 'date': date_result, 'equipe_domicile': home_result, 'equipe_exterieur': away_result, 'paniers_marques': team_result, 'paniers_encaisses': opponent_result}
+        stats_data.append(fixture_data)
     except:
         continue
 

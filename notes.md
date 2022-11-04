@@ -6,11 +6,11 @@
 # TODO
 - Down and up icon on ranking
 - Results, stats and calendar on new dedicated team page
-- **Button combine both chart**
 - New server scheduling system
 - New path python files
 - New design hover points on chart
 - require.js
+- Dropdown by date or by matchday
 
 ## Bugs
 - Charts responsivity first sequence

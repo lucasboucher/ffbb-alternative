@@ -3,7 +3,6 @@ fetch('scrapper/teams.json')
     .then((response) => response.json())
     .then((data) => {
 
-        i = 0
         for(team in data) {
 
             highlighted_path = ""
@@ -35,8 +34,6 @@ fetch('scrapper/teams.json')
                 </a>
             </li>
             `
-
-            i++
         }
     })
 
@@ -56,14 +53,58 @@ fetch('scrapper/stats.json')
     .then((response) => response.json())
     .then((data) => {
 
+        for (fixture in data) {
+
+
+            
+            if (data[fixture].match_maison) {
+                baskets_home = data[fixture].paniers_marques
+                baskets_away = data[fixture].paniers_encaisses
+            } else {
+                baskets_home = data[fixture].paniers_encaisses
+                baskets_away = data[fixture].paniers_marques
+            }
+            
+            if (data[fixture].joue) {
+                time = 'Terminé'
+                result_home = `<div class="fixture-result">${baskets_home}</div>`
+                result_away = `<div class="fixture-result">${baskets_away}</div>`
+            } else {
+                time = data[fixture].heure
+                result_home = ''
+                result_away = ''
+            }
+
+            document.getElementsByClassName('fixtures')[0].innerHTML +=
+            `
+                <div class="fixture">
+                    <div class="fixture-teams">
+                        <div class="fixture-team">
+                            <div class="fixture-team-name">${data[fixture].equipe_domicile}</div>${result_home}
+                        </div>
+                        <div class="fixture-team">
+                            <div class="fixture-team-name">${data[fixture].equipe_exterieur}</div>${result_away}
+                        </div>
+                    </div>
+                    <div class="fixture-date">
+                        <div class="fixture-day">${data[fixture].date}</div>
+                        <div class="fixture-time">${time}</div>
+                    </div>
+                </div>
+            `
+        }
+
+
         day_data = []
         baskets_scored_data = []
         baskets_cashed_data = []
 
         for (fixture in data) {
-            day_data.push(data[fixture].jour);
-            baskets_scored_data.push(data[fixture].paniers_marques);
-            baskets_cashed_data.push(data[fixture].paniers_encaisses);
+            if (data[fixture].joue == true) {
+                day_data.push(data[fixture].jour);
+                baskets_scored_data.push(data[fixture].paniers_marques);
+                baskets_cashed_data.push(data[fixture].paniers_encaisses);
+            }      
         }
 
         Chart.defaults.font.size = 14;
@@ -153,7 +194,7 @@ fetch('scrapper/stats.json')
         document.getElementById("combine").addEventListener("click", myFunction);
     })
 
-//config
+//fonctions
 function getChartConfig(data_chart, title) {
     config = {
         type: 'line',
