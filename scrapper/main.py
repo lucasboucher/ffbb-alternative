@@ -1,4 +1,4 @@
-#import
+# Imports
 from datetime import datetime
 from bs4 import BeautifulSoup
 import requests
@@ -6,10 +6,25 @@ import json
 import re
 from config import ranking_id, league_id, fixtures_id, team_name_to_highlight
 
-#urls
+# URLs
 league_url = 'https://resultats.ffbb.com/championnat/' + league_id + '.html'
 ranking_url = 'https://resultats.ffbb.com/championnat/classements/' + league_id + ranking_id + '.html'
 fixtures_url = "https://resultats.ffbb.com/championnat/equipe/division/" + league_id + ranking_id + fixtures_id + ".html"
+
+# Fonctions
+def get_team_number(team_name):
+    team_number_search = re.search(r' - [0-9]', team_name) # Recherche numéro d'équipe
+    if (team_number_search): # Si un numéro trouvé on retourne le numéro formatté
+        team_number = team_number_search.group() # Récupération du numéro
+        team_number = re.sub('\A - ', '', team_number) # Suppression surplus
+        return team_number
+    else: # Si non on retourne False
+        return False
+
+def get_team_club(team_name):
+    team_club = re.sub(' - [0-9]', '', team_name) # Suppression numéro d'équipe
+    team_club = team_club.title() # Formattage majuscule
+    return team_club
 
 #teams
 page = requests.get(ranking_url)
@@ -18,7 +33,6 @@ teams = soup.select(".liste tr")
 teams_data = []
 
 for team in teams:
-    team_number = False
     highlighted_team = False
 
     try:
@@ -26,13 +40,8 @@ for team in teams:
         if (team_name == team_name_to_highlight):
             highlighted_team = True
     
-        team_club = re.sub(' - [0-9]', '', team_name)
-        team_club = team_club.title()
-
-        team_number_search = re.search(r' - [0-9]', team_name)
-        if (team_number_search):
-            team_number = team_number_search.group()
-            team_number = re.sub('\A - ', '', team_number)
+        team_club = get_team_club(team_name)
+        team_number = get_team_number(team_name)
 
         ffbb_team_link = team.find('a')['href']
         ffbb_team_link = "https://resultats.ffbb.com/championnat" + re.sub('\A\.\.', '',ffbb_team_link)
@@ -48,6 +57,7 @@ for team in teams:
 
         team_data = {'highlighted_team': highlighted_team, 'club': team_club, 'equipe': team_number, 'lien_ffbb': ffbb_team_link, 'classement': ranking, 'points': points, 'matchs_joues': games_played, 'matchs_gagnes': won_games, 'matchs_perdus': lost_games, 'matchs_nuls': draws, 'difference': difference}
         teams_data.append(team_data)
+    
     except:
         continue
 
@@ -70,11 +80,11 @@ pool_name = re.sub("Poule ", "", pool_name)
 
 league_data = {'nom_league': league_name, 'nom_comite': league_committee, 'nom_poule': pool_name}
 
-#stats
+#fixtures
 page = requests.get(fixtures_url)
 soup = BeautifulSoup(page.text, "html.parser")
 fixtures = soup.select(".liste tr")
-stats_data = []
+fixtures_data = []
 for fixture in fixtures: 
     all_fixtures = fixture.findAll('td')
     try:
@@ -95,10 +105,14 @@ for fixture in fixtures:
             team_result = re.sub(r"[0-9]+ - ", "", fixture_result)
             opponent_result = re.sub(r" - [0-9]+", "", fixture_result)
             home_game_result = False
-        home_result = home_result.title()
-        away_result = away_result.title()
-        fixture_data = {'match_maison': home_game_result, 'joue': played_result, 'jour': matchday_result, 'heure': hour_result, 'date': date_result, 'equipe_domicile': home_result, 'equipe_exterieur': away_result, 'paniers_marques': team_result, 'paniers_encaisses': opponent_result}
-        stats_data.append(fixture_data)
+        
+        home_number_result = get_team_number(home_result)
+        away_number_result = get_team_number(away_result)
+        home_result = get_team_club(home_result)
+        away_result = get_team_club(away_result)
+
+        fixture_data = {'match_maison': home_game_result, 'match_joue': played_result, 'jour': matchday_result, 'heure': hour_result, 'date': date_result, 'equipe_domicile': home_result, 'equipe_domicile_numero': home_number_result, 'equipe_exterieur': away_result, 'equipe_exterieur_numero': away_number_result, 'paniers_marques': team_result, 'paniers_encaisses': opponent_result}
+        fixtures_data.append(fixture_data)
     except:
         continue
 
@@ -108,6 +122,6 @@ if __name__ == "__main__":
         json.dump(teams_data, f, indent=4, ensure_ascii=False)
     with open('scrapper/league.json', 'w', encoding='latin-1') as f:
         json.dump(league_data, f, indent=4, ensure_ascii=False)
-    with open('scrapper/stats.json', 'w', encoding='latin-1') as f:
-        json.dump(stats_data, f, indent=4, ensure_ascii=False)
+    with open('scrapper/fixtures.json', 'w', encoding='latin-1') as f:
+        json.dump(fixtures_data, f, indent=4, ensure_ascii=False)
     print("Data refreshes on JSON files -", datetime.now().strftime("%H:%M:%S"))

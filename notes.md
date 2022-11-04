@@ -8,13 +8,13 @@
 - Results, stats and calendar on new dedicated team page
 - New server scheduling system
 - New path python files
-- New design hover points on chart
 - require.js
 - Dropdown by date or by matchday
 
 ## Bugs
 - Charts responsivity first sequence
 - Icons for buttons mode stats
+- Better number squad icon
 
 # Colors :
 - Red : rgb(255, 99, 132)
