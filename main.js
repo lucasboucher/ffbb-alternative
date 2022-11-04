@@ -57,22 +57,22 @@ fetch('scrapper/stats.json')
 
 
             
-            if (data[fixture].match_maison) {
-                baskets_home = data[fixture].paniers_marques
-                baskets_away = data[fixture].paniers_encaisses
-            } else {
-                baskets_home = data[fixture].paniers_encaisses
-                baskets_away = data[fixture].paniers_marques
-            }
+            
             
             if (data[fixture].joue) {
+                
+                if (data[fixture].match_maison) {
+                    result_home = `<div class="fixture-result fixture-result-highlighted">${data[fixture].paniers_marques}</div>`
+                    result_away = `<div class="fixture-result">${data[fixture].paniers_encaisses}</div>`
+                } else {
+                    result_home = `<div class="fixture-result">${data[fixture].paniers_encaisses}</div>`
+                    result_away = `<div class="fixture-result fixture-result-highlighted">${data[fixture].paniers_marques}</div>`
+                }
                 time = 'Terminé'
-                result_home = `<div class="fixture-result">${baskets_home}</div>`
-                result_away = `<div class="fixture-result">${baskets_away}</div>`
             } else {
-                time = data[fixture].heure
                 result_home = ''
                 result_away = ''
+                time = data[fixture].heure
             }
 
             document.getElementsByClassName('fixtures')[0].innerHTML +=

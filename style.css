@@ -423,6 +423,10 @@ body {
     font-weight: 700;
 }
 
+.fixture-result-highlighted {
+    color:rgb(91, 186, 213)
+}
+
 .fixture-date {
     display: flex;
     flex-direction: column;
