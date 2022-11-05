@@ -7,9 +7,11 @@
 - Down and up icon on ranking
 - Results, stats and calendar on new dedicated team page
 - New server scheduling system
-- New path python files
-- require.js
-- Dropdown by date or by matchday
+- Global code organization (functions, files path, variables, ...)
+- Test require.js
+- Sorting by date or by matchday
+- Default next matchday value
+- CASBB shortcut
 
 # Colors :
 - Red : rgb(255, 99, 132)

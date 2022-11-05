@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="style.css"/>
   </head>
   <body>
+
     <div class="header">
       <img class="icon" src="assets/favicon.svg" alt="FFBB logo">
       <div>
@@ -17,9 +18,11 @@
         <div class="league-name"></div>
       </div>
     </div>
+
     <div class="ranking-header">
       <div class="title">Classement</div>
     </div>
+
     <ul class="ranking">
       <li class="table-head">
         <div class="pool-name">Poule</div>
@@ -31,6 +34,20 @@
         <div>PTS</div>
       </li>
     </ul>
+
+    <div class="main-fixtures">
+      <div class="fixtures-header">
+        <div class="fixtures-title">Prochaines rencontres</div>
+        <div class="fixtures-selection">
+          <select id="matchday_selection"></select>
+          <svg class="downarrow"><path d="M11 0.892578L6 4.99971L1 0.892578"></path></svg>
+        </div>
+        
+      </div>
+      
+      <div class="fixtures" id="next_fixtures"></div>
+    </div>
+
     <div class="stats-header">
       <div class="title">Stats</div>
       <div class="mode-select">
@@ -50,12 +67,12 @@
         </label>
       </div>
     </div>
+    
     <div class="stats"></div>
 
-    </div>
     <div class="main-fixtures">
       <div class="fixtures-title">Toutes les rencontres</div>
-      <div class="fixtures"></div>
+      <div class="fixtures" id="all_fixtures"></div>
     </div>
 
     <div class="footer">

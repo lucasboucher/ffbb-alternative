@@ -1,6 +1,6 @@
 [
     {
-        "match_maison": true,
+        "match_maison": "oui",
         "match_joue": true,
         "jour": "1",
         "heure": "13:30",
@@ -13,7 +13,7 @@
         "paniers_encaisses": "49"
     },
     {
-        "match_maison": false,
+        "match_maison": "non",
         "match_joue": true,
         "jour": "2",
         "heure": "20:30",
@@ -26,7 +26,7 @@
         "paniers_encaisses": "79"
     },
     {
-        "match_maison": true,
+        "match_maison": "oui",
         "match_joue": true,
         "jour": "3",
         "heure": "13:30",
@@ -39,7 +39,7 @@
         "paniers_encaisses": "37"
     },
     {
-        "match_maison": false,
+        "match_maison": "non",
         "match_joue": false,
         "jour": "4",
         "heure": "13:30",
@@ -52,7 +52,7 @@
         "paniers_encaisses": "-"
     },
     {
-        "match_maison": true,
+        "match_maison": "oui",
         "match_joue": false,
         "jour": "5",
         "heure": "13:30",
@@ -65,7 +65,7 @@
         "paniers_encaisses": "-"
     },
     {
-        "match_maison": false,
+        "match_maison": "non",
         "match_joue": false,
         "jour": "6",
         "heure": "20:30",
@@ -78,7 +78,7 @@
         "paniers_encaisses": "-"
     },
     {
-        "match_maison": true,
+        "match_maison": "oui",
         "match_joue": false,
         "jour": "7",
         "heure": "13:30",
@@ -91,7 +91,7 @@
         "paniers_encaisses": "-"
     },
     {
-        "match_maison": false,
+        "match_maison": "non",
         "match_joue": true,
         "jour": "8",
         "heure": "10:00",
@@ -104,7 +104,7 @@
         "paniers_encaisses": "52"
     },
     {
-        "match_maison": true,
+        "match_maison": "oui",
         "match_joue": false,
         "jour": "9",
         "heure": "13:30",
@@ -117,7 +117,7 @@
         "paniers_encaisses": "-"
     },
     {
-        "match_maison": false,
+        "match_maison": "non",
         "match_joue": false,
         "jour": "10",
         "heure": "15:30",
@@ -130,7 +130,7 @@
         "paniers_encaisses": "-"
     },
     {
-        "match_maison": true,
+        "match_maison": "oui",
         "match_joue": false,
         "jour": "11",
         "heure": "13:30",
@@ -143,7 +143,7 @@
         "paniers_encaisses": "-"
     },
     {
-        "match_maison": false,
+        "match_maison": "non",
         "match_joue": false,
         "jour": "12",
         "heure": "14:00",
@@ -156,7 +156,7 @@
         "paniers_encaisses": "-"
     },
     {
-        "match_maison": true,
+        "match_maison": "oui",
         "match_joue": false,
         "jour": "13",
         "heure": "13:30",
@@ -169,7 +169,7 @@
         "paniers_encaisses": "-"
     },
     {
-        "match_maison": false,
+        "match_maison": "non",
         "match_joue": false,
         "jour": "14",
         "heure": "10:30",

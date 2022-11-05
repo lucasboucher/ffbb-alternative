@@ -1,5 +1,5 @@
-//teams
-fetch('scrapper/teams.json')
+//ranking
+fetch('scrapper/ranking.json')
     .then((response) => response.json())
     .then((data) => {
 
@@ -45,64 +45,20 @@ fetch('scrapper/league.json')
 
 })
 
-//fixtures
 fetch('scrapper/fixtures.json')
     .then((response) => response.json())
     .then((data) => {
 
-        for (fixture in data) {
-   
-            if (data[fixture].match_joue) {
-                if (data[fixture].match_maison) {
-                    home_result = `<div class="fixture-result fixture-result-highlighted">${data[fixture].paniers_marques}</div>`
-                    away_result = `<div class="fixture-result">${data[fixture].paniers_encaisses}</div>`
-                } else {
-                    home_result = `<div class="fixture-result">${data[fixture].paniers_encaisses}</div>`
-                    away_result = `<div class="fixture-result fixture-result-highlighted">${data[fixture].paniers_marques}</div>`
-                }
-                time = 'Terminé'
-            } else {
-                home_result = ''
-                away_result = ''
-                time = data[fixture].heure
-            }
 
-            home_team_number = display_team_number(data[fixture].equipe_domicile_numero)
-            away_team_number = display_team_number(data[fixture].equipe_exterieur_numero)
-
-            document.getElementsByClassName('fixtures')[0].innerHTML +=
-            `
-                <div class="fixture">
-                    <div class="fixture-teams">
-                        <div class="fixture-team">
-                            <div class="fixture-team-name">
-                                <div class="fixture-team-club">${data[fixture].equipe_domicile}</div>
-                                ${home_team_number}
-                            </div>
-                            ${home_result}
-                        </div>
-                        <div class="fixture-team">
-                            <div class="fixture-team-name">
-                                <div class="fixture-team-club">${data[fixture].equipe_exterieur}</div>
-                                ${away_team_number}
-                            </div>
-                            ${away_result}
-                        </div>
-                    </div>
-                    <div class="fixture-date">
-                        <div class="fixture-day">${data[fixture].date}</div>
-                        <div class="fixture-time">${time}</div>
-                    </div>
-                </div>
-            `
-        }
+        //toutes les rencontres
+        display_fixtures(data, 'all_fixtures')
 
 
+        //statistiques
         day_data = []
         baskets_scored_data = []
         baskets_cashed_data = []
         teams_name = []
-  
 
         for (fixture in data) {
 
@@ -120,9 +76,9 @@ fetch('scrapper/fixtures.json')
                 day_data.push(data[fixture].jour)
                 baskets_scored_data.push(data[fixture].paniers_marques)
                 baskets_cashed_data.push(data[fixture].paniers_encaisses)
-                if (data[fixture].match_maison) {
+                if (data[fixture].match_maison == "oui") {
                     teams_name.push(data[fixture].equipe_exterieur + away_team_number)
-                } else {
+                } else if (data[fixture].match_maison == "non") {
                     teams_name.push(data[fixture].equipe_domicile + home_team_number)
                 }
             }
@@ -133,7 +89,7 @@ fetch('scrapper/fixtures.json')
         Chart.defaults.font.weight = 400
         Chart.defaults.font.lineHeight = "1.4em"
         
-        function myFunction() {
+        function load_stats() {
             if (document.getElementById('divide').checked) {
 
                 document.getElementsByClassName('stats')[0].innerHTML = 
@@ -173,8 +129,8 @@ fetch('scrapper/fixtures.json')
                     }]
                 }
                 
-                config1 = getChartConfig(data_chart1, "Paniers marqués", teams_name)
-                config2 = getChartConfig(data_chart2, "Paniers encaissés", teams_name)
+                config1 = get_chart_config(data_chart1, "Paniers marqués", teams_name)
+                config2 = get_chart_config(data_chart2, "Paniers encaissés", teams_name)
     
                 new Chart(ctx1, config1)
                 new Chart(ctx2, config2)
@@ -206,20 +162,56 @@ fetch('scrapper/fixtures.json')
                 ]
                 }
     
-                config = getChartConfig(data_chart, "Écarts de points", teams_name )
+                config = get_chart_config(data_chart, "Écarts de points", teams_name )
     
                 new Chart(ctx, config)
             }
         }
 
-        myFunction()
+        load_stats()
 
-        document.getElementById("divide").addEventListener("click", myFunction)
-        document.getElementById("combine").addEventListener("click", myFunction)
+        document.getElementById("divide").addEventListener("click", load_stats)
+        document.getElementById("combine").addEventListener("click", load_stats)
     })
 
-//fonctions
-function getChartConfig(data_chart, title, teams_name ) {
+
+// Prochaines rencontres
+fetch('scrapper/all_fixtures.json')
+    .then((response) => response.json())
+    .then((data) => {
+
+        matchday_counter = data[0].length
+        for (i = 1; i <= matchday_counter; i++) {
+            document.getElementById('matchday_selection').innerHTML += `<option value="${i}">Jour ${i}</option>`
+        }
+        
+        selected_matchday = document.getElementById('matchday_selection').value
+        
+        function load_matchday_fixtures(selected_matchday) {
+            all_next_fixtures = []
+            fixture_checker = []
+            for (all_fixtures_team in data) {
+                all_fixtures_team = data[all_fixtures_team]
+                for (fixture in all_fixtures_team) {
+                    fixture = all_fixtures_team[fixture]
+                    if (fixture.jour == selected_matchday && !fixture_checker.includes(fixture.equipe_domicile)) {
+                        all_next_fixtures.push(fixture)
+                        fixture_checker.push(fixture.equipe_domicile)
+                    }
+                }
+            }
+            display_fixtures(all_next_fixtures, 'next_fixtures')
+        }
+
+        load_matchday_fixtures(selected_matchday)
+
+        document.getElementById("matchday_selection").addEventListener("change", function() { load_matchday_fixtures(this.value) })
+
+})
+
+
+// Fonctions
+function get_chart_config(data_chart, title, teams_name ) {
     config = {
         type: 'line',
         data: data_chart,
@@ -259,7 +251,6 @@ function getChartConfig(data_chart, title, teams_name ) {
                         footer: (tooltipItems) => {
                             let gap = 0
                             tooltipItems.forEach(function(tooltipItem) {
-                                console.log(tooltipItems)
                                 gap = tooltipItem.parsed.y - gap
                             })
                             return gap
@@ -299,5 +290,60 @@ function display_team_number(team_squad) {
         return `<div class="team-number">${team_squad}</div>`
     } else {
         return ''
+    }
+}
+
+function display_fixtures(fixtures_data, main_class) {
+
+    document.getElementById(main_class).innerHTML = ""
+
+    for (fixture in fixtures_data) {
+   
+        if (fixtures_data[fixture].match_joue) {
+            if (fixtures_data[fixture].match_maison == "oui") {
+                home_result = `<div class="fixture-result fixture-result-highlighted">${fixtures_data[fixture].paniers_marques}</div>`
+                away_result = `<div class="fixture-result">${fixtures_data[fixture].paniers_encaisses}</div>`
+            } else if (fixtures_data[fixture].match_maison == "non") {
+                home_result = `<div class="fixture-result">${fixtures_data[fixture].paniers_encaisses}</div>`
+                away_result = `<div class="fixture-result fixture-result-highlighted">${fixtures_data[fixture].paniers_marques}</div>`
+            } else {
+                home_result = `<div class="fixture-result">${fixtures_data[fixture].paniers_encaisses}</div>`
+                away_result = `<div class="fixture-result">${fixtures_data[fixture].paniers_marques}</div>`
+            }
+            time = 'Terminé'
+        } else {
+            home_result = ''
+            away_result = ''
+            time = fixtures_data[fixture].heure
+        }
+
+        home_team_number = display_team_number(fixtures_data[fixture].equipe_domicile_numero)
+        away_team_number = display_team_number(fixtures_data[fixture].equipe_exterieur_numero)
+
+        document.getElementById(main_class).innerHTML +=
+        `
+            <div class="fixture">
+                <div class="fixture-teams">
+                    <div class="fixture-team">
+                        <div class="fixture-team-name">
+                            <div class="fixture-team-club">${fixtures_data[fixture].equipe_domicile}</div>
+                            ${home_team_number}
+                        </div>
+                        ${home_result}
+                    </div>
+                    <div class="fixture-team">
+                        <div class="fixture-team-name">
+                            <div class="fixture-team-club">${fixtures_data[fixture].equipe_exterieur}</div>
+                            ${away_team_number}
+                        </div>
+                        ${away_result}
+                    </div>
+                </div>
+                <div class="fixture-date">
+                    <div class="fixture-day">${fixtures_data[fixture].date}</div>
+                    <div class="fixture-time">${time}</div>
+                </div>
+            </div>
+        `
     }
 }

@@ -1,4 +1,5 @@
 scrapper/teams.json
 scrapper/league.json
-scrapper/stats.json
+scrapper/ranking.json
+scrapper/all_fixtures.json
 .DS_Store
