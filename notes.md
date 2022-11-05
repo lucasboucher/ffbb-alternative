@@ -11,11 +11,6 @@
 - require.js
 - Dropdown by date or by matchday
 
-## Bugs
-- Charts responsivity first sequence
-- Icons for buttons mode stats
-- Better number squad icon
-
 # Colors :
 - Red : rgb(255, 99, 132)
 - Blue : rgb(91, 186, 213)
