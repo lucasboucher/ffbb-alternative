@@ -175,18 +175,30 @@ fetch('scrapper/fixtures.json')
     })
 
 
-// Prochaines rencontres
 fetch('scrapper/all_fixtures.json')
     .then((response) => response.json())
     .then((data) => {
 
+        // Nombre de journées total
         matchday_counter = data[0].length
         for (i = 1; i <= matchday_counter; i++) {
             document.getElementById('matchday_selection').innerHTML += `<option value="${i}">Jour ${i}</option>`
         }
+                
+        // Journée actuelle
+        for (all_fixtures_team in data) {
+            all_fixtures_team = data[all_fixtures_team]
+            for (fixture in all_fixtures_team) {
+                fixture = all_fixtures_team[fixture]
+                if (!fixture.match_joue) {
+                    next_matchday = fixture.jour
+                    document.getElementById('matchday_selection').selectedIndex = next_matchday - 1
+                    break
+                }
+            }
+        }
         
-        selected_matchday = document.getElementById('matchday_selection').value
-        
+        // Prochaines renonctres
         function load_matchday_fixtures(selected_matchday) {
             all_next_fixtures = []
             fixture_checker = []
@@ -202,9 +214,9 @@ fetch('scrapper/all_fixtures.json')
             }
             display_fixtures(all_next_fixtures, 'next_fixtures')
         }
+        load_matchday_fixtures(next_matchday)
 
-        load_matchday_fixtures(selected_matchday)
-
+        // Changement de journée
         document.getElementById("matchday_selection").addEventListener("change", function() { load_matchday_fixtures(this.value) })
 
 })

@@ -10,7 +10,6 @@
 - Global code organization (functions, files path, variables, ...)
 - Test require.js
 - Sorting by date or by matchday
-- Default next matchday value
 - CASBB shortcut
 
 # Colors :
