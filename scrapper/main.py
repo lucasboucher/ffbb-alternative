@@ -1,12 +1,15 @@
 
 #Imports
 from config import championship_url, pool_id
-from functions import get_club_id, get_team_club, get_team_squad
+from functions import get_club_id, get_team_club, get_team_link, get_team_squad
 from datetime import datetime
 from bs4 import BeautifulSoup
 import requests
 import json
 import re
+
+# Message de lancement du scrapper
+print(datetime.now().strftime('%H:%M:%S'), '- Recovery of data in progress...')
 
 # Initialisation de la page
 page = requests.get(championship_url)
@@ -44,8 +47,9 @@ for team in teams:
         team_name = team.find('a').contents[0] # Nom de l'équipe
         team_club = get_team_club(team_name) # Nom du club
         squad = get_team_squad(team_name) # Numéro de l'équipe
-        team_link = team.find('a')['href'] # Lien du club
+        team_link = team.find('a')['href'] # Lien partiel du club
         club_id = get_club_id(team_link) # ID du club
+        team_link = get_team_link(team_link) # Lien entier du club
         ranking_row = team.find_all('td') # Ligne dans le classement 
         ranking = ranking_row[0].contents[0] # Rang
         points = ranking_row[2].contents[0] # Points
@@ -101,4 +105,4 @@ championship_data = {'nom': championship_name, 'comite': championship_committee,
 # Création du fichier JSON
 with open('scrapper/data.json', 'w', encoding='latin-1') as f:
     json.dump(championship_data, f, indent=4, ensure_ascii=False)
-print('Data refreshes on JSON file -', datetime.now().strftime('%H:%M:%S'))
+print(datetime.now().strftime('%H:%M:%S'), '- Data refreshes on JSON file')

@@ -47,7 +47,7 @@ fetch('scrapper/data.json')
                 }
             }
         }
-        document.getElementById('matchday_selection').selectedIndex = next_matchday - 1
+        document.getElementById('matchday_selection').selectedIndex = next_matchday-1
 
         // Prochaine journée
         load_matchday_fixtures(next_matchday)
