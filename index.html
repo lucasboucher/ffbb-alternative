@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Classement FFBB</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <script src="main.js"></script>
-    <link rel="mask-icon" href="assets/favicon.svg" color="#5bbad5">
+    <script src="script.js"></script>
+    <link rel="mask-icon" href="assets/ffbb_logo.svg" color="#5bbad5">
     <link rel="stylesheet" href="style.css"/>
   </head>
   <body>
 
     <div class="header">
-      <img class="icon" src="assets/favicon.svg" alt="FFBB logo">
+      <img class="icon" src="assets/ffbb_logo.svg" alt="FFBB logo">
       <div>
-        <div class="committee-name">Compétition</div>
+        <div class="committee-name"></div>
         <div class="league-name"></div>
       </div>
     </div>
 
     <div class="ranking-header">
-      <div class="title">Classement</div>
+      <div class="title">Classement général</div>
     </div>
 
     <ul class="ranking">
@@ -37,19 +37,17 @@
 
     <div class="main-fixtures">
       <div class="fixtures-header">
-        <div class="fixtures-title">Prochaines rencontres</div>
+        <div class="fixtures-title">Prochaine journée</div>
         <div class="fixtures-selection">
           <select id="matchday_selection"></select>
           <svg class="downarrow"><path d="M11 0.892578L6 4.99971L1 0.892578"></path></svg>
         </div>
-        
       </div>
-      
       <div class="fixtures" id="next_fixtures"></div>
     </div>
 
     <div class="stats-header">
-      <div class="title">Stats</div>
+      <div class="title">Graphiques des paniers</div>
       <div class="mode-select">
         <label class="button">
           <input type="radio" name="mode-select" id="divide" checked="checked">

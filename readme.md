@@ -12,8 +12,7 @@ python3 -m http.server
 ```
 
 # Config
-You can modify some configuration files:
-- `./config.js` For your highlighted team name
+You can modify the configuration file:
 - `./scrapper/config.py` For the ID of the league
 
 # Technology & Librairies:
@@ -33,3 +32,29 @@ You can modify some configuration files:
 
 # Data
 - FFBB ranking : https://resultats.ffbb.com/championnat/classements/b5e6211fb466b5e621216574.html
+
+# Notes
+- re.sub()
+- try: except:
+- css selectors
+
+# TODO
+- Results, stats and calendar on new dedicated team page
+- Sorting by date or by matchday
+- CASBB shortcut
+- Next matchday indicator
+
+## Improvements
+- Sort an array teams by rank (and not by default) for display ranking
+- New server scheduling system
+- Better CSS and HTML organization
+
+# Colors
+- Red : rgb(255, 99, 132)
+- Blue : rgb(91, 186, 213)
+- Green : rgb(99, 255, 143)
+- White : rgb(243, 244, 245)
+- Black : rgb(0, 0, 0)
+- Dark grey (borders) : rgb(43, 43, 43)
+- Dark grey (hover & background) : rgb(26, 26, 26)
+- Grey (text) : rgb(184, 184, 184)

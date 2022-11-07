@@ -1,4 +1,2 @@
-league_id = "b5e6211fb466"
-ranking_id = "b5e621216574"
-fixtures_id = "2ecd"
-team_name_to_highlight = "CHEMINOTS AMIENS SUD B.B. - 1"
+championship_url = 'https://resultats.ffbb.com/championnat/b5e6211fb466.html'
+pool_id = 'b5e621216574'

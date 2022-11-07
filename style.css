@@ -1,5 +1,9 @@
 /* Global */
 
+:root {
+    /* Variables des couleurs */
+}
+
 @font-face {
     font-family: 'Druk';
     src:  url('assets/Druk-Bold-Cy-Gr-subset.woff2') format('woff2');
@@ -37,7 +41,7 @@ ul {
 .team-number {
     display: flex;
     border: 1px solid rgb(43, 43, 43);
-    color: rgb(184, 184, 184);
+    color: rgb(243, 244, 245);
     border-radius: 16px;
     padding: 0 8px;
     font-weight: 700;
@@ -198,7 +202,6 @@ ul {
 
 .fixture-team .team-number {
     border-color: rgb(184, 184, 184);
-    color: rgb(243, 244, 245);
 }
 
 .fixture-team-name {
@@ -217,7 +220,7 @@ ul {
     font-weight: 700;
 }
 
-.fixture-result-highlighted {
+.fixture-result-team-selected {
     color:rgb(91, 186, 213)
 }
 
@@ -361,9 +364,12 @@ ul {
 }
 
 .team-icon {
-    width: 8px;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.selected-team-icon {
+    stroke: rgb(91, 186, 213);
 }
 
 .team-name {
