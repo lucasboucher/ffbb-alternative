@@ -69,7 +69,7 @@ fetch('../scrapper/data.json')
             `
             <li class="team">
                 <a href="#">
-                    <div class="rank">0</div>
+                    <div class="rank">${parseInt(team) + 1}</div>
                     <div class="team-icon">
                         <svg width="8" height="8" viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" stroke="rgb(184, 184, 184)" stroke-width="16"/></svg>
                     </div>

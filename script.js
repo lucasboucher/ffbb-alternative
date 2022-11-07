@@ -371,8 +371,8 @@ function display_charts(day_data, baskets_scored_data, baskets_cashed_data, oppo
             labels: day_data,
             datasets: [{
                 data: baskets_scored_data,
-                backgroundColor: 'rgba(99, 255, 143, 0.2)',
-                borderColor: 'rgb(99, 255, 143)',
+                backgroundColor: 'rgba(29, 187, 121, 0.2)',
+                borderColor: 'rgb(29, 187, 121)',
                 borderWidth: 1,
                 fill: true,
                 pointRadius: 6
@@ -382,8 +382,8 @@ function display_charts(day_data, baskets_scored_data, baskets_cashed_data, oppo
             labels: day_data,
             datasets: [{
                 data: baskets_cashed_data,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 47, 84, 0.2)',
+                borderColor: 'rgb(255, 47, 84)',
                 borderWidth: 1,
                 fill: true,
                 pointRadius: 6
@@ -405,16 +405,18 @@ function display_charts(day_data, baskets_scored_data, baskets_cashed_data, oppo
             labels: day_data,
             datasets: [{
                 data: baskets_cashed_data,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgb(255, 99, 132)',
-                borderWidth: 1
+                backgroundColor: 'rgba(255, 47, 84, 0.2)',
+                borderColor: 'rgb(255, 47, 84)',
+                borderWidth: 1,
+                pointRadius: 6
             },
             {
                 data: baskets_scored_data,
-                backgroundColor: 'rgba(99, 255, 143, 0.2)',
-                borderColor: 'rgb(99, 255, 143)',
+                backgroundColor: 'rgba(29, 187, 121, 0.2)',
+                borderColor: 'rgb(29, 187, 121)',
                 borderWidth: 1,
-                fill: {target: '0', above: 'rgba(99, 255, 143, 0.2)', below: 'rgba(255, 99, 132, 0.2)'}
+                fill: {target: '0', above: 'rgba(29, 187, 121, 0.2)', below: 'rgba(255, 47, 84, 0.2)'},
+                pointRadius: 6
             }
         ]
         }

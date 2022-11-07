@@ -42,9 +42,9 @@ You can modify the configuration file:
 - Better CSS and HTML organization (class names, CSS colors variables, ...)
 
 # Colors
-- Red : rgb(255, 99, 132)
+- Red : rgb(255, 47, 84)
 - Blue : rgb(91, 186, 213)
-- Green : rgb(99, 255, 143)
+- Green : rgb(29, 187, 121)
 - White : rgb(243, 244, 245)
 - Black : rgb(0, 0, 0)
 - Dark grey (borders) : rgb(43, 43, 43)
