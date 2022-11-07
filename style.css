@@ -99,7 +99,7 @@ ul {
 .fixtures-selection select {
     border: 1px solid rgb(43, 43, 43);
     border-radius: 4px;
-    background-color: transparent;
+    background-color: rgb(26, 26, 26);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -121,29 +121,22 @@ ul {
     }
 }
 
-
 .fixtures-selection select:focus {
     outline: unset;
     border-color: rgb(91, 186, 213);
 }
 
-.fixtures-selection select:hover {
-    border-color: rgb(243, 244, 245);
-    transition: 0.25s;
-}
-
-.fixtures-header .downarrow {
+.fixtures-selection .downarrow {
     stroke: rgb(243, 244, 245);
     stroke-width: 2px;
     height: 7px;
     width: 12px;
     position: relative;
     right: 16px;
-    z-index: -1;
 }
 
 @media screen and (max-width: 600px) {
-    .fixtures-header .downarrow {
+    .fixtures-selection .downarrow {
         right: unset;
         bottom: 30px;
         right: 16px;

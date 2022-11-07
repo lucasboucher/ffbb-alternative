@@ -32,9 +32,11 @@ You can modify the configuration file:
 
 # TODO
 - Results, stats and calendar on new dedicated team page
+    - CASBB shortcut
 - Sorting by date or by matchday
-- CASBB shortcut
-- Next matchday indicator
+
+## Bugs
+- Down arrow icon non clickable -> z-index ? 
 
 ## Improvements
 - Sort an array teams by rank (and not by default) for display ranking

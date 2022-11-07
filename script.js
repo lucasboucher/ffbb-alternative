@@ -30,12 +30,6 @@ fetch('scrapper/data.json')
         document.getElementsByClassName('committee-name')[0].innerHTML = data.comite // Comité du championnat
         document.getElementsByClassName('pool-name')[0].innerHTML += ` ${data.poule}` // Poule du championnat
 
-        // Afficher le nombre de journées total
-        matchday_counter = data.equipes[0].rencontres.length
-        for (let i = 1; i <= matchday_counter; i++) {
-            document.getElementById('matchday_selection').innerHTML += `<option value="${i}">Jour ${i}</option>`
-        }
-
         // Détermination de la journée actuelle
         for (team in teams) {
             fixtures = teams[team].rencontres
@@ -47,6 +41,19 @@ fetch('scrapper/data.json')
                 }
             }
         }
+
+        // Afficher le nombre de journées total
+        matchday_counter = data.equipes[0].rencontres.length
+        for (let i = 1; i <= matchday_counter; i++) {
+            if (i == next_matchday) {
+                next_matchday_indicator = '🗓️ '
+            } else {
+                next_matchday_indicator = ''
+            }
+            document.getElementById('matchday_selection').innerHTML += `<option value="${i}">${next_matchday_indicator}Jour ${i}</option>`
+        }
+
+        // Mettre par défaut la journée actuelle
         document.getElementById('matchday_selection').selectedIndex = next_matchday-1
 
         // Prochaine journée
