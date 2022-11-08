@@ -128,7 +128,7 @@ fetch('scrapper/data.json')
             document.getElementsByClassName('ranking')[0].innerHTML +=
             `
             <li class="team-container">
-                <a class="team" href="/team?club=${teams[team].club}">
+                <a class="team" href="./team?club=${teams[team].club}">
                     <div class="rank">${teams[team].classement}</div>
                     <div class="team-icon">${position_icon}</div>
                     <div class="team-name">
