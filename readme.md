@@ -45,7 +45,7 @@ You can modify the configuration file:
 - New server scheduling system (CRON ?)
 - Better CSS and HTML organization (class names, CSS colors variables, ...)
     - Default text font weight, line height and size for all page
-- New design for FFBB team link icon
+- JS : tertiary, addAttribute()
 
 # Colors
 - Red : rgb(255, 47, 84)

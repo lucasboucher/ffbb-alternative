@@ -143,7 +143,7 @@ fetch('scrapper/data.json')
                     <div class="points">${teams[team].points}</div>
                     <div class="ffbb-link hide-mobile">
                         <object><a href="${teams[team].lien_equipe}" target="_blank">
-                            <svg viewBox="0 0 24 24"><path d="M9.171 14.828l5.657-5.656m0 0h-4.95m4.95 0v4.95M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path></svg>
+                            <svg viewBox="0 0 24 24"><path d="M21 3.6v16.8a.6.6 0 01-.6.6H3.6a.6.6 0 01-.6-.6V3.6a.6.6 0 01.6-.6h16.8a.6.6 0 01.6.6z"></path><path d="M15.025 8.025h-4.95m4.95 0v4.95m0-4.95l-3.535 3.536c-2.475 2.475 0 4.95 0 4.95"></path></svg>
                         </a></object>
                     </div>
                 </a>

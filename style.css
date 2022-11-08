@@ -61,7 +61,7 @@ body {
     justify-content: space-between;
     padding-bottom: 32px;
     border-bottom: 1px solid rgb(43, 43, 43);
-    margin: 0 4vw;
+    margin: 0 0;
     margin-top: 32px;
     gap: 16px;
 }
@@ -72,6 +72,7 @@ body {
     gap: 16px;
     align-items: center;
     min-width: 0;
+    margin-left: 4vw;
 }
 
 .header-logo {
@@ -112,6 +113,12 @@ body {
     display: flex;
     align-items: center;
     gap: 16px;
+    margin-right: 4vw;
+}
+
+.header-link {
+    display: flex;
+    gap: 8px;
 }
 
 .header-link a {
@@ -356,7 +363,7 @@ body {
     padding-bottom: 8px;
     text-align: right;
     display: grid;
-    grid-template-columns: 1fr 40px 40px 40px 40px 60px 40px 30px;
+    grid-template-columns: 1fr 40px 40px 40px 40px 60px 40px 60px;
 }
 
 @media screen and (max-width: 600px) {
@@ -374,6 +381,11 @@ body {
     text-transform: uppercase;
 }
 
+.ffbb-logo {
+    background-color: rgb(184, 184, 184);
+    mask: url(assets/ffbb_logo.svg) no-repeat center / contain;
+}
+
 .team-container {
     list-style-type: none;
     font-size: 1rem;
@@ -388,7 +400,7 @@ body {
     text-decoration: none;
     padding: 16px 0;
     display: grid;
-    grid-template-columns: 20px 30px 1fr 40px 40px 40px 40px 60px 40px 30px;
+    grid-template-columns: 20px 30px 1fr 40px 40px 40px 40px 60px 40px 60px;
     align-items: center;
 }
 
@@ -398,7 +410,7 @@ body {
     }
 }
 
-.team-container:not(:nth-child(2)) a {
+.team-container:not(:nth-child(2)) > a {
     border-top: 1px solid rgb(43, 43, 43);
 }
 
@@ -446,13 +458,25 @@ body {
 .ffbb-link a {
     display: flex;
     align-items: center;
+    border-radius: 2px;
+    padding: 4px;
+}
+
+.ffbb-link a:hover {
+    background-color: rgb(243, 244, 245);
 }
 
 .ffbb-link svg {
     width: 16px;
-    height: 16px;
     stroke-width: 1.5;
     stroke: rgb(184, 184, 184);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.ffbb-link a:hover svg {
+    fill: rgb(243, 244, 245);
+    stroke: rgb(0, 0, 0);
 }
 
 .stats-header {
@@ -603,6 +627,7 @@ body {
 
 .footer a:hover {
     color: rgb(91, 186, 213);
+    transition: 0.25S;
 }
 
 .copyright {
