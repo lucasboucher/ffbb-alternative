@@ -12,10 +12,20 @@
   <body>
 
     <div class="header">
-      <img class="icon" src="assets/ffbb_logo.svg" alt="FFBB logo">
-      <div class="infos">
-        <div class="committee-name"></div>
-        <div class="league-name"></div>
+      <div class="header-infos">
+        <img class="header-logo" src="assets/ffbb_logo.svg" alt="FFBB logo">
+        <div class="header-texts">
+          <div class="header-subtitle"></div>
+          <div class="header-title"></div>
+        </div>
+      </div>
+      <div class="header-navigation">
+        <div class="header-link">
+          <a href="team/?club=Cheminots%20Amiens%20Sud%20B.B.">
+            <div class="link-text">CASBB</div>
+            <svg viewBox="0 0 24 24"><path d="M21 3.6v16.8a.6.6 0 01-.6.6H3.6a.6.6 0 01-.6-.6V3.6a.6.6 0 01.6-.6h16.8a.6.6 0 01.6.6z"></path><path d="M15.025 8.025h-4.95m4.95 0v4.95m0-4.95l-3.535 3.536c-2.475 2.475 0 4.95 0 4.95"></path></svg>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -32,6 +42,7 @@
         <div class="hide-mobile">N</div>
         <div>DIFF</div>
         <div>PTS</div>
+        <div class="hide-mobile"></div>
       </li>
     </ul>
 
@@ -44,33 +55,6 @@
         </div>
       </div>
       <div class="fixtures" id="next_fixtures"></div>
-    </div>
-
-    <div class="stats-header">
-      <div class="title">Graphiques des paniers</div>
-      <div class="mode-select">
-        <label class="button">
-          <input type="radio" name="mode-select" id="divide" checked="checked">
-          <span>Divisées</span>
-          <span class="checkmark">
-            <svg><path d="M9.6 1c.2.3.3.7 0 1l-5 5.3c-.6.7-1.5.7-2.2.1l-2-1.9a.6.6 0 0 1 .9-.9l2 1.9c.1.1.3.1.4 0l5-5.4c.2-.3.6-.3.9 0Z"></path></svg>
-          </span>
-        </label>
-        <label class="button">
-          <input type="radio" name="mode-select" id="combine">
-          <span>Combinées</span>
-          <span class="checkmark">
-            <svg><path d="M9.6 1c.2.3.3.7 0 1l-5 5.3c-.6.7-1.5.7-2.2.1l-2-1.9a.6.6 0 0 1 .9-.9l2 1.9c.1.1.3.1.4 0l5-5.4c.2-.3.6-.3.9 0Z"></path></svg>
-          </span>
-        </label>
-      </div>
-    </div>
-    
-    <div class="stats"></div>
-
-    <div class="main-fixtures">
-      <div class="fixtures-title">Toutes les rencontres</div>
-      <div class="fixtures" id="all_fixtures"></div>
     </div>
 
     <div class="footer">

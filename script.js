@@ -15,9 +15,9 @@ Chart.defaults.font.weight = 400
 Chart.defaults.font.lineHeight = "1.4em"
 
 
-// |------------------|
-// |   Récupération   |
-// |------------------|
+// |-----------------|
+// |   Championnat   |
+// |-----------------|
 
 fetch('scrapper/data.json')
     .then((response) => response.json())
@@ -26,8 +26,8 @@ fetch('scrapper/data.json')
         teams = data.equipes // Toutes les équipes
 
         // Informations du championnat
-        document.getElementsByClassName('league-name')[0].innerHTML = data.nom // Nom du championnat
-        document.getElementsByClassName('committee-name')[0].innerHTML = data.comite // Comité du championnat
+        document.getElementsByClassName('header-subtitle')[0].innerHTML = data.comite // Comité du championnat
+        document.getElementsByClassName('header-title')[0].innerHTML = data.nom // Nom du championnat
         document.getElementsByClassName('pool-name')[0].innerHTML += ` ${data.poule}` // Poule du championnat
 
         // Détermination de la journée actuelle
@@ -127,8 +127,8 @@ fetch('scrapper/data.json')
             div_squad = get_div_squad(teams[team].equipe) // Récupére la <div> du numéro de l'équipe si elle existe
             document.getElementsByClassName('ranking')[0].innerHTML +=
             `
-            <li class="team">
-                <a href="${teams[team].lien_equipe}" target="_blank">
+            <li class="team-container">
+                <a class="team" href="/team?club=${teams[team].club}">
                     <div class="rank">${teams[team].classement}</div>
                     <div class="team-icon">${position_icon}</div>
                     <div class="team-name">
@@ -140,7 +140,12 @@ fetch('scrapper/data.json')
                     <div class="hide-mobile">${teams[team].matchs_perdus}</div>
                     <div class="hide-mobile">${teams[team].matchs_nuls}</div>
                     <div>${teams[team].difference}</div>
-                    <div class="points">${teams[team].points}</div>  
+                    <div class="points">${teams[team].points}</div>
+                    <div class="ffbb-link hide-mobile">
+                        <object><a href="${teams[team].lien_equipe}" target="_blank">
+                            <svg viewBox="0 0 24 24"><path d="M9.171 14.828l5.657-5.656m0 0h-4.95m4.95 0v4.95M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path></svg>
+                        </a></object>
+                    </div>
                 </a>
             </li>
             `
@@ -162,57 +167,6 @@ fetch('scrapper/data.json')
             }
             display_fixtures(next_fixtures, 'next_fixtures')
         }
-
-        // Afficher toutes les rencontres d'une équipe
-        for (team in teams) {
-            club_name = teams[team].club
-            if (club_name == selected_club_name) {
-                team_fixtures = teams[team].rencontres
-                display_fixtures(team_fixtures, 'all_fixtures')
-            }
-        }
-        
-        // Réupération des données pour les graphiques
-        matchday_data = []
-        baskets_scored_data = []
-        baskets_cashed_data = []
-        opponents_teams_data = []
-        for (team in teams) {
-            club_name = teams[team].club
-            if (club_name == selected_club_name) {
-                fixtures = teams[team].rencontres
-                for (fixture in fixtures) {
-                    fixture = fixtures[fixture]
-                    if (fixture.match_joue == true) {
-                        matchday_data.push(fixture.jour)
-                        home_squad = ''
-                        away_squad = ''
-                        if (fixture.equipe_domicile_numero) {
-                            home_squad = ' - ' + fixture.equipe_domicile_numero
-                        }
-                        if (fixture.equipe_exterieur_numero) {
-                            away_squad = ' - ' + fixture.equipe_exterieur_numero
-                        }     
-                        if (fixture.match_domicile) {
-                            baskets_scored_data.push(fixture.resultat_equipe_domicile)
-                            baskets_cashed_data.push(fixture.resultat_equipe_exterieur)
-                            opponents_teams_data.push(fixture.club_exterieur + away_squad)
-                        } else {
-                            baskets_scored_data.push(fixture.resultat_equipe_exterieur)
-                            baskets_cashed_data.push(fixture.resultat_equipe_domicile)
-                            opponents_teams_data.push(fixture.club_domicile + home_squad)
-                        }
-                    }
-                }
-            }
-        }
-
-        // Affichage des graphiques des paniers
-        display_charts(matchday_data, baskets_scored_data, baskets_cashed_data, opponents_teams_data)
-
-        // Changement de mode des graphiques
-        document.getElementById("divide").addEventListener("click", () => display_charts(matchday_data, baskets_scored_data, baskets_cashed_data, opponents_teams_data))
-        document.getElementById("combine").addEventListener("click", () => display_charts(matchday_data, baskets_scored_data, baskets_cashed_data, opponents_teams_data))
 
     })
 
@@ -282,152 +236,5 @@ function display_fixtures(fixtures_data, main_class) {
                 </div>
             </div>
         `
-    }
-}
-
-// Obtenir la configuration d'un graphique
-function get_chart_config(data_chart, title, opponents_teams) {
-    config = {
-        type: 'line',
-        data: data_chart,
-        options: {
-            interaction: {
-                intersect: false,
-                mode: 'index'
-            },
-            maintainAspectRatio: false,
-            plugins: {
-                title: {
-                    display: true,
-                    text: title,
-                    font: {
-                        weight: 600
-                    }
-                },
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    backgroundColor: 'rgba(43, 43, 43, 0.8)',
-                    titleFont: {
-                        weight: 500
-                    },
-                    footerFont: {
-                        weight: 700
-                    },
-                    callbacks: {
-                        title: (tooltipItems) => {
-                            tooltipItems.forEach(function(tooltipItem) {
-                                index = tooltipItem.dataIndex.toString()
-                            })
-                            return opponents_teams[index]
-                        },
-                        label: () => {''},
-                        footer: (tooltipItems) => {
-                            let gap = 0
-                            tooltipItems.forEach(function(tooltipItem) {
-                                gap = tooltipItem.parsed.y - gap
-                            })
-                            return gap
-                        }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    grid: {
-                        color: "rgb(26, 26, 26)",
-                        drawTicks: false,
-                    }
-                },
-                y: {
-                    suggestedMax: 160,
-                    min: 0,
-                    ticks: {
-                        maxTicksLimit: 9
-                    },
-                    grid: {
-                        titleFont: {
-                            weight: 600
-                        },
-                        color: "rgb(26, 26, 26)",
-                        drawTicks: false,
-                    }
-                }
-            }
-        }
-    }
-    return config
-}
-
-// Afficher les graphiques
-function display_charts(day_data, baskets_scored_data, baskets_cashed_data, opponents_teams) {
-    if (document.getElementById('divide').checked) {
-        document.getElementsByClassName('stats')[0].innerHTML = 
-        `
-            <div class="chart">
-                <canvas id="baskets_scored"></canvas>
-            </div>
-            <div class="chart">
-                <canvas id="baskets_cashed"></canvas>
-            </div>
-        `
-        const ctx1 = document.getElementById('baskets_scored')
-        const ctx2 = document.getElementById('baskets_cashed')
-        const data_chart1 = {
-            labels: day_data,
-            datasets: [{
-                data: baskets_scored_data,
-                backgroundColor: 'rgba(29, 187, 121, 0.2)',
-                borderColor: 'rgb(29, 187, 121)',
-                borderWidth: 1,
-                fill: true,
-                pointRadius: 6
-            }]
-        }     
-        const data_chart2 = {
-            labels: day_data,
-            datasets: [{
-                data: baskets_cashed_data,
-                backgroundColor: 'rgba(255, 47, 84, 0.2)',
-                borderColor: 'rgb(255, 47, 84)',
-                borderWidth: 1,
-                fill: true,
-                pointRadius: 6
-            }]
-        }
-        config1 = get_chart_config(data_chart1, "Paniers marqués", opponents_teams)
-        config2 = get_chart_config(data_chart2, "Paniers encaissés", opponents_teams)
-        new Chart(ctx1, config1)
-        new Chart(ctx2, config2)
-    } else if (document.getElementById('combine').checked) {
-        document.getElementsByClassName('stats')[0].innerHTML =
-        `
-            <div class="chart">
-                <canvas id="baskets"></canvas>
-            </div>
-        `
-        const ctx = document.getElementById('baskets')
-        const data_chart = {
-            labels: day_data,
-            datasets: [{
-                data: baskets_cashed_data,
-                backgroundColor: 'rgba(255, 47, 84, 0.2)',
-                borderColor: 'rgb(255, 47, 84)',
-                borderWidth: 1,
-                pointRadius: 6
-            },
-            {
-                data: baskets_scored_data,
-                backgroundColor: 'rgba(29, 187, 121, 0.2)',
-                borderColor: 'rgb(29, 187, 121)',
-                borderWidth: 1,
-                fill: {target: '0', above: 'rgba(29, 187, 121, 0.2)', below: 'rgba(255, 47, 84, 0.2)'},
-                pointRadius: 6
-            }
-        ]
-        }
-        config = get_chart_config(data_chart, "Écarts de points", opponents_teams)
-        new Chart(ctx, config)
     }
 }

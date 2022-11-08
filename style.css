@@ -1,3 +1,20 @@
+/* Reset */
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+body {
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+}
+
 /* Global */
 
 :root {
@@ -13,26 +30,13 @@
     background: rgb(91, 186, 213);
 }
 
-html {
+body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     color: rgb(243, 244, 245);
     font-weight: 500;
     background-color: rgb(0, 0, 0);
-}
-
-
-/* Reset */
-
-.links a {
-    text-decoration: none;
-}
-
-body {
-    margin: 0;
-}
-
-ul {
-    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 
@@ -47,6 +51,92 @@ ul {
     font-weight: 700;
     font-size: .75rem;
     align-items: center;
+}
+
+
+/* En-tête */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgb(43, 43, 43);
+    margin: 0 4vw;
+    margin-top: 32px;
+}
+
+.header-infos {
+    display: flex;
+    text-transform: uppercase;
+    gap: 16px;
+    align-items: center;
+}
+
+.header-logo {
+    height: 64px;
+}
+
+.header-subtitle {
+    font-size: .875rem;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 600px) {
+    .header-subtitle {
+        font-size: .75rem;
+    }
+}
+
+.header-title {
+    font-family: Druk, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+@media screen and (max-width: 600px) {
+    .header-title {
+        font-size: 1.5rem;
+    }
+}
+
+.header-navigation {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header-link a {
+    display: flex;
+    gap: 4px;
+    border-radius: 4px;
+    background-color: rgb(26, 26, 26);
+    padding: 16px;
+}
+
+.header-link a:hover {
+    background-color: rgb(243, 244, 245);
+    color: rgb(0, 0, 0);
+    transition: 0.25s;
+}
+
+.header-link a svg {
+    width: 16px;
+    stroke-width: 1.5;
+    stroke:rgb(243, 244, 245);
+    fill: transparent;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.header-link a:hover svg {
+    stroke:rgb(0, 0, 0);
+    transition: 0.25s;
+}
+
+@media screen and (max-width: 800px) {
+    .link-text {
+        display: none;
+    }
 }
 
 
@@ -233,56 +323,6 @@ ul {
 
 /* À trier */
 
-.header {
-    display: flex;
-    align-items: center;
-    padding-bottom: 32px;
-    border-bottom: 1px solid rgb(43, 43, 43);
-    margin: 0 4vw;
-    margin-top: 32px;
-}
-
-.infos {
-    min-width: 0;
-}
-
-.icon {
-    width: 64px;
-    margin-right: 16px;
-}
-
-.league-name {
-    font-family: Druk, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 2.5rem;
-    text-transform: uppercase;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    font-weight: 700;
-}
-
-@media screen and (max-width: 600px) {
-    .league-name {
-        font-size: 1.5rem;
-    }
-}
-
-.committee-name {
-    text-transform: uppercase;
-    font-size: .875rem;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-@media screen and (max-width: 600px) {
-    .committee-name{
-        font-size: .75rem;
-    }
-}
-
 .title {
     font-size: 1.375rem;
     font-weight: 700;
@@ -307,7 +347,7 @@ ul {
     padding-bottom: 8px;
     text-align: right;
     display: grid;
-    grid-template-columns: 1fr 40px 40px 40px 40px 60px 40px;
+    grid-template-columns: 1fr 40px 40px 40px 40px 60px 40px 30px;
 }
 
 @media screen and (max-width: 600px) {
@@ -325,7 +365,7 @@ ul {
     text-transform: uppercase;
 }
 
-.team {
+.team-container {
     list-style-type: none;
     font-size: 1rem;
     -webkit-font-smoothing: antialiased;
@@ -334,26 +374,26 @@ ul {
     text-align: right;
 }
 
-.team a {
+.team {
     color: rgb(243, 244, 245);;
     text-decoration: none;
     padding: 16px 0;
     display: grid;
-    grid-template-columns: 20px 30px 1fr 40px 40px 40px 40px 60px 40px;
+    grid-template-columns: 20px 30px 1fr 40px 40px 40px 40px 60px 40px 30px;
     align-items: center;
 }
 
 @media screen and (max-width: 600px) {
-    .team a {
+    .team {
         grid-template-columns: 20px 30px 1fr 40px 60px 40px;
     }
 }
 
-.team:not(:nth-child(2)) a {
+.team-container:not(:nth-child(2)) a {
     border-top: 1px solid rgb(43, 43, 43);
 }
 
-.team:hover {
+.team-container:hover {
     background-color: rgb(26, 26, 26);
     transition: 0.25s;
 }
@@ -386,6 +426,24 @@ ul {
 
 .points {
     font-weight: 700;
+}
+
+.ffbb-link {
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+}
+
+.ffbb-link a {
+    display: flex;
+    align-items: center;
+}
+
+.ffbb-link svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 1.5;
+    stroke: rgb(184, 184, 184);
 }
 
 .stats-header {
