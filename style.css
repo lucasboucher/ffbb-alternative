@@ -309,6 +309,11 @@ body {
     min-width: 0;
 }
 
+.fixture-team-name:hover {
+    color: rgb(91, 186, 213);
+    transition: 0.25s;
+}
+
 .fixture-team-club {
     overflow: hidden;
     text-overflow: ellipsis;

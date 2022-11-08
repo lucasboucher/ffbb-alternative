@@ -35,7 +35,6 @@ You can modify the configuration file:
 - Parameters with storage for selected team
     - Replace CASBB shortcut by parameter modal
 - Stats panel on team page
-- Link for teams on a fixture
 
 ## Bugs
 - Down arrow icon non clickable -> z-index ? 

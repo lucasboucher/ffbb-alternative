@@ -220,17 +220,17 @@ function display_fixtures(fixtures_data, main_class) {
             <div class="fixture">
                 <div class="fixture-teams">
                     <div class="fixture-team">
-                        <div class="fixture-team-name">
+                        <a class="fixture-team-name" href="./team/?club=${fixture.club_domicile}">
                             <div class="fixture-team-club">${fixture.club_domicile}</div>
                             ${home_squad}
-                        </div>
+                        </a>
                         ${home_score}
                     </div>
                     <div class="fixture-team">
-                        <div class="fixture-team-name">
+                        <a class="fixture-team-name" href="./team/?club=${fixture.club_exterieur}">
                             <div class="fixture-team-club">${fixture.club_exterieur}</div>
                             ${away_squad}
-                        </div>
+                        </a>
                         ${away_score}
                     </div>
                 </div>
