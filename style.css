@@ -63,6 +63,7 @@ body {
     border-bottom: 1px solid rgb(43, 43, 43);
     margin: 0 4vw;
     margin-top: 32px;
+    gap: 16px;
 }
 
 .header-infos {
@@ -70,15 +71,23 @@ body {
     text-transform: uppercase;
     gap: 16px;
     align-items: center;
+    min-width: 0;
 }
 
 .header-logo {
     height: 64px;
 }
 
+.header-texts {
+    overflow: hidden;
+}
+
 .header-subtitle {
     font-size: .875rem;
     font-weight: 400;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 @media screen and (max-width: 600px) {
