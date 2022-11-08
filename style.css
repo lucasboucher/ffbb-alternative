@@ -336,6 +336,12 @@ body {
     font-weight: 700;
 }
 
+.fixture-indicator-team-selected {
+    position: relative;
+    bottom: 40px;
+    left: 8px;
+}
+
 
 /* À trier */
 
@@ -460,6 +466,7 @@ body {
     align-items: center;
     border-radius: 2px;
     padding: 4px;
+    background-color: rgb(26, 26, 26);
 }
 
 .ffbb-link a:hover {
@@ -468,6 +475,7 @@ body {
 
 .ffbb-link svg {
     width: 16px;
+    fill: transparent;
     stroke-width: 1.5;
     stroke: rgb(184, 184, 184);
     stroke-linecap: round;

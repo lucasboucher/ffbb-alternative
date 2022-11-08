@@ -1,3 +1,4 @@
+
 // |----------------|
 // |   Temporaire   |
 // |----------------|
@@ -189,8 +190,10 @@ function display_fixtures(fixtures_data, main_class) {
     document.getElementById(main_class).innerHTML = ""
     for (fixture in fixtures_data) {
         fixture = fixtures_data[fixture]
-        played = fixture.match_joue
-        if (played) {
+        home_squad = get_div_squad(fixture.equipe_domicile_numero)
+        away_squad = get_div_squad(fixture.equipe_exterieur_numero)
+        indicator_team_selected = ''
+        if (fixture.match_joue) {
             home_score = fixture.resultat_equipe_domicile
             away_score = fixture.resultat_equipe_exterieur
             selected_team_status = fixture.match_domicile
@@ -208,9 +211,10 @@ function display_fixtures(fixtures_data, main_class) {
             home_score = ''
             away_score = ''
             time = fixture.heure
+            if (fixture.club_domicile == selected_club_name || fixture.club_exterieur == selected_club_name) {
+                indicator_team_selected = '<div class="fixture-indicator-team-selected"><svg width="16" height="16" viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="rgb(91, 186, 213)"/></svg></div>'
+            }
         }
-        home_squad = get_div_squad(fixture.equipe_domicile_numero)
-        away_squad = get_div_squad(fixture.equipe_exterieur_numero)
         document.getElementById(main_class).innerHTML +=
         `
             <div class="fixture">
@@ -234,6 +238,7 @@ function display_fixtures(fixtures_data, main_class) {
                     <div class="fixture-day">${fixture.date}</div>
                     <div class="fixture-time">${time}</div>
                 </div>
+                ${indicator_team_selected}
             </div>
         `
     }

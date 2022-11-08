@@ -33,12 +33,13 @@ You can modify the configuration file:
 # TODO
 - Sorting by date or by matchday
 - Parameters with storage for selected team
-    - Indicator next matchday
     - Replace CASBB shortcut by parameter modal
 - Stats panel on team page
+- Link for teams on a fixture
 
 ## Bugs
 - Down arrow icon non clickable -> z-index ? 
+- Dev Mode HTML
 
 ## Improvements
 - Sort an array teams by rank (and not by default) for display ranking
