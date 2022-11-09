@@ -40,18 +40,18 @@ You can modify the configuration file:
 - Print 6 last and next fixtures by time (with matchday indicator)
 
 ## Bugs
-- Down arrow icon non clickable -> z-index ? see radio button hint...
 - Dev Mode HTML
+- Down arrow icon non clickable -> z-index ? see radio button hint...
 
 ## Improvements
-- Sort an array teams by rank (and not by default) for display ranking
-- New server scheduling system (CRON ?)
 - Better CSS and HTML organization (class names, CSS colors variables, ...)
     - Default text font weight, line height and size for all page
-- JS : ternary operator, setAttribute()
-- Sort automatically next fixtures by date
 - Better back button (replace FFBB logo)
 - Yellow/orange color for team page
+- Sort an array teams by rank (and not by default) for display ranking
+- New server scheduling system (CRON ?)
+- JS : ternary operator, setAttribute()
+- Sort automatically next matchday fixtures by date
 
 # Colors
 - Red : rgb(255, 47, 84)
