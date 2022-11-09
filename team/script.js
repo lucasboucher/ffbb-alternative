@@ -1,4 +1,9 @@
 
+// |----------------|
+// |   Temporaire   |
+// |----------------|
+
+selected_club_name = 'Cheminots Amiens Sud B.B.'
 // |--------------|
 // |   Chart.js   |
 // |--------------|
@@ -20,20 +25,20 @@ fetch('../scrapper/data.json')
         teams = data.equipes // Toutes les équipes
 
         // Recherche de l'équipe sélectionné
-        selected_club_name = window.location.search
-        selected_club_name = new URLSearchParams(selected_club_name).get('club')
-        if (!selected_club_name) {
-            selected_club_name = teams[0].club
+        page_club_name = window.location.search
+        page_club_name = new URLSearchParams(page_club_name).get('club')
+        if (!page_club_name) {
+            page_club_name = teams[0].club
         }
 
         // Informations du championnat
         document.getElementsByClassName('header-subtitle')[0].innerHTML = data.nom // Nom du championnat
-        document.getElementsByClassName('header-title')[0].innerHTML = selected_club_name // Nom du de l'équipe sélectionné
+        document.getElementsByClassName('header-title')[0].innerHTML = page_club_name // Nom du de l'équipe sélectionné
 
         // Afficher toutes les rencontres d'une équipe
         for (team in teams) {
             club_name = teams[team].club
-            if (club_name == selected_club_name) {
+            if (club_name == page_club_name) {
                 team_fixtures = teams[team].rencontres
                 display_fixtures(team_fixtures, 'all_fixtures')
             }
@@ -46,7 +51,7 @@ fetch('../scrapper/data.json')
         opponents_teams_data = []
         for (team in teams) {
             club_name = teams[team].club
-            if (club_name == selected_club_name) {
+            if (club_name == page_club_name) {
                 fixtures = teams[team].rencontres
                 for (fixture in fixtures) {
                     fixture = fixtures[fixture]
@@ -103,15 +108,16 @@ function display_fixtures(fixtures_data, main_class) {
     for (fixture in fixtures_data) {
         fixture = fixtures_data[fixture]
         played = fixture.match_joue
+        indicator_team_selected = ''
         if (played) {
             home_score = fixture.resultat_equipe_domicile
             away_score = fixture.resultat_equipe_exterieur
             selected_team_status = fixture.match_domicile
             selected_team_class_if_home = ''
             selected_team_class_if_away = ''  
-            if (fixture.club_domicile == selected_club_name) {
+            if (fixture.club_domicile == page_club_name) {
                 selected_team_class_if_home = ' fixture-result-team-selected'
-            } else if (fixture.club_exterieur == selected_club_name) {
+            } else if (fixture.club_exterieur == page_club_name) {
                 selected_team_class_if_away = ' fixture-result-team-selected'
             }
             home_score = `<div class="fixture-result${selected_team_class_if_home}">${home_score}</div>`
@@ -121,6 +127,9 @@ function display_fixtures(fixtures_data, main_class) {
             home_score = ''
             away_score = ''
             time = fixture.heure
+            if (fixture.club_domicile == selected_club_name || fixture.club_exterieur == selected_club_name) {
+                indicator_team_selected = '<div class="fixture-indicator-team-selected"><svg width="16" height="16" viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="rgb(91, 186, 213)"/></svg></div>'
+            }
         }
         home_squad = get_div_squad(fixture.equipe_domicile_numero)
         away_squad = get_div_squad(fixture.equipe_exterieur_numero)
@@ -147,6 +156,7 @@ function display_fixtures(fixtures_data, main_class) {
                     <div class="fixture-day">${fixture.date}</div>
                     <div class="fixture-time">${time}</div>
                 </div>
+                ${indicator_team_selected}
             </div>
         `
     }

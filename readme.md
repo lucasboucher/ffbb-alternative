@@ -33,7 +33,7 @@ You can modify the configuration file:
 # TODO
 - Stats panel on team page
     - Scored and cashed baskets total and average
-- Matchday indicator in all fixtures dedicated team page
+- Matchday number in all fixtures dedicated team page
 - Parameters with storage for selected team
     - Modal when clicking on parameter icon button
     - Dev Mode button link

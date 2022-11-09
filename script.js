@@ -31,7 +31,6 @@ fetch('scrapper/data.json')
         document.getElementsByClassName('header-title')[0].innerHTML = data.nom // Nom du championnat
         document.getElementsByClassName('pool-name')[0].innerHTML += ` ${data.poule}` // Poule du championnat
         document.getElementsByClassName('ffbb-logo')[0].href = data.lien_championnat // Lien du classement FFBB officiel dans le logo FFBB de la tête de classement
-        document.getElementById('selected_team_shortcut').href = `./team/?club=${selected_club_name}` // Raccourci vers l'équipe sélectionné
 
         // Détermination de la journée actuelle
         for (team in teams) {
