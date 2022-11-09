@@ -31,16 +31,17 @@ You can modify the configuration file:
 - Onefootball ranking design : https://onefootball.com/fr/competition/ligue-1-uber-eats-23/classement
 
 # TODO
-- Sorting by date or by matchday
-- Parameters with storage for selected team
-    - Replace CASBB shortcut by parameter modal
-    - Dev Mode button link
 - Stats panel on team page
     - Scored and cashed baskets total and average
-- Link to officiel FFBB ranking when clicking on FFBB ranking head icon
+- Matchday indicator in all fixtures dedicated team page
+- Parameters with storage for selected team
+    - Modal when clicking on parameter icon button
+    - Dev Mode button link
+- Sorting charts and all fixtures by date or by matchday (with ./team settings button)
+- Print 6 last and next fixtures by time (with future matchday indicator)
 
 ## Bugs
-- Down arrow icon non clickable -> z-index ? 
+- Down arrow icon non clickable -> z-index ? see radio button hint...
 - Dev Mode HTML
 
 ## Improvements
@@ -48,7 +49,9 @@ You can modify the configuration file:
 - New server scheduling system (CRON ?)
 - Better CSS and HTML organization (class names, CSS colors variables, ...)
     - Default text font weight, line height and size for all page
-- JS : tertiary, addAttribute()
+- JS : ternary operator, setAttribute()
+- Sort automatically next fixtures by date
+- Better back button (replace FFBB logo)
 
 # Colors
 - Red : rgb(255, 47, 84)
