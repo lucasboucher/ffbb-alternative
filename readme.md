@@ -34,11 +34,16 @@ You can modify the configuration file:
 - Sorting by date or by matchday
 - Parameters with storage for selected team
     - Replace CASBB shortcut by parameter modal
+    - Dev Mode button link
 - Stats panel on team page
+    - Scored and cashed baskets total and average
+- Link to officiel FFBB ranking when clicking on FFBB ranking head icon
+- **Add box shadow to next fixtures indicator of selected team**
 
 ## Bugs
 - Down arrow icon non clickable -> z-index ? 
 - Dev Mode HTML
+- **Fixture with indicator next fixture of selected team shifted on time area**
 
 ## Improvements
 - Sort an array teams by rank (and not by default) for display ranking

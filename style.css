@@ -337,6 +337,10 @@ body {
     padding: 0 16px;
 }
 
+.fixture:has(.fixture-indicator-team-selected) .fixture-date {
+    padding-right: 0;
+}
+
 .fixture-day {
     font-weight: 700;
 }
@@ -345,6 +349,14 @@ body {
     position: relative;
     bottom: 40px;
     left: 8px;
+    fill: rgb(91, 186, 213);
+}
+
+.fixture-indicator-team-selected svg {
+    stroke: rgb(0, 0, 0);
+    stroke-width: 16px;
+    width: 16px;
+    height: 16px;
 }
 
 
