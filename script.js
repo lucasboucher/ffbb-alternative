@@ -213,7 +213,7 @@ function display_fixtures(fixtures_data, main_class) {
             away_score = ''
             time = fixture.heure
             if (fixture.club_domicile == selected_club_name || fixture.club_exterieur == selected_club_name) {
-                indicator_team_selected = '<div class="fixture-indicator-team-selected"><svg width="16" height="16" viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="rgb(91, 186, 213)"/></svg></div>'
+                indicator_team_selected = '<div class="fixture-indicator-team-selected"></div>'
             }
         }
         document.getElementById(main_class).innerHTML +=

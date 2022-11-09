@@ -375,16 +375,12 @@ body {
     position: relative;
     bottom: 40px;
     left: 8px;
-    fill: rgb(91, 186, 213);
+    background-color: rgb(91, 186, 213);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 4px solid rgb(0, 0, 0);
 }
-
-.fixture-indicator-team-selected svg {
-    stroke: rgb(0, 0, 0);
-    stroke-width: 16px;
-    width: 16px;
-    height: 16px;
-}
-
 
 /* À trier */
 

@@ -33,12 +33,11 @@ You can modify the configuration file:
 # TODO
 - Stats panel on team page
     - Scored and cashed baskets total and average
-- Separate matchs played and not played yet
 - Parameters with storage for selected team
     - Modal when clicking on parameter icon button
     - Dev Mode button link
 - Sorting charts and all fixtures by date or by matchday (with ./team settings button)
-- Print 6 last and next fixtures by time (with future matchday indicator)
+- Print 6 last and next fixtures by time (with matchday indicator)
 
 ## Bugs
 - Down arrow icon non clickable -> z-index ? see radio button hint...
@@ -52,6 +51,7 @@ You can modify the configuration file:
 - JS : ternary operator, setAttribute()
 - Sort automatically next fixtures by date
 - Better back button (replace FFBB logo)
+- Yellow/orange color for team page
 
 # Colors
 - Red : rgb(255, 47, 84)

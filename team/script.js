@@ -35,15 +35,38 @@ fetch('../scrapper/data.json')
         document.getElementsByClassName('header-subtitle')[0].innerHTML = data.nom // Nom du championnat
         document.getElementsByClassName('header-title')[0].innerHTML = page_club_name // Nom du de l'équipe sélectionné
 
-        // Afficher toutes les rencontres d'une équipe
+        // Afficher les résultats d'une équipe
         for (team in teams) {
             club_name = teams[team].club
             if (club_name == page_club_name) {
                 team_fixtures = teams[team].rencontres
-                display_fixtures(team_fixtures, 'all_fixtures')
+                previous_fixtures = []
+                for (fixture in team_fixtures) {
+                    if (team_fixtures[fixture].match_joue) {
+                        previous_fixtures.push(team_fixtures[fixture])
+                    }
+                }
+                display_fixtures(previous_fixtures, 'results_fixtures')
+                break
             }
         }
         
+        // Afficher le calendrier d'une équipe
+        for (team in teams) {
+            club_name = teams[team].club
+            if (club_name == page_club_name) {
+                team_fixtures = teams[team].rencontres
+                next_fixtures = []
+                for (fixture in team_fixtures) {
+                    if (!team_fixtures[fixture].match_joue) {
+                        next_fixtures.push(team_fixtures[fixture])
+                    }
+                }
+                display_fixtures(next_fixtures, 'calendar_fixtures')
+                break
+            }
+        }
+
         // Réupération des données pour les graphiques
         matchday_data = []
         baskets_scored_data = []
@@ -104,7 +127,7 @@ function get_div_squad(squad) {
 
 // Affiche les rencontres sélectionné sur une classe CSS choisi
 function display_fixtures(fixtures_data, main_class) {
-    document.getElementById(main_class).innerHTML = ""
+    document.getElementById(main_class).innerHTML = ''
     for (fixture in fixtures_data) {
         fixture = fixtures_data[fixture]
         played = fixture.match_joue
