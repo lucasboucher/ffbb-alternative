@@ -409,6 +409,10 @@ body {
     mask: url(assets/ffbb_logo.svg) no-repeat center / contain;
 }
 
+.ffbb-logo:hover {
+    background-color: rgb(243, 244, 245);
+}
+
 .team-container {
     list-style-type: none;
     font-size: 1rem;

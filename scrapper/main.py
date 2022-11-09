@@ -19,6 +19,9 @@ soup = BeautifulSoup(page.text, 'html.parser')
 championship_name = soup.select('#idTdDivision')
 championship_name = championship_name[0].text
 
+# Lien du championnat
+championship_link = championship_url
+
 # Comité de championnat
 championship_committee = soup.select('.cadre a')
 championship_committee = championship_committee[0].text
@@ -100,7 +103,7 @@ for team in teams:
         continue
 
 # Formattage des données
-championship_data = {'nom': championship_name, 'comite': championship_committee, 'poule': championship_pool, 'equipes': teams_data}
+championship_data = {'nom': championship_name, 'lien_championnat': championship_link, 'comite': championship_committee, 'poule': championship_pool, 'equipes': teams_data}
 
 # Création du fichier JSON
 with open('scrapper/data.json', 'w', encoding='latin-1') as f:
