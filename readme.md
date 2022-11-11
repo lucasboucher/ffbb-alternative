@@ -32,21 +32,22 @@ You can modify the configuration file:
 - Iconoir: https://iconoir.com
 
 # TODO
-- Parameters with storage for selected team
+- Parameters update
+    - storage for selected team and config data
     - Modal when clicking on parameter icon button
     - Dev Mode button link
-- Sorting charts and all fixtures by date or by matchday (with ./team settings button)
-- Print 6 last and next fixtures by time (with matchday indicator)
+- Time update
+    - Sorting charts and all fixtures by date or by matchday (with ./team settings button)
+    - Sort automatically next matchday fixtures by date
+    - Print 6 last and next fixtures by time (with matchday indicator)
 
 ## Bugs
 - Down arrow icon non clickable -> z-index ? see radio button hint...
 
 ## Improvements
-- Yellow/orange color for team page
 - Sort an array teams by rank (and not by default) for display ranking
 - New server scheduling system (CRON ?)
 - Beter JS organization (ternary operator, setAttribute(), ...)
-- Sort automatically next matchday fixtures by date
 
 # Notes
 - re.sub()
