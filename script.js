@@ -29,8 +29,8 @@ fetch('scrapper/data.json')
         // Informations du championnat
         document.getElementsByClassName('header-subtitle')[0].innerHTML = data.comite // Comité du championnat
         document.getElementsByClassName('header-title')[0].innerHTML = data.nom // Nom du championnat
-        document.getElementsByClassName('pool-name')[0].innerHTML += ` ${data.poule}` // Poule du championnat
-        document.getElementsByClassName('ffbb-logo')[0].href = data.lien_championnat // Lien du classement FFBB officiel dans le logo FFBB de la tête de classement
+        document.getElementsByClassName('ranking-pool')[0].innerHTML += ` ${data.poule}` // Poule du championnat
+        document.getElementsByClassName('ranking-ffbb')[0].href = data.lien_championnat // Lien du classement FFBB officiel dans le logo FFBB de la tête de classement
 
         // Détermination de la journée actuelle
         for (team in teams) {
@@ -129,21 +129,20 @@ fetch('scrapper/data.json')
             div_squad = get_div_squad(teams[team].equipe) // Récupére la <div> du numéro de l'équipe si elle existe
             document.getElementsByClassName('ranking')[0].innerHTML +=
             `
-            <li class="team-container">
-                <a class="team" href="./team?club=${teams[team].club}">
-                    <div class="rank">${teams[team].classement}</div>
-                    <div class="team-icon">${position_icon}</div>
-                    <div class="team-name">
-                        <div class="team-club">${teams[team].club}</div>
+            <li class="ranking-team">
+                <a href="./team?club=${teams[team].club}">
+                    <div class="ranking-rank">${teams[team].classement}</div>
+                    <div class="ranking-icon">${position_icon}</div>
+                    <div class="ranking-name">
+                        <div class="ranking-club">${teams[team].club}</div>
                         ${div_squad}
                     </div>
                     <div>${teams[team].matchs_joues}</div>
-                    <div class="hide-mobile">${teams[team].matchs_gagnes}</div>
-                    <div class="hide-mobile">${teams[team].matchs_perdus}</div>
-                    <div class="hide-mobile">${teams[team].matchs_nuls}</div>
+                    <div class="hidden-on-mobile">${teams[team].matchs_gagnes}</div>
+                    <div class="hidden-on-mobile">${teams[team].matchs_perdus}</div>
                     <div>${teams[team].difference}</div>
-                    <div class="points">${teams[team].points}</div>
-                    <div class="ffbb-link hide-mobile">
+                    <div class="ranking-points">${teams[team].points}</div>
+                    <div class="ranking-link hidden-on-mobile">
                         <object><a href="${teams[team].lien_equipe}" target="_blank">
                             <svg viewBox="0 0 24 24"><path d="M21 3.6v16.8a.6.6 0 01-.6.6H3.6a.6.6 0 01-.6-.6V3.6a.6.6 0 01.6-.6h16.8a.6.6 0 01.6.6z"></path><path d="M15.025 8.025h-4.95m4.95 0v4.95m0-4.95l-3.535 3.536c-2.475 2.475 0 4.95 0 4.95"></path></svg>
                         </a></object>

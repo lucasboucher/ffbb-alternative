@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,8 +10,8 @@
     <link rel="mask-icon" href="assets/ffbb_logo.svg" color="#5bbad5">
     <link rel="stylesheet" href="style.css"/>
   </head>
-  <body>
 
+  <body>
     <div class="header">
       <div class="header-infos">
         <img class="header-logo" src="assets/ffbb_logo.svg" alt="FFBB logo">
@@ -24,44 +25,40 @@
         <!-- Paramètres
           <a>
             <svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path><path d="M19.622 10.395l-1.097-2.65L20 6l-2-2-1.735 1.483-2.707-1.113L12.935 2h-1.954l-.632 2.401-2.645 1.115L6 4 4 6l1.453 1.789-1.08 2.657L2 11v2l2.401.655L5.516 16.3 4 18l2 2 1.791-1.46 2.606 1.072L11 22h2l.604-2.387 2.651-1.098C16.697 18.831 18 20 18 20l2-2-1.484-1.75 1.098-2.652 2.386-.62V11l-2.378-.605z"></path></svg>
-            <div class="link-text"></div>
+            <div class="header-link-text"></div>
           </a>
         -->
-        <!-- Dev Mode
           <a href="./dev">
             <svg viewBox="0 0 24 24"><g><path d="M10.05 10.607l-7.07 7.07a2 2 0 000 2.83v0a2 2 0 002.828 0l7.07-7.072M10.05 10.607c-.844-2.153-.679-4.978 1.06-6.718 1.74-1.74 4.95-2.121 6.718-1.06l-3.04 3.04-.283 3.111 3.111-.282 3.04-3.041c1.062 1.768.68 4.978-1.06 6.717-1.74 1.74-4.564 1.905-6.717 1.061"></path></g></svg>
           </a> 
-        -->
         </div>
       </div>
     </div>
 
-    <div class="ranking-header">
-      <div class="title">Classement général</div>
-    </div>
-
-    <ul class="ranking">
-      <li class="table-head">
-        <div class="pool-name">Poule</div>
-        <div>MJ</div>
-        <div class="hide-mobile">V</div>
-        <div class="hide-mobile">D</div>
-        <div class="hide-mobile">N</div>
-        <div>DIFF</div>
-        <div>PTS</div>
-        <a class="ffbb-logo hide-mobile" target="_blank"></a>
-      </li>
-    </ul>
-
-    <div class="main-fixtures">
+    <div class="container">
       <div class="fixtures-header">
-        <div class="fixtures-title">Prochaine journée</div>
+        <div class="title">Rencontres</div>
         <div class="fixtures-selection">
           <select id="matchday_selection"></select>
-          <svg class="downarrow"><path d="M11 0.892578L6 4.99971L1 0.892578"></path></svg>
+          <svg class="fixtures-downarrow"><path d="M11 0.892578L6 4.99971L1 0.892578"></path></svg>
         </div>
       </div>
       <div class="fixtures" id="next_fixtures"></div>
+    </div>
+
+    <div class="container">
+      <div class="title">Classement</div>
+      <ul class="ranking">
+        <li class="ranking-head">
+          <div class="ranking-pool">Poule</div>
+          <div>MJ</div>
+          <div class="hidden-on-mobile">V</div>
+          <div class="hidden-on-mobile">D</div>
+          <div>DIFF</div>
+          <div>PTS</div>
+          <a class="ranking-ffbb hidden-on-mobile" target="_blank"></a>
+        </li>
+      </ul>
     </div>
 
     <div class="footer">
@@ -69,11 +66,12 @@
         <a href="https://lucasboucher.fr"><img src="assets/lb_logo.svg" alt="Lucas Boucher logo"></a>
         <div>© 2022 Lucas Boucher</div>
       </div>
-      <ul class="links hide-mobile">
+      <ul class="links hidden-on-mobile">
         <li><a href="https://github.com/lucasboucher/ffbb-scrapper">GitHub</a></li>
         <li><a href="http://www.ffbb.com/accueil">FFBB</a></li>
         <li><a href="https://onefootball.com/">Onefootball</a></li>
       </ul>
     </div>
   </body>
+
 </html>

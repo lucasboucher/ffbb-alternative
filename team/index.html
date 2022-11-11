@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,55 +10,53 @@
     <link rel="mask-icon" href="../assets/ffbb_logo.svg" color="#5bbad5">
     <link rel="stylesheet" href="../style.css"/>
   </head>
-  <body>
 
+  <body>
     <div class="header">
       <div class="header-infos">
-        <img class="header-logo" src="../assets/ffbb_logo.svg" alt="FFBB logo">
+        <a href="../" class="header-back"><svg viewBox="0 0 24 24"><path d="M13 8.5L9.5 12l3.5 3.5"></path><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path></svg></a>
         <div class="header-texts">
           <div class="header-subtitle"></div>
           <div class="header-title"></div>
         </div>
       </div>
-      <div class="header-navigation">
-        <div class="header-link">
-          <a href="../">
-            <svg viewBox="0 0 24 24"><path d="M16.75 12h-10m0 0l2.75 2.75M6.75 12L9.5 9.25"></path><path d="M2 15V9a4 4 0 014-4h12a4 4 0 014 4v6a4 4 0 01-4 4H6a4 4 0 01-4-4z"></path></svg>
-            <div class="link-text">Championnat</div>
-          </a>
+    </div>
+
+    <div class="container">
+      <div class="title">Statistiques</div>
+      <div class="stats"></div>
+    </div>
+
+    <div class="container">
+      <div class="charts-header">
+        <div class="title">Graphiques</div>
+        <div class="charts-mode">
+          <label class="charts-radio">
+            <input type="radio" name="charts-mode-selection" id="combine" checked="checked">
+            <span>Combinées</span>
+            <span class="charts-checkmark">
+              <svg><path d="M9.6 1c.2.3.3.7 0 1l-5 5.3c-.6.7-1.5.7-2.2.1l-2-1.9a.6.6 0 0 1 .9-.9l2 1.9c.1.1.3.1.4 0l5-5.4c.2-.3.6-.3.9 0Z"></path></svg>
+            </span>
+          </label>
+          <label class="charts-radio">
+            <input type="radio" name="charts-mode-selection" id="divide">
+            <span>Divisées</span>
+            <span class="charts-checkmark">
+              <svg><path d="M9.6 1c.2.3.3.7 0 1l-5 5.3c-.6.7-1.5.7-2.2.1l-2-1.9a.6.6 0 0 1 .9-.9l2 1.9c.1.1.3.1.4 0l5-5.4c.2-.3.6-.3.9 0Z"></path></svg>
+            </span>
+          </label>
         </div>
       </div>
+      <div class="charts"></div>
     </div>
 
-    <div class="stats-header">
-      <div class="title">Graphiques</div>
-      <div class="mode-select">
-        <label class="button">
-          <input type="radio" name="mode-select" id="combine" checked="checked">
-          <span>Combinées</span>
-          <span class="checkmark">
-            <svg><path d="M9.6 1c.2.3.3.7 0 1l-5 5.3c-.6.7-1.5.7-2.2.1l-2-1.9a.6.6 0 0 1 .9-.9l2 1.9c.1.1.3.1.4 0l5-5.4c.2-.3.6-.3.9 0Z"></path></svg>
-          </span>
-        </label>
-        <label class="button">
-          <input type="radio" name="mode-select" id="divide">
-          <span>Divisées</span>
-          <span class="checkmark">
-            <svg><path d="M9.6 1c.2.3.3.7 0 1l-5 5.3c-.6.7-1.5.7-2.2.1l-2-1.9a.6.6 0 0 1 .9-.9l2 1.9c.1.1.3.1.4 0l5-5.4c.2-.3.6-.3.9 0Z"></path></svg>
-          </span>
-        </label>
-      </div>
-    </div>
-    
-    <div class="stats"></div>
-
-    <div class="main-fixtures">
-      <div class="fixtures-title">Résultats</div>
+    <div class="container">
+      <div class="title">Résultats</div>
       <div class="fixtures" id="results_fixtures"></div>
     </div>
     
-    <div class="main-fixtures">
-      <div class="fixtures-title">Calendrier</div>
+    <div class="container">
+      <div class="title">Calendrier</div>
       <div class="fixtures" id="calendar_fixtures"></div>
     </div>
 
@@ -74,4 +73,5 @@
       </ul>
     </div>
   </body>
+
 </html>

@@ -18,7 +18,14 @@ ul {
 /* Global */
 
 :root {
-    /* Variables des couleurs */
+    --color-white: rgb(243, 244, 245);
+    --color-black: rgb(0, 0, 0);
+    --color-background: rgb(43, 43, 43);
+    --color-hover: rgb(26, 26, 26);
+    --color-grey: rgb(184, 184, 184);
+    --color-blue: rgb(91, 186, 213);
+    --color-green: rgb(29, 187, 121);
+    --color-red: rgb(255, 47, 84);
 }
 
 @font-face {
@@ -27,14 +34,15 @@ ul {
   }
 
 ::selection {
-    background: rgb(91, 186, 213);
+    background: var(--color-blue);
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    color: rgb(243, 244, 245);
+    color: var(--color-white);
     font-weight: 500;
-    background-color: rgb(0, 0, 0);
+    font-size: .875rem;
+    background-color: var(--color-black);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }
@@ -44,13 +52,23 @@ body {
 
 .team-number {
     display: flex;
-    border: 1px solid rgb(43, 43, 43);
-    color: rgb(243, 244, 245);
+    border: 1px solid var(--color-background);
+    color: var(--color-white);
     border-radius: 16px;
     padding: 0 8px;
     font-weight: 700;
     font-size: .75rem;
     align-items: center;
+}
+
+.title {
+    font-size: 1.375rem;
+    font-weight: 700;
+}
+
+.container {
+    margin: 0 4vw;
+    margin-top: 32px;
 }
 
 
@@ -60,7 +78,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding-bottom: 32px;
-    border-bottom: 1px solid rgb(43, 43, 43);
+    border-bottom: 1px solid var(--color-background);
     margin: 0 0;
     margin-top: 32px;
     gap: 16px;
@@ -79,13 +97,32 @@ body {
     height: 64px;
 }
 
+.header-back {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-back:hover svg {
+    stroke: var(--color-white);
+}
+
+.header-back svg {
+    stroke: var(--color-grey);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    width: 48px;
+}
+
 .header-texts {
     overflow: hidden;
 }
 
 .header-subtitle {
-    font-size: .875rem;
-    font-weight: 400;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -125,47 +162,32 @@ body {
     display: flex;
     gap: 4px;
     border-radius: 4px;
-    background-color: rgb(26, 26, 26);
+    background-color: var(--color-hover);
     padding: 16px;
 }
 
 .header-link a:hover {
-    background-color: rgb(243, 244, 245);
-    color: rgb(0, 0, 0);
+    background-color: var(--color-white);
+    color: var(--color-black);
     transition: 0.25s;
 }
 
 .header-link a svg {
     width: 16px;
     stroke-width: 1.5;
-    stroke:rgb(243, 244, 245);
+    stroke:var(--color-white);
     fill: transparent;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
 .header-link a:hover svg {
-    stroke:rgb(0, 0, 0);
+    stroke:var(--color-black);
     transition: 0.25s;
-}
-
-@media screen and (max-width: 800px) {
-    .link-text {
-        display: none;
-    }
 }
 
 
 /* Rencontres */
-
-.main-fixtures {
-    margin: 0 4vw;
-    margin-top: 32px;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    font-size: .875rem;
-    font-weight: 500;
-}
 
 .fixtures-header {
     display: flex;
@@ -179,13 +201,6 @@ body {
         gap: 16px;
         align-items: flex-start;
     }
-}
-
-.fixtures-title {
-    font-size: 1.375rem;
-    font-weight: 700;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
 }
 
 .fixtures-selection {
@@ -203,15 +218,14 @@ body {
 
 
 .fixtures-selection select {
-    border: 1px solid rgb(43, 43, 43);
+    border: 1px solid var(--color-background);
     border-radius: 4px;
-    background-color: rgb(26, 26, 26);
+    background-color: var(--color-hover);
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 160px;
-    color: rgb(243, 244, 245);
-    font-weight: 500;
+    color: var(--color-white);
     font-size: 1rem;
     appearance: none;
     cursor: pointer;
@@ -229,11 +243,11 @@ body {
 
 .fixtures-selection select:focus {
     outline: unset;
-    border-color: rgb(91, 186, 213);
+    border-color: var(--color-blue);
 }
 
-.fixtures-selection .downarrow {
-    stroke: rgb(243, 244, 245);
+.fixtures-selection .fixtures-downarrow {
+    stroke: var(--color-white);
     stroke-width: 2px;
     height: 7px;
     width: 12px;
@@ -242,7 +256,7 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-    .fixtures-selection .downarrow {
+    .fixtures-selection .fixtures-downarrow {
         right: unset;
         bottom: 30px;
         right: 16px;
@@ -269,7 +283,7 @@ body {
 }
 
 .fixture {
-    background-color: rgb(43, 43, 43);;
+    background-color: var(--color-background);;
     border-radius: 4px;
     display: flex;
     justify-content: space-between;
@@ -279,16 +293,16 @@ body {
 }
 
 .fixture:hover {
-    border: 1px solid rgb(243, 244, 245);
+    border: 1px solid var(--color-white);
     transition: 0.25s;
 }
 
 .fixture-matchday {
-    min-width: 18px;
-    max-height: 18px;
+    min-width: 20px;
+    max-height: 20px;
     border-radius: 50%;
-    background-color: rgb(43, 43, 43);
-    color: rgb(243, 244, 245);
+    background-color: var(--color-background);
+    color: var(--color-white);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -297,12 +311,12 @@ body {
     position: relative;
     bottom: 40px;
     right: 8px;
-    border: 4px solid rgb(0, 0, 0);
+    border: 5px solid var(--color-black);
 }
 
 .fixture-matchday-team-selected {
-    color: rgb(0, 0, 0);
-    background-color: rgb(243, 244, 245);
+    color: var(--color-black);
+    background-color: var(--color-white);
 }
 
 .fixture-teams{
@@ -326,7 +340,7 @@ body {
 }
 
 .fixture-team .team-number {
-    border-color: rgb(184, 184, 184);
+    border-color: var(--color-grey);
 }
 
 .fixture-team-name {
@@ -336,7 +350,7 @@ body {
 }
 
 .fixture-team-name:hover {
-    color: rgb(91, 186, 213);
+    color: var(--color-blue);
     transition: 0.25s;
 }
 
@@ -351,7 +365,7 @@ body {
 }
 
 .fixture-result-team-selected {
-    color:rgb(91, 186, 213)
+    color:var(--color-blue)
 }
 
 .fixture-date {
@@ -359,7 +373,7 @@ body {
     flex-direction: column;
     gap: 4px;
     align-items: center;
-    border-left: 1px solid rgb(26, 26, 26);
+    border-left: 1px solid var(--color-hover);
     padding: 0 16px;
 }
 
@@ -375,190 +389,250 @@ body {
     position: relative;
     bottom: 40px;
     left: 8px;
-    background-color: rgb(91, 186, 213);
-    min-width: 8px;
-    max-height: 8px;
+    background-color: var(--color-blue);
+    min-width: 10px;
+    max-height: 10px;
     border-radius: 50%;
-    border: 4px solid rgb(0, 0, 0);
+    border: 5px solid var(--color-black);
 }
 
-/* À trier */
 
-.title {
-    font-size: 1.375rem;
-    font-weight: 700;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-}
+/* Stats */
 
-.ranking-header {
-    margin: 0 4vw;
-    margin-top: 32px;
-}
-
-.ranking {
-    padding: 0;
-    margin: 0 4vw;
-}
-
-.table-head {
-    margin-top: 32px;
-    padding: 0;
-    font-weight: 700;
-    padding-bottom: 8px;
-    text-align: right;
+.stats {
     display: grid;
-    grid-template-columns: 1fr 40px 40px 40px 40px 60px 40px 60px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 16px;
+    margin-top: 32px;
+}
+
+@media screen and (max-width: 1200px) {
+    .stats {
+        grid-template-columns: unset;
+        grid-template-rows: repeat(3, 1fr);
+        grid-auto-flow: column;
+    }
 }
 
 @media screen and (max-width: 600px) {
-    .table-head {
+    .stats {
+        grid-template-rows: unset;
+        grid-auto-flow: unset;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.stat {
+    background-color: var(--color-hover);
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    gap: 16px;
+    border-radius: 4px;
+}
+
+.stat-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 2px
+}
+
+.stat-figure {
+    font-size: 1.25rem;
+}
+
+.stat-trend {
+    background-color: var(--color-black);
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.stat-trend svg {
+    width: 24px;
+    stroke-width: 1.5;
+    stroke: var(--color-grey);
+    opacity: 0.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.stat:hover svg {
+    stroke: var(--color-grey);
+    opacity: 1;
+}
+
+.stat-trend-up {
+    stroke: var(--color-green);
+    opacity: 0.8;
+}
+
+.stat:hover .stat-trend-up {
+    stroke: var(--color-green);
+    opacity: 1;
+}
+
+.stat-trend-down {
+    stroke: var(--color-red);
+    opacity: 0.8;
+}
+
+.stat:hover .stat-trend-down {
+    stroke: var(--color-red);
+    opacity: 1;
+}
+
+
+/* Classement */
+
+.ranking {
+    margin-top: 32px;
+    text-align: right;
+}
+
+.ranking-head {
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: grid;
+    grid-template-columns: 1fr 40px 40px 40px 60px 40px 60px;
+}
+
+@media screen and (max-width: 600px) {
+    .ranking-head {
         grid-template-columns: 1fr 40px 60px 40px;
     }
 }
 
-.pool-name {
+.ranking-pool {
     text-align: left;
-    font-size: .875rem;
     font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
     text-transform: uppercase;
 }
 
-.ffbb-logo {
-    background-color: rgb(184, 184, 184);
+.ranking-ffbb {
+    background-color: var(--color-grey);
     mask: url(assets/ffbb_logo.svg) no-repeat center / contain;
 }
 
-.ffbb-logo:hover {
-    background-color: rgb(243, 244, 245);
+.ranking-ffbb:hover {
+    background-color: var(--color-white);
 }
 
-.team-container {
-    list-style-type: none;
+.ranking-team {
     font-size: 1rem;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    border-radius: 4px;
-    text-align: right;
+    color: var(--color-white);
 }
 
-.team {
-    color: rgb(243, 244, 245);;
-    text-decoration: none;
-    padding: 16px 0;
+.ranking-team:not(:nth-child(2)) {
+    border-top: 1px solid var(--color-background);
+}
+
+.ranking-team > a {
     display: grid;
-    grid-template-columns: 20px 30px 1fr 40px 40px 40px 40px 60px 40px 60px;
+    grid-template-columns: 20px 30px 1fr 40px 40px 40px 60px 40px 60px;
     align-items: center;
+    padding: 16px 0;
+    border-radius: 4px;
+}
+
+.ranking-team:hover > a {
+    background-color: var(--color-hover);
+    transition: 0.25s;
 }
 
 @media screen and (max-width: 600px) {
-    .team {
+    .ranking-team > a {
         grid-template-columns: 20px 30px 1fr 40px 60px 40px;
     }
 }
 
-.team-container:not(:nth-child(2)) > a {
-    border-top: 1px solid rgb(43, 43, 43);
-}
-
-.team-container:hover {
-    background-color: rgb(26, 26, 26);
-    transition: 0.25s;
-}
-
-.rank {
+.ranking-rank {
     font-weight: 700;
 }
 
-.team-icon {
+.ranking-icon {
     display: flex;
     justify-content: center;
 }
 
-.selected-team-icon {
-    stroke: rgb(91, 186, 213);
-}
-
-.team-name {
+.ranking-name {
     display: flex;
     min-width: 0;
     gap: 4px;
 }
 
-.team-club {
+.ranking-club {
     text-align: left;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.points {
+.ranking-points {
     font-weight: 700;
 }
 
-.ffbb-link {
+.ranking-link {
     display: flex;
     justify-content: center;
     z-index: 1;
 }
 
-.ffbb-link a {
+.ranking-link a {
     display: flex;
     align-items: center;
     border-radius: 2px;
     padding: 4px;
-    background-color: rgb(26, 26, 26);
+    background-color: var(--color-hover);
 }
 
-.ffbb-link a:hover {
-    background-color: rgb(243, 244, 245);
+.ranking-link a:hover {
+    background-color: var(--color-white);
 }
 
-.ffbb-link svg {
+.ranking-link a:hover svg {
+    fill: var(--color-white);
+    stroke: var(--color-black);
+}
+
+.ranking-link svg {
     width: 16px;
     fill: transparent;
     stroke-width: 1.5;
-    stroke: rgb(184, 184, 184);
+    stroke: var(--color-grey);
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
-.ffbb-link a:hover svg {
-    fill: rgb(243, 244, 245);
-    stroke: rgb(0, 0, 0);
-}
 
-.stats-header {
-    margin: 0 4vw;
-    margin-top: 32px;
+/* Statistiques */
+
+.charts-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 @media (max-width: 800px) {
-    .stats-header  {
+    .charts-header  {
         flex-direction: column;
         align-items: flex-start;
         gap: 16px;
     }
 }
 
-.mode-select {
+.charts-mode {
     display: flex;
     gap: 16px;
 }
 
 @media (max-width: 800px) {
-    .mode-select  {
+    .charts-mode  {
         width: 100%;
     }
 }
 
-.button {
-    border: 1px solid rgb(43, 43, 43);
+.charts-radio {
+    border: 1px solid var(--color-background);
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -569,27 +643,27 @@ body {
 }
 
 @media (max-width: 800px) {
-    .button  {
+    .charts-radio  {
         flex-grow: 1;
     }
 }
 
-.button:has(input:checked) {
-    border-color: rgb(91, 186, 213);
+.charts-radio:has(input:checked) {
+    border-color: var(--color-blue);
 }
 
-.button:hover {
-    border-color: rgb(243, 244, 245);
+.charts-radio:hover {
+    border-color: var(--color-white);
     transition: 0.25s;
 }
 
-.button:hover:has(input:checked) {
-    border-color: rgb(243, 244, 245);
+.charts-radio:hover:has(input:checked) {
+    border-color: var(--color-white);
     transition: 0.25s;
 }
 
 
-.button input {
+.charts-radio input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -597,49 +671,48 @@ body {
     width: 0;
 }
 
-.checkmark {
+.charts-checkmark {
     height: 16px;
     width: 16px;
-    border: rgb(243, 244, 245) solid 1px;
+    border: var(--color-white) solid 1px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.checkmark svg {
+.charts-checkmark svg {
     display: none;
     width: 10px;
     height: 8px;
-    fill: rgb(26, 26, 26);
+    fill: var(--color-hover);
 }
 
-.button input:checked ~ .checkmark {
+.charts-radio input:checked ~ .charts-checkmark {
     height: 16px;
     width: 16px;
-    background-color: rgb(243, 244, 245);
+    background-color: var(--color-white);
 }
 
-.button input:checked ~ .checkmark svg {
+.charts-radio input:checked ~ .charts-checkmark svg {
     display: unset;
 }
 
-.stats {
+.charts {
     display: flex;
     gap: 32px;
-    margin: 0 4vw;
     margin-top: 32px;
 }
 
 @media (max-width: 800px) {
-    .stats {
+    .charts {
         flex-direction: column;
     }
 }
 
 .chart {
     border-radius: 4px;
-    border: solid 1px rgb(43, 43, 43);
+    border: solid 1px var(--color-background);
     padding: 8px 16px;
     height: 400px;
     flex-grow: 1;
@@ -653,13 +726,15 @@ body {
 }
 
 
+/* Pied de page */
+
 .footer {
     margin-top: 32px;
     padding: 32px 4vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color:rgb(26, 26, 26);
+    background-color:var(--color-hover);
     gap: 16px;
 }
 
@@ -669,15 +744,12 @@ body {
 }
 
 .footer div, .footer a {
-    color: rgb(184, 184, 184);
+    color: var(--color-grey);
     font-weight: 400;
-    font-size: .875rem;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
 }
 
 .footer a:hover {
-    color: rgb(91, 186, 213);
+    color: var(--color-blue);
     transition: 0.25S;
 }
 
@@ -700,8 +772,11 @@ body {
     gap: 16px;
 }
 
+
+/* Autres */
+
 @media screen and (max-width: 600px) {
-    .hide-mobile {
+    .hidden-on-mobile {
         display: none;
     }
 }

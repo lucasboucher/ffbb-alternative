@@ -24,15 +24,14 @@ You can modify the configuration file:
 - HTML & CSS :)
 
 # Sources
-- Documentation BeautifulSoup : https://www.crummy.com/software/BeautifulSoup/bs4/doc/#searching-by-css-class
-- Web Scraping Basics : https://towardsdatascience.com/web-scraping-basics-82f8b5acd45c 
-- Extract JSON from HTML using BeautifulSoup in Python : https://www.geeksforgeeks.org/extract-json-from-html-using-beautifulsoup-in-python/
-- How to read JSON files into HTML using JavaScript's fetch (no D3, no jQuery, vanilla JS!) : https://www.youtube.com/watch?v=C3dfjyft_m4 
-- Onefootball ranking design : https://onefootball.com/fr/competition/ligue-1-uber-eats-23/classement
+- Documentation BeautifulSoup: https://www.crummy.com/software/BeautifulSoup/bs4/doc/#searching-by-css-class
+- Web Scraping Basics: https://towardsdatascience.com/web-scraping-basics-82f8b5acd45c 
+- Extract JSON from HTML using BeautifulSoup in Python: https://www.geeksforgeeks.org/extract-json-from-html-using-beautifulsoup-in-python/
+- How to read JSON files into HTML using JavaScript's fetch (no D3, no jQuery, vanilla JS!): https://www.youtube.com/watch?v=C3dfjyft_m4 
+- Onefootball design: https://onefootball.com/fr/competition/ligue-1-uber-eats-23/classement
+- Iconoir: https://iconoir.com
 
 # TODO
-- Stats panel on team page
-    - Scored and cashed baskets total and average
 - Parameters with storage for selected team
     - Modal when clicking on parameter icon button
     - Dev Mode button link
@@ -40,28 +39,14 @@ You can modify the configuration file:
 - Print 6 last and next fixtures by time (with matchday indicator)
 
 ## Bugs
-- Dev Mode HTML
 - Down arrow icon non clickable -> z-index ? see radio button hint...
 
 ## Improvements
-- Better CSS and HTML organization (class names, CSS colors variables, ...)
-    - Default text font weight, line height and size for all page
-- Better back button (replace FFBB logo)
 - Yellow/orange color for team page
 - Sort an array teams by rank (and not by default) for display ranking
 - New server scheduling system (CRON ?)
-- JS : ternary operator, setAttribute()
+- Beter JS organization (ternary operator, setAttribute(), ...)
 - Sort automatically next matchday fixtures by date
-
-# Colors
-- Red : rgb(255, 47, 84)
-- Blue : rgb(91, 186, 213)
-- Green : rgb(29, 187, 121)
-- White : rgb(243, 244, 245)
-- Black : rgb(0, 0, 0)
-- Dark grey (borders) : rgb(43, 43, 43)
-- Dark grey (hover & background) : rgb(26, 26, 26)
-- Grey (text) : rgb(184, 184, 184)
 
 # Notes
 - re.sub()

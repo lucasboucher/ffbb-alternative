@@ -11,35 +11,36 @@
   <body>
 
     <div class="header">
-      <img class="icon" src="../assets/ffbb_logo.svg" alt="FFBB logo">
-      <div class="infos">
-        <div class="committee-name">ffbb-scrapper</div>
-        <div class="league-name">Dev Mode</div>
+      <div class="header-infos">
+        <a href="../" class="header-back"><svg viewBox="0 0 24 24"><path d="M13 8.5L9.5 12l3.5 3.5"></path><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path></svg></a>
+        <div class="header-texts">
+          <div class="header-subtitle">ffbb-scrapper</div>
+          <div class="header-title">Dev Mode</div>
+        </div>
       </div>
     </div>
 
-    <div class="ranking-header">
-      <div class="title">Ancien classement</div>
-    </div>
-
-    <ul class="ranking" id="former_ranking">
-      <li class="table-head">
-        <div class="pool-name">Journée</div>
-        <div>MJ</div>
-        <div class="hide-mobile">V</div>
-        <div class="hide-mobile">D</div>
-        <div class="hide-mobile">N</div>
-        <div></div>
-        <div>PTS</div>
-      </li>
-    </ul>
+    <div class="container">
+      <div class="title">Calcul</div>
+      <ul class="ranking" id="former_ranking">
+        <li class="ranking-head">
+          <div class="ranking-pool">Journée</div>
+          <div></div>
+          <div class="hidden-on-mobile"></div>
+          <div class="hidden-on-mobile"></div>
+          <div class="hidden-on-mobile"></div>
+          <div></div>
+          <div>PTS</div>
+        </li>
+      </ul>
+    </div>  
 
     <div class="footer">
       <div class="copyright">
         <a href="https://lucasboucher.fr"><img src="../assets/lb_logo.svg" alt="Lucas Boucher logo"></a>
         <div>© 2022 Lucas Boucher</div>
       </div>
-      <ul class="links hide-mobile">
+      <ul class="links hidden-on-mobile">
         <li><a href="https://github.com/lucasboucher/ffbb-scrapper">GitHub</a></li>
         <li><a href="http://www.ffbb.com/accueil">FFBB</a></li>
         <li><a href="https://onefootball.com/">Onefootball</a></li>

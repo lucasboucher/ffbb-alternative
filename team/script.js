@@ -67,6 +67,44 @@ fetch('../scrapper/data.json')
             }
         }
 
+        // Récupérer les statistiques
+        for (team in teams) {
+            team = teams[team]
+            if (team.club == page_club_name) {
+                stat_data = {
+                    'de différence': team.difference,
+                    'paniers marqués': team.paniers_marques,
+                    'paniers encaissés': team.paniers_encaisses,
+                    'de différence en moyenne': team.difference / team.matchs_joues,
+                    'paniers marqués en moyenne': team.paniers_marques / team.matchs_joues,
+                    'paniers encaissés en moyenne': team.paniers_encaisses / team.matchs_joues
+                }
+                break
+            }
+        }
+
+        // Afficher les statistiques
+        for (stat in stat_data) {
+            if (stat == 'paniers marqués' || stat == 'paniers marqués en moyenne') {
+                stat_trend_icon = '<svg viewBox="0 0 24 24"><path class="stat-trend-up" d="M16 20v-8m0 0l3 3m-3-3l-3 3M4 14l8-8 3 3 5-5"></path></svg>'
+            } else if (stat == 'paniers encaissés' || stat == 'paniers encaissés en moyenne') {
+                stat_trend_icon = '<svg viewBox="0 0 24 24"><path class="stat-trend-down" d="M4 10l8 8 3-3 5 5M16 4v8m0 0l3-3m-3 3l-3-3"></path></svg>'
+            } else {
+                stat_trend_icon = '<svg viewBox="0 0 24 24"><path d="M9 21h6m-6 0v-5m0 5H3.6a.6.6 0 01-.6-.6v-3.8a.6.6 0 01.6-.6H9m6 5V9m0 12h5.4a.6.6 0 00.6-.6V3.6a.6.6 0 00-.6-.6h-4.8a.6.6 0 00-.6.6V9m0 0H9.6a.6.6 0 00-.6.6V16"></path></svg>'
+            }
+            document.getElementsByClassName('stats')[0].innerHTML +=
+            `
+                <div class="stat">
+                <div class="stat-trend">${stat_trend_icon}</div>
+                <div class="stat-infos">
+                    <div class="stat-figure">${stat_data[stat]}</div>
+                    <div>${stat}</div>
+                </div>
+                </div>
+            `
+        }
+        
+
         // Réupération des données pour les graphiques
         matchday_data = []
         baskets_scored_data = []
@@ -268,7 +306,7 @@ function get_chart_config(data_chart, title, opponents_teams) {
 // Afficher les graphiques
 function display_charts(day_data, baskets_scored_data, baskets_cashed_data, opponents_teams) {
     if (document.getElementById('divide').checked) {
-        document.getElementsByClassName('stats')[0].innerHTML = 
+        document.getElementsByClassName('charts')[0].innerHTML = 
         `
             <div class="chart">
                 <canvas id="baskets_scored"></canvas>
@@ -306,7 +344,7 @@ function display_charts(day_data, baskets_scored_data, baskets_cashed_data, oppo
         new Chart(ctx1, config1)
         new Chart(ctx2, config2)
     } else if (document.getElementById('combine').checked) {
-        document.getElementsByClassName('stats')[0].innerHTML =
+        document.getElementsByClassName('charts')[0].innerHTML =
         `
             <div class="chart">
                 <canvas id="baskets"></canvas>

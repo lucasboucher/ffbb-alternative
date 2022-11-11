@@ -22,8 +22,7 @@ fetch('../scrapper/data.json')
         }
 
         // Affichage journée
-        document.getElementsByClassName('pool-name')[0].innerHTML += ` ${next_matchday-2}`
-        console.log(document.getElementsByClassName('pool-name'))
+        document.getElementsByClassName('ranking-pool')[0].innerHTML += ` ${next_matchday-2}`
 
         // Précédent classement
         ranking = []
@@ -68,22 +67,21 @@ fetch('../scrapper/data.json')
             console.log()
             document.getElementById("former_ranking").innerHTML +=
             `
-            <li class="team">
+            <li class="ranking-team">
                 <a href="#">
-                    <div class="rank">${parseInt(team) + 1}</div>
-                    <div class="team-icon">
+                    <div class="ranking-rank">${parseInt(team) + 1}</div>
+                    <div class="ranking-icon">
                         <svg width="8" height="8" viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" stroke="rgb(184, 184, 184)" stroke-width="16"/></svg>
                     </div>
-                    <div class="team-name">
-                        <div class="team-club">${ranking[team][0]}</div>
-                        <div class="team-number">0</div>
+                    <div class="ranking-name">
+                        <div class="ranking-club">${ranking[team][0]}</div>
                     </div>
-                    <div>0</div>
-                    <div class="hide-mobile">0</div>
-                    <div class="hide-mobile">0</div>
-                    <div class="hide-mobile">0</div>
+                    <div class="hidden-on-mobile"></div>
+                    <div class="hidden-on-mobile"></div>
+                    <div class="hidden-on-mobile"></div>
                     <div></div>
-                    <div class="points">${ranking[team][1]}</div>  
+                    <div></div>
+                    <div class="ranking-points">${ranking[team][1]}</div>  
                 </a>
             </li>
             `
