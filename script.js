@@ -140,6 +140,8 @@ fetch('scrapper/data.json')
                     <div>${teams[team].matchs_joues}</div>
                     <div class="hidden-on-mobile">${teams[team].matchs_gagnes}</div>
                     <div class="hidden-on-mobile">${teams[team].matchs_perdus}</div>
+                    <div class="hidden-on-mobile">${teams[team].paniers_marques}</div>
+                    <div class="hidden-on-mobile">${teams[team].paniers_encaisses}</div>
                     <div>${teams[team].difference}</div>
                     <div class="ranking-points">${teams[team].points}</div>
                     <div class="ranking-link hidden-on-mobile">

@@ -79,6 +79,8 @@ fetch('../scrapper/data.json')
                     <div class="hidden-on-mobile"></div>
                     <div class="hidden-on-mobile"></div>
                     <div class="hidden-on-mobile"></div>
+                    <div class="hidden-on-mobile"></div>
+                    <div class="hidden-on-mobile"></div>
                     <div></div>
                     <div></div>
                     <div class="ranking-points">${ranking[team][1]}</div>  
