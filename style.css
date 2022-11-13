@@ -517,6 +517,7 @@ body {
 .ranking-ffbb {
     background-color: var(--color-grey);
     -webkit-mask: url(assets/ffbb_logo.svg) no-repeat center / contain;
+    mask: url(assets/ffbb_logo.svg) no-repeat center / contain;
 }
 
 .ranking-ffbb:hover {

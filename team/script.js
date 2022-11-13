@@ -75,9 +75,9 @@ fetch('../scrapper/data.json')
                     'de différence': team.difference,
                     'paniers marqués': team.paniers_marques,
                     'paniers encaissés': team.paniers_encaisses,
-                    'de différence en moyenne': team.difference / team.matchs_joues,
-                    'paniers marqués en moyenne': team.paniers_marques / team.matchs_joues,
-                    'paniers encaissés en moyenne': team.paniers_encaisses / team.matchs_joues
+                    'de différence en moyenne': (team.difference / team.matchs_joues).toFixed(2),
+                    'paniers marqués en moyenne': (team.paniers_marques / team.matchs_joues).toFixed(2),
+                    'paniers encaissés en moyenne': (team.paniers_encaisses / team.matchs_joues).toFixed(2)
                 }
                 break
             }
