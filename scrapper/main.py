@@ -13,6 +13,7 @@ print(datetime.now().strftime('%H:%M:%S'), '- Recovery of data in progress...')
 
 # Initialisation de la page
 page = requests.get(championship_url)
+print(page)
 soup = BeautifulSoup(page.text, 'html.parser')
 
 # Nom du championnat
