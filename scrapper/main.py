@@ -12,12 +12,12 @@ import re
 print(datetime.now().strftime('%H:%M:%S'), '- Recovery of data in progress...')
 
 # Initialisation de la page
-page = requests.get(championship_url)
-print(championship_url)
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+page = requests.get(championship_url, headers=headers)
 soup = BeautifulSoup(page.text, 'html.parser')
+print(page)
 
 # Nom du championnat
-print(soup)
 championship_name = soup.select('#idTdDivision')
 championship_name = championship_name[0].text
 
