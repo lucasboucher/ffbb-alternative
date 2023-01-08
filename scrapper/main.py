@@ -16,6 +16,8 @@ page = requests.get(championship_url)
 soup = BeautifulSoup(page.text, 'html.parser')
 
 # Nom du championnat
+print(soup.select('#idTdDivision'))
+
 championship_name = soup.select('#idTdDivision')
 championship_name = championship_name[0].text
 
