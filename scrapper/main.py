@@ -13,12 +13,10 @@ print('----------')
 print(datetime.now().strftime('%H:%M:%S'), '- Recovery of data in progress...')
 
 # Initialisation de la page
-proxy = {'http': '51.159.115.233:3128', 'https': '51.159.115.233:3128'}
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15'}
-page = requests.get('https://httpbin.org/ip', headers=headers, proxies=proxy)
+page = requests.get(championship_url, headers=headers)
 print(datetime.now().strftime('%H:%M:%S'), '- Page response : ', page)
 soup = BeautifulSoup(page.text, 'html.parser')
-print(soup)
 
 # Nom du championnat
 championship_name = soup.select('#idTdDivision')
