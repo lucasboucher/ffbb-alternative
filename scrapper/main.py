@@ -12,8 +12,11 @@ import re
 print(datetime.now().strftime('%H:%M:%S'), '- Recovery of data in progress...')
 
 # Initialisation de la page
+proxies = {
+    "http": "163.116.158.183:8081",
+}
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15'}
-page = requests.get(championship_url, headers=headers)
+page = requests.get(championship_url, headers=headers, proxies=proxies)
 print(page)
 soup = BeautifulSoup(page.text, 'html.parser')
 
