@@ -8,7 +8,7 @@ import requests
 import json
 import re
 
-# Message de lancement du scrapper
+# Message de lancement du scraper
 print('----------')
 print(datetime.now().strftime('%H:%M:%S'), '- Recovery of data in progress...')
 

@@ -20,7 +20,7 @@ Chart.defaults.font.lineHeight = "1.4em"
 // |   Championnat   |
 // |-----------------|
 
-fetch('scrapper/data.json')
+fetch('scraper/data.json')
     .then((response) => response.json())
     .then((data) => {
 

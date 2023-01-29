@@ -2,7 +2,7 @@ Overview of this side-project just [here (https://lucasboucher.fr/ffbb)](https:/
 
 
 # Docs
-Firstly, run scrapper/main.py to refresh data.
+Firstly, run scraper/main.py to refresh data.
 
 Need to run on a web server for JS Fetch API
 
@@ -13,7 +13,7 @@ python3 -m http.server
 
 # Config
 You can modify the configuration file:
-- `./scrapper/config.py` For the URL of the championship and pool ID
+- `./scraper/config.py` For the URL of the championship and pool ID
 
 # Technology & Librairies:
 - Python (with JSON)
