@@ -1,11 +1,4 @@
 
-// |----------------|
-// |   Temporaire   |
-// |----------------|
-
-selected_club_name = 'Cheminots Amiens Sud B.B.'
-
-
 // |--------------|
 // |   Chart.js   |
 // |--------------|
@@ -32,6 +25,34 @@ fetch('scraper/data.json')
         document.getElementsByClassName('ranking-pool')[0].innerHTML += ` ${data.poule}` // Poule du championnat
         document.getElementsByClassName('ranking-ffbb')[0].href = data.lien_championnat // Lien du classement FFBB officiel dans le logo FFBB de la tête de classement
 
+        // Équipe sélectionné
+        selected_club_name = localStorage.getItem("selected_club_name")
+        if (!selected_club_name) {
+            localStorage.setItem("selected_club_name", teams[0].club);
+            selected_club_name = teams[0].club
+        }
+
+        // Récupération de la balise de la sélection d'équipe
+        team_selection = document.getElementById('team_selection')
+
+        // Affichage des équipes dans la sélection
+        for (team in teams) {
+            club_name = teams[team].club
+            if (club_name == selected_club_name) {
+                selected_team_indicator = '💙 '
+                team_selection_index = team
+            } else {
+                selected_team_indicator = ''
+            }
+            team_selection.innerHTML += `<option value="${club_name}">${selected_team_indicator}${club_name}</option>`
+        }
+
+        // Mettre par défaut l'équipe sélectionnée
+        team_selection.selectedIndex = team_selection_index
+
+        // Changement de l'équipe sélectionnée
+        team_selection.addEventListener("change", () => reload_new_team(team_selection.value))
+
         // Détermination de la journée actuelle
         for (team in teams) {
             fixtures = teams[team].rencontres
@@ -44,6 +65,9 @@ fetch('scraper/data.json')
             }
         }
 
+        // Récupération de la balise de la sélection de la journée
+        matchday_selection = document.getElementById('matchday_selection')
+
         // Afficher le nombre de journées total
         matchday_counter = data.equipes[0].rencontres.length
         for (let i = 1; i <= matchday_counter; i++) {
@@ -52,17 +76,17 @@ fetch('scraper/data.json')
             } else {
                 next_matchday_indicator = ''
             }
-            document.getElementById('matchday_selection').innerHTML += `<option value="${i}">${next_matchday_indicator}Jour ${i}</option>`
+            matchday_selection.innerHTML += `<option value="${i}">${next_matchday_indicator}Jour ${i}</option>`
         }
 
         // Mettre par défaut la journée actuelle
-        document.getElementById('matchday_selection').selectedIndex = next_matchday-1
+        matchday_selection.selectedIndex = next_matchday-1
 
         // Prochaine journée
         load_matchday_fixtures(next_matchday)
 
         // Changement de journée
-        document.getElementById("matchday_selection").addEventListener("change", () => load_matchday_fixtures(document.getElementById("matchday_selection").value))
+        matchday_selection.addEventListener("change", () => load_matchday_fixtures(matchday_selection.value))
 
         // Précédent classement
         ranking = []
@@ -187,6 +211,11 @@ function get_div_squad(squad) {
     }
 }
 
+function reload_new_team(new_team) {
+    localStorage.setItem("selected_club_name", new_team);
+    location.reload();
+}
+
 // Affiche les rencontres sélectionné sur une classe CSS choisi
 function display_fixtures(fixtures_data, main_class) {
     document.getElementById(main_class).innerHTML = ""
@@ -244,4 +273,27 @@ function display_fixtures(fixtures_data, main_class) {
             </div>
         `
     }
+}
+
+
+// |-----------|
+// |   Modal   |
+// |-----------|
+
+var modal = document.getElementById("modal");
+var button = document.getElementById("modal-button");
+var modal_close = document.getElementsByClassName("modal-close")[0];
+
+button.onclick = function() {
+  modal.style.display = "block";
+}
+
+modal_close.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }

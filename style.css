@@ -26,6 +26,7 @@ ul {
     --color-blue: rgb(91, 186, 213);
     --color-green: rgb(29, 187, 121);
     --color-red: rgb(255, 47, 84);
+    --color-modal: rgb(0, 0, 0, 0.75);
 }
 
 @font-face {
@@ -209,13 +210,13 @@ body {
     }
 }
 
-.fixtures-selection {
+.selection {
     display: flex;
     align-items: center;
 }
 
 @media screen and (max-width: 600px) {
-    .fixtures-selection {
+    .selection {
         width: 100%;
         flex-direction: column;
         align-items: flex-end;
@@ -223,36 +224,38 @@ body {
 }
 
 
-.fixtures-selection select {
+.selection select {
     border: 1px solid var(--color-background);
     border-radius: 4px;
     background-color: var(--color-hover);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 160px;
+    width: auto;
     color: var(--color-white);
     font-size: 1rem;
     appearance: none;
     cursor: pointer;
     padding: 16px 16px;
     position: relative;
-    left: 12px;
+    margin-right: -12px;
+    padding-right: 64px;
 }
 
 @media screen and (max-width: 600px) {
-    .fixtures-selection select {
+    .selection select {
         width: 100%;
         position: unset;
+        margin-right: unset;
     }
 }
 
-.fixtures-selection select:focus {
+.selection select:focus {
     outline: unset;
     border-color: var(--color-blue);
 }
 
-.fixtures-selection .fixtures-downarrow {
+.selection .fixtures-downarrow {
     stroke: var(--color-white);
     stroke-width: 2px;
     height: 7px;
@@ -262,7 +265,7 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-    .fixtures-selection .fixtures-downarrow {
+    .selection .fixtures-downarrow {
         right: unset;
         bottom: 30px;
         right: 16px;
@@ -786,4 +789,54 @@ body {
     .hidden-on-mobile {
         display: none;
     }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--color-modal);
+}
+
+.modal-content {
+    background-color: var(--color-black);
+    margin: 10vh auto;
+    padding: 20px;
+    padding-bottom: 0;
+    width: 80%;
+    border-radius: 4px;
+    border: 1px solid var(--color-hover);
+}
+
+.modal-close {
+    float: right;
+}
+
+.modal-close svg {
+    width: 32px;
+    stroke-width: 1.5;
+    stroke: var(--color-grey);
+    fill: transparent;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.modal-close:hover svg,
+.modal-close:focus svg {
+    stroke: var(--color-white);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-right: 8px;
 }

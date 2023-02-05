@@ -32,10 +32,6 @@ You can modify the configuration file:
 - Iconoir: https://iconoir.com
 
 # TODO
-- Parameters update
-    - storage for selected team and config data
-    - Modal when clicking on parameter icon button
-    - Dev Mode button link
 - Time update
     - Sorting charts and all fixtures by date or by matchday (with ./team settings button)
     - Sort automatically next matchday fixtures by date
@@ -43,6 +39,7 @@ You can modify the configuration file:
 
 ## Bugs
 - Down arrow icon non clickable -> z-index ? see radio button hint...
+- Calendar title when all matchs are played
 
 ## Improvements
 - Sort an array teams by rank (and not by default) for display ranking

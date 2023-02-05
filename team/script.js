@@ -1,9 +1,5 @@
+selected_club_name = localStorage.getItem("selected_club_name")
 
-// |----------------|
-// |   Temporaire   |
-// |----------------|
-
-selected_club_name = 'Cheminots Amiens Sud B.B.'
 // |--------------|
 // |   Chart.js   |
 // |--------------|
@@ -28,7 +24,7 @@ fetch('../scraper/data.json')
         page_club_name = window.location.search
         page_club_name = new URLSearchParams(page_club_name).get('club')
         if (!page_club_name) {
-            page_club_name = teams[0].club
+            page_club_name = selected_club_name
         }
 
         // Informations du championnat
