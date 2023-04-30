@@ -38,7 +38,6 @@ You can modify the configuration file:
     - Print 6 last and next fixtures by time (with matchday indicator)
 
 ## Bugs
-- Down arrow icon non clickable -> z-index ? see radio button hint...
 - Calendar title when all matchs are played
 
 ## Improvements
