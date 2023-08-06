@@ -111,5 +111,5 @@ championship_data = {'nom': championship_name, 'lien_championnat': championship_
 
 # Création du fichier JSON
 with open('data.json', 'w', encoding='latin-1') as f:
-    json.dump(championship_data, f, indent=4, ensure_ascii=False)
+    json.dump(championship_data, f, indent='\t', ensure_ascii=False) # remove indent and add separators to minimize the output
 print(datetime.now().strftime('%H:%M:%S'), '- Data refreshes on JSON file')
