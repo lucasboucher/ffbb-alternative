@@ -154,7 +154,7 @@ fetch('scraper/data.json')
             document.getElementsByClassName('ranking')[0].innerHTML +=
             `
             <li class="ranking-team">
-                <a href="./team?club=${teams[team].club}">
+                <a href="./team/?club=${teams[team].club}">
                     <div class="ranking-rank">${teams[team].classement}</div>
                     <div class="ranking-icon">${position_icon}</div>
                     <div class="ranking-name">
@@ -164,8 +164,8 @@ fetch('scraper/data.json')
                     <div>${teams[team].matchs_joues}</div>
                     <div class="hidden-on-mobile">${teams[team].matchs_gagnes}</div>
                     <div class="hidden-on-mobile">${teams[team].matchs_perdus}</div>
-                    <div class="hidden-on-mobile">${teams[team].paniers_marques}</div>
-                    <div class="hidden-on-mobile">${teams[team].paniers_encaisses}</div>
+                    <div class="hidden-on-mobile">${teams[team].points_marques}</div>
+                    <div class="hidden-on-mobile">${teams[team].points_encaisses}</div>
                     <div>${teams[team].difference}</div>
                     <div class="ranking-points">${teams[team].points}</div>
                     <div class="ranking-link hidden-on-mobile">
