@@ -19,7 +19,7 @@ print(datetime.now().strftime('%H:%M:%S'), '- Page response : ', page)
 soup = BeautifulSoup(page.text, 'html.parser')
 
 # Nom du championnat
-championship_name = soup.select_one('#idTdDivision option')
+championship_name = soup.select_one('#idTdDivision')
 championship_name = championship_name.text
 
 # Lien du championnat
