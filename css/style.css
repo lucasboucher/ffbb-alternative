@@ -31,7 +31,7 @@ ul {
 
 @font-face {
     font-family: 'Druk';
-    src:  url('assets/Druk-Bold-Cy-Gr-subset.woff2') format('woff2');
+    src:  url('../assets/Druk-Bold-Cy-Gr-subset.woff2') format('woff2');
   }
 
 ::selection {
@@ -71,7 +71,6 @@ body {
     margin: 0 4vw;
     margin-top: 32px;
 }
-
 
 /* En-tête */
 
@@ -293,7 +292,7 @@ body {
 }
 
 .fixture {
-    background-color: var(--color-background);;
+    background-color: var(--color-background);
     border-radius: 4px;
     display: flex;
     justify-content: space-between;
@@ -520,8 +519,8 @@ body {
 
 .ranking-ffbb {
     background-color: var(--color-grey);
-    -webkit-mask: url(assets/ffbb_logo.svg) no-repeat center / contain;
-    mask: url(assets/ffbb_logo.svg) no-repeat center / contain;
+	-webkit-mask: url(../assets/ffbb_logo.svg) no-repeat center / contain;
+	mask: url(../assets/ffbb_logo.svg) no-repeat center / contain;
 }
 
 .ranking-ffbb:hover {
