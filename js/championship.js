@@ -129,13 +129,12 @@ fetch('data/data.json')
 					former_rank = parseInt(ranking_team) + 1
 					current_rank = parseInt(team.classement)
 					ranking_team = ranking[ranking_team]
+					team_ranking_color = ''
 					team_icon_color_green = 'rgb(29, 187, 121)'
 					team_icon_color_red = 'rgb(255, 47, 84)'
 					team_icon_color_grey = 'rgb(184, 184, 184)'
 					if (team.club == selected_club_name) {
-						team_icon_color_green = 'rgb(91, 186, 213)'
-						team_icon_color_red = 'rgb(91, 186, 213)'
-						team_icon_color_grey = 'rgb(91, 186, 213)'
+						team_ranking_color = 'ranking-team-selected'
 					}
 					if (former_rank > current_rank) {
 						position_icon = `<svg width="12px" height="12px" viewBox="0 0 12 12"><path d="M1 8l5-5 5 5" stroke="${team_icon_color_green}" stroke-width="2"/></svg>`
@@ -149,7 +148,7 @@ fetch('data/data.json')
 			div_squad = get_div_squad(team.equipe) // Récupére la <div> du numéro de l'équipe si elle existe
 			document.getElementsByClassName('ranking')[0].innerHTML +=
 			`
-			<li class="ranking-team">
+			<li class="ranking-team ${team_ranking_color}">
 				<a href="./team/?club=${team.club}">
 					<div class="ranking-rank">${team.classement}</div>
 					<div class="ranking-icon">${position_icon}</div>
@@ -318,6 +317,7 @@ function display_fixtures(fixtures_data, main_class) {
 			away_score = ''
 			time = fixture.heure
 			if (fixture.club_domicile == selected_club_name || fixture.club_exterieur == selected_club_name) {
+				fixture_color = 'fixture-selected'
 				indicator_team_selected = '<div class="fixture-indicator-team-selected"></div>'
 			}
 		}

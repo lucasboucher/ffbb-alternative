@@ -24,6 +24,7 @@ ul {
 	--color-hover: rgb(26, 26, 26);
 	--color-grey: rgb(184, 184, 184);
 	--color-blue: rgb(91, 186, 213);
+	--color-blue-transparent: rgb(91, 186, 213, 0.3);
 	--color-green: rgb(29, 187, 121);
 	--color-green-transparent: rgb(29, 187, 121, 0.3);
 	--color-red: rgb(255, 47, 84);
@@ -86,6 +87,12 @@ body {
 	gap: 16px;
 	background-color: var(--color-black);
 	z-index: 1;
+}
+
+@media screen and (max-width: 600px) {
+	.header {
+		padding: 10px 0;
+	}
 }
 
 .header-infos {
@@ -235,7 +242,7 @@ body {
 	font-size: 1rem;
 	appearance: none;
 	cursor: pointer;
-	padding: 16px 16px;
+	padding: 16px;
 	position: relative;
 	margin-right: -12px;
 	padding-right: 64px;
@@ -246,6 +253,7 @@ body {
 		width: 100%;
 		position: unset;
 		margin-right: unset;
+		padding: 8px;
 	}
 }
 
@@ -267,7 +275,7 @@ body {
 @media screen and (max-width: 600px) {
 	.selection .fixtures-downarrow {
 		right: unset;
-		bottom: 30px;
+		bottom: 22px;
 		right: 16px;
 	}
 }
@@ -299,6 +307,16 @@ body {
 	padding: 32px 0;
 	border: 1px solid transparent;
 	min-width: 0;
+}
+
+@media screen and (max-width: 600px) {
+	.fixture {
+		padding: 16px 0;
+	}
+}
+
+.fixture-selected {
+	background-color: var(--color-blue-transparent);
 }
 
 .fixture-l {
@@ -411,6 +429,12 @@ body {
 	max-height: 10px;
 	border-radius: 50%;
 	border: 5px solid var(--color-black);
+}
+
+@media screen and (max-width: 600px) {
+	.fixture-indicator-team-selected {
+		bottom: 24px;
+	}
 }
 
 
@@ -538,6 +562,10 @@ body {
 .ranking-team {
 	font-size: 1rem;
 	color: var(--color-white);
+}
+
+.ranking-team-selected {
+	background-color: var(--color-blue-transparent);
 }
 
 .ranking-team:not(:nth-child(2)) {
@@ -754,6 +782,12 @@ body {
 	justify-content: space-between;
 	background-color:var(--color-hover);
 	gap: 16px;
+}
+
+@media screen and (max-width: 800px) {
+	.footer {
+		padding: 10px 4vw;
+	}
 }
 
 .footer img {

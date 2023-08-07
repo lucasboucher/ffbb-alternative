@@ -195,6 +195,10 @@ function display_fixtures(fixtures_data, main_class) {
 		played = fixture.match_joue
 		indicator_team_selected_class = ''
 		fixture_color = ''
+		if (page_club_name != selected_club_name && (fixture.club_domicile == selected_club_name || fixture.club_exterieur == selected_club_name)) {
+			indicator_team_selected_class = ' fixture-matchday-team-selected'
+			fixture_color = 'fixture-selected'
+		}
 		if (played) {
 			home_score = fixture.resultat_equipe_domicile
 			away_score = fixture.resultat_equipe_exterieur
@@ -223,9 +227,6 @@ function display_fixtures(fixtures_data, main_class) {
 			home_score = ''
 			away_score = ''
 			time = fixture.heure
-		}
-		if (page_club_name != selected_club_name && (fixture.club_domicile == selected_club_name || fixture.club_exterieur == selected_club_name)) {
-			indicator_team_selected_class = ' fixture-matchday-team-selected'
 		}
 		home_squad = get_div_squad(fixture.equipe_domicile_numero)
 		away_squad = get_div_squad(fixture.equipe_exterieur_numero)
