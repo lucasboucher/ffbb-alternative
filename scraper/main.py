@@ -62,9 +62,9 @@ for team in teams:
         games_played = ranking_row[3].contents[0] # Matchs joués
         won_games = ranking_row[4].contents[0] # Matchs gagnés
         lost_games = ranking_row[5].contents[0] # Matchs perdus
-        baskets_scored = ranking_row[15].contents[0] # Différence de paniers
-        baskets_cashed = ranking_row[16].contents[0] # Différence de paniers
-        difference = ranking_row[17].contents[0] # Différence de paniers
+        points_scored = ranking_row[15].contents[0] # Différence de points
+        points_cashed = ranking_row[16].contents[0] # Différence de points
+        difference = ranking_row[17].contents[0] # Différence de points
         # Rencontres de l'équipes
         fixtures_url = 'https://resultats.ffbb.com/championnat/equipe/division/' + championship_id + pool_id + club_id + '.html'
         page = requests.get(fixtures_url)
@@ -101,7 +101,7 @@ for team in teams:
             except:
                 continue
         # Formattage et ajout des données de l'équipe
-        team_data = {'club': team_club, 'equipe': squad, 'id_club': club_id, 'lien_equipe': team_link, 'classement': ranking, 'points': points, 'matchs_joues': games_played, 'matchs_gagnes': won_games, 'matchs_perdus': lost_games, 'paniers_marques': baskets_scored, 'paniers_encaisses': baskets_cashed, 'difference': difference, 'rencontres': fixtures_data}
+        team_data = {'club': team_club, 'equipe': squad, 'id_club': club_id, 'lien_equipe': team_link, 'classement': ranking, 'points': points, 'matchs_joues': games_played, 'matchs_gagnes': won_games, 'matchs_perdus': lost_games, 'paniers_marques': points_scored, 'paniers_encaisses': points_cashed, 'difference': difference, 'rencontres': fixtures_data}
         teams_data.append(team_data)
     except:
         continue
