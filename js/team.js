@@ -1,6 +1,3 @@
-selected_club_name = localStorage.getItem("selected_club_name")
-selected_pool_name = localStorage.getItem("selected_pool_name")
-
 // |--------------|
 // |   Chart.js   |
 // |--------------|
@@ -19,49 +16,58 @@ Chart.defaults.font.lineHeight = "1.4em"
 fetch('../data/data.json')
 	.then((response) => response.json())
 	.then((data) => {
+		// Informations du championnat
+		document.getElementsByClassName('header-subtitle')[0].innerHTML = data.nom // Nom du championnat
+
 		// Chargement de la poule sélectionnée
-		pool_selection_index = 0
-		for (pool in data.poules) {
-			pool_name = data.poules[pool].poule
+		selected_pool_name = localStorage.getItem("selected_pool_name")
+		if (!selected_pool_name) {
+			localStorage.setItem("selected_pool_name", pools[0].poule);
+			selected_pool_name = pools[0].poule
+		}
+
+		selected_pool = data.poules[0] // choisir une poule par défaut
+		for (p in data.poules) {
+			pool_name = data.poules[p].poule
 			if (pool_name == selected_pool_name) {
-				pool_selection_index = pool
+				selected_pool = data.poules[p] // choisir la poule sélectionnée
 			}
 		}
-		selected_pool = data.poules[pool_selection_index] // choisir la poule sélectionné
 
-		// Recherche de l'équipe sélectionné
+		// Toutes les rencontres de la poule
+		games = selected_pool.rencontres
+		// Toutes les équipes de la poule
+		teams = selected_pool.equipes
+
+		selected_club_name = localStorage.getItem("selected_club_name")
+		// Recherche de l'équipe à afficher
 		page_club_name = window.location.search
 		page_club_name = new URLSearchParams(page_club_name).get('club')
 		if (!page_club_name) {
 			page_club_name = selected_club_name
 		}
 
-		// Informations du championnat
-		document.getElementsByClassName('header-subtitle')[0].innerHTML = data.nom // Nom du championnat
-		document.getElementsByClassName('header-title')[0].innerHTML = page_club_name // Nom du de l'équipe sélectionné
-
-		// Toutes les rencontres de la poule
-		games = selected_pool.rencontres
+		document.getElementsByClassName('header-title')[0].innerHTML = page_club_name // Nom de l'équipe sélectionnée
 
 		// Retirer les matchs à ne pas afficher
 		keep_home_games = !document.getElementById("exterieur").checked
 		keep_away_games = !document.getElementById("domicile").checked
-		games = filter_games(games, page_club_name, keep_home_games, keep_away_games)
+		filtered_games = filter_games(games, page_club_name, keep_home_games, keep_away_games)
 
 		previous_fixtures = []
 		next_fixtures = []
-		for (g in games) {
-			if (games[g].match_joue == true) {
-				previous_fixtures.push(games[g])
+		for (g in filtered_games) {
+			if (filtered_games[g].match_joue == true) {
+				previous_fixtures.push(filtered_games[g])
 			}
 			else {
-				next_fixtures.push(games[g])
+				next_fixtures.push(filtered_games[g])
 			}
 		}
 		// Afficher les résultats d'une équipe
-		display_fixtures(previous_fixtures, 'results_fixtures')
+		display_fixtures(previous_fixtures, 'results_fixtures', selected_club_name, page_club_name, true, true)
 		// Afficher le calendrier d'une équipe
-		display_fixtures(next_fixtures, 'calendar_fixtures')
+		display_fixtures(next_fixtures, 'calendar_fixtures', selected_club_name, page_club_name, true, true)
 		
 		// Récupérer l'équipe
 		for (equipe in selected_pool.equipes) {
@@ -72,32 +78,32 @@ fetch('../data/data.json')
 		}
 
 		// Récupérer les statistiques
-		stat_data = gather_stat_data(team)
+		stats_data = compute_stats(team.club, filtered_games)
 
 		// Afficher les statistiques
-		display_stats(stat_data)
+		display_stats(stats_data)
 		
 		// Réupération des données pour les graphiques
 		matchday_data = []
 		points_scored_data = []
 		points_cashed_data = []
 		opponents_teams_data = []
-		for (g in games) {
-			if (games[g].match_joue == true) {
-				matchday_data.push(games[g].jour)
-				home_squad = get_div_squad(games[g].equipe_domicile_numero)
-				away_squad = get_div_squad(games[g].equipe_exterieur_numero)
+		for (g in filtered_games) {
+			if (filtered_games[g].match_joue == true) {
+				matchday_data.push(filtered_games[g].jour)
+				home_squad = get_div_squad(filtered_games[g].equipe_domicile_numero)
+				away_squad = get_div_squad(filtered_games[g].equipe_exterieur_numero)
 
-				b_is_home_game = page_club_name == games[g].club_domicile ? true : false;
+				b_is_home_game = page_club_name == filtered_games[g].club_domicile ? true : false;
 				
 				if (true == b_is_home_game) {
-					points_scored_data.push(games[g].resultat_equipe_domicile)
-					points_cashed_data.push(games[g].resultat_equipe_exterieur)
-					opponents_teams_data.push(games[g].club_exterieur + away_squad)
+					points_scored_data.push(filtered_games[g].resultat_equipe_domicile)
+					points_cashed_data.push(filtered_games[g].resultat_equipe_exterieur)
+					opponents_teams_data.push(filtered_games[g].club_exterieur + away_squad)
 				} else {
-					points_scored_data.push(games[g].resultat_equipe_exterieur)
-					points_cashed_data.push(games[g].resultat_equipe_domicile)
-					opponents_teams_data.push(games[g].club_domicile + home_squad)
+					points_scored_data.push(filtered_games[g].resultat_equipe_exterieur)
+					points_cashed_data.push(filtered_games[g].resultat_equipe_domicile)
+					opponents_teams_data.push(filtered_games[g].club_domicile + home_squad)
 				}
 			}
 		}
@@ -141,16 +147,41 @@ function filter_games(games, keep_team_name, b_keep_home_games, b_keep_away_game
 	return games
 }
 
-function gather_stat_data(team) {
-	stat_data = {
-		'de différence': team.difference,
-		'points marqués': team.points_marques,
-		'points encaissés': team.points_encaisses,
-		'de différence en moyenne': (team.difference / team.matchs_joues).toFixed(2),
-		'points marqués en moyenne': (team.points_marques / team.matchs_joues).toFixed(2),
-		'points encaissés en moyenne': (team.points_encaisses / team.matchs_joues).toFixed(2)
+function compute_stats(club_name, games) {
+	stats_data = {
+		'points de différence': 0,
+		'points marqués': 0,
+		'points encaissés': 0,
+		'points de différence en moyenne': 0,
+		'points marqués en moyenne': 0,
+		'points encaissés en moyenne': 0,
 	}
-	return stat_data
+	nb_game_played = 0
+	for (g in games) {
+		fixture = games[g]
+		if ( true == fixture.match_joue )
+		{
+			nb_game_played++
+			if ( club_name == fixture.club_domicile ) {
+				stats_data['points marqués'] += fixture.resultat_equipe_domicile
+				stats_data['points encaissés'] += fixture.resultat_equipe_exterieur
+				stats_data['points de différence'] += (fixture.resultat_equipe_domicile - fixture.resultat_equipe_exterieur)
+			}
+			else if ( club_name == fixture.club_exterieur ) {
+				stats_data['points marqués'] += fixture.resultat_equipe_exterieur
+				stats_data['points encaissés'] += fixture.resultat_equipe_domicile
+				stats_data['points de différence'] += (fixture.resultat_equipe_exterieur - fixture.resultat_equipe_domicile)
+			}
+		}
+	}
+
+	if ( 0 < nb_game_played ) {
+		stats_data['points marqués en moyenne'] = (stats_data['points marqués'] / nb_game_played).toFixed(2)
+		stats_data['points encaissés en moyenne'] = (stats_data['points encaissés'] / nb_game_played).toFixed(2)
+		stats_data['points de différence en moyenne'] = (stats_data['points de différence'] / nb_game_played).toFixed(2)
+	}
+
+	return stats_data
 }
 
 function display_stats(stat_data) {
@@ -170,90 +201,6 @@ function display_stats(stat_data) {
 				<div class="stat-figure">${stat_data[stat]}</div>
 				<div>${stat}</div>
 			</div>
-			</div>
-		`
-	}
-}
-
-// Retoune la <div> s'il y a un numéro d'équipe
-function get_div_squad(squad) {
-	if (squad === '1') {
-		return ''
-	}
-	else if(squad) {
-		return ` - ${squad}`
-	} else {
-		return ''
-	}
-}
-
-// Affiche les rencontres sélectionné sur une classe CSS choisi
-function display_fixtures(fixtures_data, main_class) {
-	document.getElementById(main_class).innerHTML = ''
-	for (fixture in fixtures_data) {
-		fixture = fixtures_data[fixture]
-		played = fixture.match_joue
-		indicator_team_selected_class = ''
-		fixture_color = ''
-		if (page_club_name != selected_club_name && (fixture.club_domicile == selected_club_name || fixture.club_exterieur == selected_club_name)) {
-			indicator_team_selected_class = ' fixture-matchday-team-selected'
-			fixture_color = 'fixture-selected'
-		}
-		if (played) {
-			home_score = fixture.resultat_equipe_domicile
-			away_score = fixture.resultat_equipe_exterieur
-
-			// Choisir une classe en fonction du résultat (victoire / défaite)
-			b_is_home_game = (page_club_name == fixture.club_domicile) ? true : false;
-			if (b_is_home_game) {
-				if (home_score > away_score) {
-					fixture_color = 'fixture-w'
-				}
-				else {
-					fixture_color = 'fixture-l'
-				}
-			} else if (fixture.club_exterieur == page_club_name) {
-				if (home_score > away_score) {
-					fixture_color = 'fixture-l'
-				}
-				else {
-					fixture_color = 'fixture-w'
-				}
-			}
-			home_score = `<div class="fixture-result">${home_score}</div>`
-			away_score = `<div class="fixture-result">${away_score}</div>`
-			time = 'Terminé'
-		} else {
-			home_score = ''
-			away_score = ''
-			time = fixture.heure
-		}
-		home_squad = get_div_squad(fixture.equipe_domicile_numero)
-		away_squad = get_div_squad(fixture.equipe_exterieur_numero)
-		document.getElementById(main_class).innerHTML +=
-		`
-			<div class="fixture ${fixture_color}">
-				<div class="fixture-matchday${indicator_team_selected_class}">${fixture.jour}</div>
-				<div class="fixture-teams">
-					<div class="fixture-team">
-						<a class="fixture-team-name" href="../team/?club=${fixture.club_domicile}">
-							<div class="fixture-team-club">${fixture.club_domicile}</div>
-							${home_squad}
-						</a>
-						${home_score}
-					</div>
-					<div class="fixture-team">
-						<a class="fixture-team-name" href="../team/?club=${fixture.club_exterieur}">
-							<div class="fixture-team-club">${fixture.club_exterieur}</div>
-							${away_squad}
-						</a>
-						${away_score}
-					</div>
-				</div>
-				<div class="fixture-date">
-					<div class="fixture-day">${fixture.date}</div>
-					<div class="fixture-time">${time}</div>
-				</div>
 			</div>
 		`
 	}
