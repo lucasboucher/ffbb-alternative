@@ -177,8 +177,11 @@ function display_stats(stat_data) {
 
 // Retoune la <div> s'il y a un numéro d'équipe
 function get_div_squad(squad) {
-	if(squad) {
-		return `<div class="team-number">${squad}</div>`
+	if (squad === '1') {
+		return ''
+	}
+	else if(squad) {
+		return ` - ${squad}`
 	} else {
 		return ''
 	}

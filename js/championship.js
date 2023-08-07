@@ -261,8 +261,11 @@ function filter_games(games, keep_team_name, b_keep_home_games, b_keep_away_game
 
 // Retoune la <div> s'il y a un numéro d'équipe
 function get_div_squad(squad) {
-	if(squad) {
-		return `<div class="team-number">${squad}</div>`
+	if (squad === '1') {
+		return ''
+	}
+	else if(squad) {
+		return `<div> - ${squad}</div>`
 	} else {
 		return ''
 	}
