@@ -1,14 +1,3 @@
-
-// |--------------|
-// |   Chart.js   |
-// |--------------|
-
-Chart.defaults.font.size = 14
-Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-Chart.defaults.font.weight = 400
-Chart.defaults.font.lineHeight = "1.4em"
-
-
 // |-----------------|
 // |   Championnat   |
 // |-----------------|
