@@ -297,19 +297,29 @@ function display_fixtures(fixtures_data, main_class) {
 		home_squad = get_div_squad(fixture.equipe_domicile_numero)
 		away_squad = get_div_squad(fixture.equipe_exterieur_numero)
 		indicator_team_selected = ''
+		fixture_color = ''
 		if (fixture.match_joue) {
 			home_score = fixture.resultat_equipe_domicile
 			away_score = fixture.resultat_equipe_exterieur
-			selected_team_status = fixture.match_domicile
-			selected_team_class_if_home = ''
-			selected_team_class_if_away = ''  
 			if (fixture.club_domicile == selected_club_name) {
-				selected_team_class_if_home = ' fixture-result-team-selected'
+				if (home_score > away_score) {
+					fixture_color = 'fixture-w'
+				}
+				else {
+					fixture_color = 'fixture-l'
+				}
+				indicator_team_selected = '<div class="fixture-indicator-team-selected"></div>'
 			} else if (fixture.club_exterieur == selected_club_name) {
-				selected_team_class_if_away = ' fixture-result-team-selected'
+				if (home_score > away_score) {
+					fixture_color = 'fixture-l'
+				}
+				else {
+					fixture_color = 'fixture-w'
+				}
+				indicator_team_selected = '<div class="fixture-indicator-team-selected"></div>'
 			}
-			home_score = `<div class="fixture-result${selected_team_class_if_home}">${home_score}</div>`
-			away_score = `<div class="fixture-result${selected_team_class_if_away}">${away_score}</div>`
+			home_score = `<div class="fixture-result">${home_score}</div>`
+			away_score = `<div class="fixture-result">${away_score}</div>`
 			time = 'Terminé'
 		} else {
 			home_score = ''
@@ -321,7 +331,7 @@ function display_fixtures(fixtures_data, main_class) {
 		}
 		document.getElementById(main_class).innerHTML +=
 		`
-			<div class="fixture">
+			<div class="fixture ${fixture_color}">
 				<div class="fixture-teams">
 					<div class="fixture-team">
 						<a class="fixture-team-name" href="./team/?club=${fixture.club_domicile}">
