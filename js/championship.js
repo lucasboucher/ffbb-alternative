@@ -162,7 +162,7 @@ function display_current_ranking(ranking) {
 		document.getElementsByClassName('ranking')[0].innerHTML +=
 		`
 		<li class="ranking-team ${team_ranking_color}">
-			<a href="./team/?club=${team.club}">
+			<a href="../team/?club=${team.club}">
 				<div class="ranking-rank">${team.classement}</div>
 				<div class="ranking-icon">${position_icon}</div>
 				<div class="ranking-name">
