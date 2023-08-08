@@ -118,12 +118,93 @@ fetch('../data/data.json')
 		document.getElementById("tous").addEventListener("click", () => location.reload())
 		document.getElementById("domicile").addEventListener("click", () => location.reload())
 		document.getElementById("exterieur").addEventListener("click", () => location.reload())
+		
+		schedule_ics = build_ics_schedule(page_club_name, filtered_games)
+
+		document.getElementById("download-schedule").addEventListener("click", () => download_schedule(schedule_ics, 'calendrier.ics'))
 	})
 
 
 // |---------------|
 // |   Fonctions   |
 // |---------------|
+
+/**
+ * Returns a hash code from a string
+ * 
+ * @param  {String} str The string to hash
+ * 
+ * @return {Number} A 32bit integer
+ */
+function hash_string(str) {
+	let hash = 0;
+	for (let i = 0, len = str.length; i < len; i++) {
+		let chr = str.charCodeAt(i);
+		hash = (hash << 5) - hash + chr;
+		hash |= 0; // Convert to 32bit integer
+	}
+	hash = hash.toString(16).toUpperCase().replace(/-/g, '')
+	return hash;
+}
+
+function compute_ics_event_date(date, heure) {
+	/* Conversion de la date pour être accepté lors de la création de l'objet Date */
+	date_parts = date.split("/");
+	date_yyyymmdd = date_parts[2] + '-' + date_parts[1] + '-' + date_parts[0];
+	event_date = new Date(date_yyyymmdd + " " + heure)
+	/* L'objet date redéfini l'heure en UTC, il faut la reconvertir en heure locale */
+	event_date = event_date.toLocaleString('sv').replace(' ', 'T');
+	event_date = event_date.replace(/[-:]/g, '')
+	event_date = event_date.slice(0, 15)
+	return event_date
+}
+
+function build_ics_schedule(page_club_name, filtered_games) {
+	nb_events = 0
+
+	eof = `\r\n`
+	ics_data = `BEGIN:VCALENDAR${eof}`
+	ics_data += `VERSION:2.0${eof}`
+	ics_data += `PRODID:-//FFBB//Alternative interface//FR${eof}`
+	for (g in filtered_games) {
+		fixture = filtered_games[g]
+
+		if(false == fixture.match_joue) {
+			nb_events++
+			ics_data += `BEGIN:VEVENT${eof}`
+			ics_data += `SUMMARY:${fixture.club_domicile} contre ${fixture.club_exterieur}${eof}`
+			/* CHECKME: l'uid est créé avec les données de la rencontre mais uid différent pour
+				une même rencontre si changement d'horaire ou de date. Est-ce correct ? */
+			event_uid = hash_string(JSON.stringify(fixture))
+			ics_data += `UID:${event_uid}${eof}`
+			event_date = compute_ics_event_date(fixture.date, fixture.heure)
+			ics_data += `DTSTART;TZID=Europe/Paris:${event_date}${eof}`
+			ics_data += `DURATION:PT2H${eof}`
+			ics_data += `END:VEVENT${eof}`
+		}
+	}
+	ics_data += `END:VCALENDAR${eof}`
+
+	if (0 == nb_events) {
+		ics_data = null
+	}
+
+	return ics_data
+}
+
+download_schedule = (function () {
+	a = document.createElement("a")
+	document.body.appendChild(a)
+	a.style = "display: none"
+	return function (data, filename) {
+		blob = new Blob([data], {type: "octet/stream"})
+		url = window.URL.createObjectURL(blob)
+		a.href = url
+		a.download = filename
+		a.click()
+		window.URL.revokeObjectURL(url)
+	};
+}());
 
 function filter_games(games, keep_team_name, b_keep_home_games, b_keep_away_games) {
 	var i = games.length
@@ -253,7 +334,7 @@ function get_chart_config(data_chart, title, opponents_teams) {
 								gap = points[0] - points[1]
 							} else {
 								gap = points[0]
-							}     
+							}
 							return gap
 						}
 					}
@@ -310,7 +391,7 @@ function display_charts(day_data, points_scored_data, points_cashed_data, oppone
 				fill: true,
 				pointRadius: 6
 			}]
-		}     
+		}
 		const data_chart2 = {
 			labels: day_data,
 			datasets: [{
@@ -336,7 +417,7 @@ function display_charts(day_data, points_scored_data, points_cashed_data, oppone
 		const ctx = document.getElementById('points')
 		const data_chart = {
 			labels: day_data,
-			datasets: [    
+			datasets: [
 				{
 					data: points_scored_data,
 					backgroundColor: 'rgba(29, 187, 121, 0.2)',
