@@ -166,8 +166,7 @@ function display_current_ranking(ranking) {
 				<div class="ranking-rank">${team.classement}</div>
 				<div class="ranking-icon">${position_icon}</div>
 				<div class="ranking-name">
-					<div class="ranking-club">${team.club}</div>
-					${div_squad}
+					<div class="ranking-club">${team.club}${div_squad}</div>
 				</div>
 				<div>${team.matchs_joues}</div>
 				<div class="hidden-on-mobile">${team.matchs_gagnes}</div>

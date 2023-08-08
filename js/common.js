@@ -89,15 +89,13 @@ function display_fixtures(games, main_class, favorite_club_name, page_club_name,
 				<div class="fixture-teams">
 					<div class="fixture-team">
 						<a class="fixture-team-name" href="../team/?club=${fixture.club_domicile}">
-							<div class="fixture-team-club">${fixture.club_domicile}</div>
-							${home_squad}
+							<div class="fixture-team-club">${fixture.club_domicile}${home_squad}</div>
 						</a>
 						${home_score}
 					</div>
 					<div class="fixture-team">
 						<a class="fixture-team-name" href="../team/?club=${fixture.club_exterieur}">
-							<div class="fixture-team-club">${fixture.club_exterieur}</div>
-							${away_squad}
+							<div class="fixture-team-club">${fixture.club_exterieur}${away_squad}</div>
 						</a>
 						${away_score}
 					</div>
