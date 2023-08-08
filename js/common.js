@@ -34,13 +34,17 @@ function display_fixtures(games, main_class, favorite_club_name, page_club_name,
 		home_squad = get_div_squad(fixture.equipe_domicile_numero)
 		away_squad = get_div_squad(fixture.equipe_exterieur_numero)
 		fixture_color = ''
+		indicator_team_selected_class = ''
 
         if ((true == b_indicator_favorite) &&
             (favorite_club_name != page_club_name) &&
             ((fixture.club_domicile == favorite_club_name) || (fixture.club_exterieur == favorite_club_name))) {
-			indicator_team_selected_class = ' fixture-matchday-team-selected'
+			indicator_team_selected_class = 'fixture-matchday-team-selected'
             fixture_color = 'fixture-selected'
-			indicator_team_selected = '<div class="fixture-indicator-team-selected"></div>'
+			/* Ne pas avoir un double indicateur si le jour est déjà mis en avant */
+			if (false == b_indicator_day) {
+				indicator_team_selected = '<div class="fixture-indicator-team-selected"></div>'
+			}
 		}
         
         if ( page_club_name === '' ) {
@@ -79,7 +83,7 @@ function display_fixtures(games, main_class, favorite_club_name, page_club_name,
 
 		day_indicator = ''
 		if (true == b_indicator_day) {
-			day_indicator = `<div class="fixture-matchday">${fixture.jour}</div>`
+			day_indicator = `<div class="fixture-matchday ${indicator_team_selected_class}">${fixture.jour}</div>`
 		}
 
 		document.getElementById(main_class).innerHTML +=
