@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import re
+import os
 
 # Message de lancement du scraper
 print('----------')
@@ -19,8 +20,9 @@ print(datetime.now().strftime('%H:%M:%S'), '- Page response : ', page)
 soup = BeautifulSoup(page.text, 'html.parser')
 
 # Nom du championnat
-championship_name = soup.select_one('#idTdDivision option')
-championship_name = championship_name.text
+# championship_name = soup.select_one('#idTdDivision option')
+# championship_name = championship_name.text
+championship_name = "Test"
 
 # Lien du championnat
 championship_link = championship_url
@@ -110,6 +112,7 @@ for team in teams:
 championship_data = {'nom': championship_name, 'lien_championnat': championship_link, 'comite': championship_committee, 'poule': championship_pool, 'equipes': teams_data}
 
 # Création du fichier JSON
-with open('data.json', 'w', encoding='latin-1') as f:
+json_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data.json')
+with open(json_file_path, 'w', encoding='latin-1') as f:
     json.dump(championship_data, f, indent=4, ensure_ascii=False)
 print(datetime.now().strftime('%H:%M:%S'), '- Data refreshes on JSON file')
