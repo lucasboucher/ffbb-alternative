@@ -113,7 +113,8 @@ for team in teams:
 championship_data = {'nom': championship_name, 'lien_championnat': championship_link, 'comite': championship_committee, 'poule': championship_pool, 'equipes': teams_data}
 
 # Création du fichier JSON
-json_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data.json')
+static_folder_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'static')
+json_file_path = os.path.join(static_folder_path, 'data.json')
 with open(json_file_path, 'w', encoding='latin-1') as f:
     json.dump(championship_data, f, indent=4, ensure_ascii=False)
 print(datetime.now().strftime('%H:%M:%S'), '- Data refreshes on JSON file')

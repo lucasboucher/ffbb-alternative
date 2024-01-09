@@ -38,7 +38,7 @@ You can modify the configuration file:
     - Print 6 last and next fixtures by time (with matchday indicator)
 - PR on GitHub
 - Championship and pool management
-- Refresh button / New server scheduling system (CRON ?)
+- New server scheduling system (CRON ?)
 - Sort an array teams by rank (and not by default) for display ranking
 - Beter JS organization (ternary operator, setAttribute(), modules, ...)
 - Light theme

@@ -3,7 +3,7 @@
 // |   Développement   |
 // |-------------------|
 
-fetch('../scraper/data.json')
+fetch('static/data.json')
     .then((response) => response.json())
     .then((data) => {
 
