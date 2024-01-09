@@ -42,6 +42,8 @@ You can modify the configuration file:
 - Refresh button / New server scheduling system (CRON ?)
 - Sort an array teams by rank (and not by default) for display ranking
 - Beter JS organization (ternary operator, setAttribute(), modules, ...)
+- Light theme
+- .ENV
 
 ## Bugs
 - Calendar title when all matchs are played

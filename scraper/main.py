@@ -52,6 +52,8 @@ for team in teams:
     try:
         # Informations de l'équipe
         team_name = team.find('a').contents[0] # Nom de l'équipe
+        if (team_name == 'Exempt'):
+            continue
         team_club = get_team_club(team_name) # Nom du club
         squad = get_team_squad(team_name) # Numéro de l'équipe
         team_link = team.find('a')['href'] # Lien partiel du club
