@@ -45,6 +45,7 @@ You can modify the configuration file:
 
 ## Bugs
 - Calendar title when all matchs are played
+- Animation for divided graphs
 
 # Notes
 - re.sub()

@@ -64,9 +64,9 @@ for team in teams:
         games_played = ranking_row[3].contents[0] # Matchs joués
         won_games = ranking_row[4].contents[0] # Matchs gagnés
         lost_games = ranking_row[5].contents[0] # Matchs perdus
-        baskets_scored = ranking_row[15].contents[0] # Différence de paniers
-        baskets_cashed = ranking_row[16].contents[0] # Différence de paniers
-        difference = ranking_row[17].contents[0] # Différence de paniers
+        baskets_scored = ranking_row[14].contents[0] # Différence de paniers
+        baskets_cashed = ranking_row[15].contents[0] # Différence de paniers
+        difference = ranking_row[16].contents[0] # Différence de paniers
         # Rencontres de l'équipes
         fixtures_url = 'https://resultats.ffbb.com/championnat/equipe/division/' + championship_id + pool_id + club_id + '.html'
         page = requests.get(fixtures_url)
