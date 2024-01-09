@@ -371,3 +371,14 @@ function display_charts(day_data, baskets_scored_data, baskets_cashed_data, oppo
         new Chart(ctx, config)
     }
 }
+
+
+// |------------|
+// |   Autres   |
+// |------------|
+
+// Actualisation automatique de l'année du copyright
+const current_date = new Date();
+const current_year = current_date.getFullYear();
+console.log(current_year)
+document.getElementsByClassName('current-year')[0].innerHTML = current_year;

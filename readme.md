@@ -38,7 +38,6 @@ You can modify the configuration file:
     - Print 6 last and next fixtures by time (with matchday indicator)
 - PR on GitHub
 - Championship and pool management
-- Year copyright
 - Refresh button / New server scheduling system (CRON ?)
 - Sort an array teams by rank (and not by default) for display ranking
 - Beter JS organization (ternary operator, setAttribute(), modules, ...)
@@ -48,6 +47,7 @@ You can modify the configuration file:
 ## Bugs
 - Calendar title when all matchs are played
 - Animation for divided graphs
+- Pool selection
 
 # Notes
 - re.sub()
