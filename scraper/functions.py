@@ -25,6 +25,6 @@ def get_team_link(link):
 def get_club_id(link):
     id = re.sub(r'\A\.\./', '', link) # Suppression contenu avant ID
     id = re.sub(r'\Aequipe/', '', id) # Suppression contenu avant ID
-    id = re.search(r'^....', id) # Recherche ID
+    id = re.search(r'^\w+', id) # Recherche ID
     id = id.group() # Récupération de la recherche
     return id
