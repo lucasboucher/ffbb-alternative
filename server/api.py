@@ -1,25 +1,31 @@
 from flask import Flask, make_response
 from flask_cors import CORS
-import subprocess
+from subprocess import run, CalledProcessError
 import json
 
-app = Flask(__name__)
-CORS(app)
+api = Flask(__name__)
+CORS(api)
 
-@app.route('/data', methods=['GET'])
+@api.route('/data', methods=['GET'])
 def data():
     try:
-        with open('server/data.json', 'r') as file:
+        with open('data.json', 'r') as file:
             data = json.load(file)
-        return data
+        response = make_response(data, 200)
+        return response
     except FileNotFoundError:
-        return "Le fichier 'data.json' n'a pas été trouvé."
+        response = make_response("Le fichier 'data.json' n'a pas été correctement généré sur /scrape", 404)
+        return response
         
-@app.route('/scrape', methods=['GET'])
+@api.route('/scrape', methods=['GET'])
 def scrape():
-    subprocess.run(['python3', 'server/scraper.py'], check=True)
-    response = make_response('OK', 200)
-    return response
+    try:
+        run(['python3', 'scraper.py'], check=True)
+        response = make_response('OK', 200)
+        return response
+    except CalledProcessError:
+        response = make_response("Le scraper n'a pas réussi à récupérer les données", 403)
+        return response
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    api.run(debug=True)

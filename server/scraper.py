@@ -10,7 +10,6 @@ import re
 import os
 
 # Message de lancement du scraper
-print('----------')
 print(datetime.now().strftime('%H:%M:%S'), '- Recovery of data in progress...')
 
 # Initialisation de la page
