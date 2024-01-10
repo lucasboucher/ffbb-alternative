@@ -60,14 +60,14 @@ for team in teams:
         club_id = get_club_id(team_link) # ID du club
         team_link = get_team_link(team_link) # Lien entier du club
         ranking_row = team.find_all('td') # Ligne dans le classement 
-        ranking = ranking_row[0].contents[0] # Rang
-        points = ranking_row[2].contents[0] # Points
-        games_played = ranking_row[3].contents[0] # Matchs joués
-        won_games = ranking_row[4].contents[0] # Matchs gagnés
-        lost_games = ranking_row[5].contents[0] # Matchs perdus
-        baskets_scored = ranking_row[14].contents[0] # Différence de paniers
-        baskets_cashed = ranking_row[15].contents[0] # Différence de paniers
-        difference = ranking_row[16].contents[0] # Différence de paniers
+        ranking = int(ranking_row[0].contents[0]) # Rang
+        points = int(ranking_row[2].contents[0]) # Points
+        games_played = int(ranking_row[3].contents[0]) # Matchs joués
+        won_games = int(ranking_row[4].contents[0]) # Matchs gagnés
+        lost_games = int(ranking_row[5].contents[0]) # Matchs perdus
+        points_scored = int(ranking_row[14].contents[0]) # Différence de points
+        points_cashed = int(ranking_row[15].contents[0]) # Différence de points
+        difference = int(ranking_row[16].contents[0]) # Différence de points
         # Rencontres de l'équipes
         fixtures_url = 'https://resultats.ffbb.com/championnat/equipe/division/' + championship_id + pool_id + club_id + '.html'
         page = requests.get(fixtures_url)
@@ -76,8 +76,12 @@ for team in teams:
         fixtures_data = []
         for fixture in fixtures:
             all_fixtures = fixture.findAll('td')
+            if (len(all_fixtures) < 6): # Passe les lignes avec moins de 6 colonnes (Aller / Retour)
+                continue
             try:
-                matchday = all_fixtures[0].contents[0] # Jour de la rencontre
+                if ('Jour' == all_fixtures[0].contents[0]): # Passe la ligne de titre
+                    continue
+                matchday = int(all_fixtures[0].contents[0]) # Jour de la rencontre
                 date = all_fixtures[1].contents[0] # Date de la rencontre
                 hour = all_fixtures[2].contents[0] # Heure de la recontre
                 home_team = all_fixtures[3].contents[0].contents[0] # Équipe à domicile
@@ -87,13 +91,15 @@ for team in teams:
                 home_squad = get_team_squad(home_team) # Numéro de l'équipe à domicile
                 away_squad = get_team_squad(away_team) # Numéro de l'équipe à l'extérieur
                 fixture_result = all_fixtures[5].contents[0] # Résultat de la rencontre
-                home_team_score = re.sub(r" - [0-9]+", "", fixture_result) # Score de l'équipe à domicile
-                away_team_score = re.sub(r"[0-9]+ - ", "", fixture_result) # Score de l'équipe à l'extérieur
                 # Détermination si le match est joué
                 if (fixture_result != '-'):
                     fixture_played = True
+                    home_team_score = int(re.sub(r" - [0-9]+", "", fixture_result)) # Score de l'équipe à domicile
+                    away_team_score = int(re.sub(r"[0-9]+ - ", "", fixture_result)) # Score de l'équipe à l'extérieur
                 else:
                     fixture_played = False
+                    home_team_score = 0
+                    away_team_score = 0
                 # Détermination si le match est à domicile
                 if (team_name == home_team):
                     home_game = True
@@ -104,7 +110,7 @@ for team in teams:
             except:
                 continue
         # Formattage et ajout des données de l'équipe
-        team_data = {'club': team_club, 'equipe': squad, 'id_club': club_id, 'lien_equipe': team_link, 'classement': ranking, 'points': points, 'matchs_joues': games_played, 'matchs_gagnes': won_games, 'matchs_perdus': lost_games, 'paniers_marques': baskets_scored, 'paniers_encaisses': baskets_cashed, 'difference': difference, 'rencontres': fixtures_data}
+        team_data = {'club': team_club, 'equipe': squad, 'id_club': club_id, 'lien_equipe': team_link, 'classement': ranking, 'points': points, 'matchs_joues': games_played, 'matchs_gagnes': won_games, 'matchs_perdus': lost_games, 'paniers_marques': points_scored, 'paniers_encaisses': points_cashed, 'difference': difference, 'rencontres': fixtures_data}
         teams_data.append(team_data)
     except:
         continue
@@ -115,5 +121,5 @@ championship_data = {'nom': championship_name, 'lien_championnat': championship_
 # Création du fichier JSON
 json_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data.json')
 with open(json_file_path, 'w', encoding='latin-1') as f:
-    json.dump(championship_data, f, indent=4, ensure_ascii=False)
+    json.dump(championship_data, f, indent='\t', ensure_ascii=False)
 print(datetime.now().strftime('%H:%M:%S'), '- Data refreshes on JSON file')
