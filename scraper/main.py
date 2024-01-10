@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import re
+import os
 
 # Message de lancement du scraper
 print('----------')
@@ -19,7 +20,7 @@ print(datetime.now().strftime('%H:%M:%S'), '- Page response : ', page)
 soup = BeautifulSoup(page.text, 'html.parser')
 
 # Nom du championnat
-championship_name = soup.select_one('#idTdDivision option')
+championship_name = soup.select_one('#idTdDivision')
 championship_name = championship_name.text
 
 # Lien du championnat
@@ -51,6 +52,8 @@ for team in teams:
     try:
         # Informations de l'équipe
         team_name = team.find('a').contents[0] # Nom de l'équipe
+        if (team_name == 'Exempt'):
+            continue
         team_club = get_team_club(team_name) # Nom du club
         squad = get_team_squad(team_name) # Numéro de l'équipe
         team_link = team.find('a')['href'] # Lien partiel du club
@@ -62,9 +65,9 @@ for team in teams:
         games_played = int(ranking_row[3].contents[0]) # Matchs joués
         won_games = int(ranking_row[4].contents[0]) # Matchs gagnés
         lost_games = int(ranking_row[5].contents[0]) # Matchs perdus
-        points_scored = int(ranking_row[15].contents[0]) # Différence de points
-        points_cashed = int(ranking_row[16].contents[0]) # Différence de points
-        difference = int(ranking_row[17].contents[0]) # Différence de points
+        points_scored = int(ranking_row[14].contents[0]) # Différence de points
+        points_cashed = int(ranking_row[15].contents[0]) # Différence de points
+        difference = int(ranking_row[16].contents[0]) # Différence de points
         # Rencontres de l'équipes
         fixtures_url = 'https://resultats.ffbb.com/championnat/equipe/division/' + championship_id + pool_id + club_id + '.html'
         page = requests.get(fixtures_url)
@@ -116,6 +119,7 @@ for team in teams:
 championship_data = {'nom': championship_name, 'lien_championnat': championship_link, 'comite': championship_committee, 'poule': championship_pool, 'equipes': teams_data}
 
 # Création du fichier JSON
-with open('data.json', 'w', encoding='latin-1') as f:
+json_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data.json')
+with open(json_file_path, 'w', encoding='latin-1') as f:
     json.dump(championship_data, f, indent='\t', ensure_ascii=False)
 print(datetime.now().strftime('%H:%M:%S'), '- Data refreshes on JSON file')

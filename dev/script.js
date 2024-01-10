@@ -64,7 +64,6 @@ fetch('../scraper/data.json')
 
         // Affichage du classement précédent 
         for (team in ranking) {
-            console.log()
             document.getElementById("former_ranking").innerHTML +=
             `
             <li class="ranking-team">
@@ -90,3 +89,13 @@ fetch('../scraper/data.json')
         }
 
     })
+
+    
+// |------------|
+// |   Autres   |
+// |------------|
+
+// Actualisation automatique de l'année du copyright
+const current_date = new Date();
+const current_year = current_date.getFullYear();
+document.getElementsByClassName('current-year')[0].innerHTML = current_year;
