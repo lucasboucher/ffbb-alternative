@@ -110,7 +110,7 @@ for team in teams:
             except:
                 continue
         # Formattage et ajout des données de l'équipe
-        team_data = {'club': team_club, 'equipe': squad, 'id_club': club_id, 'lien_equipe': team_link, 'classement': ranking, 'points': points, 'matchs_joues': games_played, 'matchs_gagnes': won_games, 'matchs_perdus': lost_games, 'paniers_marques': points_scored, 'paniers_encaisses': points_cashed, 'difference': difference, 'rencontres': fixtures_data}
+        team_data = {'club': team_club, 'equipe': squad, 'id_club': club_id, 'lien_equipe': team_link, 'classement': ranking, 'points': points, 'matchs_joues': games_played, 'matchs_gagnes': won_games, 'matchs_perdus': lost_games, 'points_marques': points_scored, 'points_encaisses': points_cashed, 'difference': difference, 'rencontres': fixtures_data}
         teams_data.append(team_data)
     except:
         continue

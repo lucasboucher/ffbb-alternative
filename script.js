@@ -164,8 +164,8 @@ fetch('scraper/data.json')
                     <div>${teams[team].matchs_joues}</div>
                     <div class="hidden-on-mobile">${teams[team].matchs_gagnes}</div>
                     <div class="hidden-on-mobile">${teams[team].matchs_perdus}</div>
-                    <div class="hidden-on-mobile">${teams[team].paniers_marques}</div>
-                    <div class="hidden-on-mobile">${teams[team].paniers_encaisses}</div>
+                    <div class="hidden-on-mobile">${teams[team].points_marques}</div>
+                    <div class="hidden-on-mobile">${teams[team].points_encaisses}</div>
                     <div>${teams[team].difference}</div>
                     <div class="ranking-points">${teams[team].points}</div>
                     <div class="ranking-link hidden-on-mobile">
@@ -251,14 +251,14 @@ function display_fixtures(fixtures_data, main_class) {
             <div class="fixture">
                 <div class="fixture-teams">
                     <div class="fixture-team">
-                        <a class="fixture-team-name" href="./team/?club=${fixture.club_domicile}">
+                        <a class="fixture-team-name" href="./team?club=${fixture.club_domicile}">
                             <div class="fixture-team-club">${fixture.club_domicile}</div>
                             ${home_squad}
                         </a>
                         ${home_score}
                     </div>
                     <div class="fixture-team">
-                        <a class="fixture-team-name" href="./team/?club=${fixture.club_exterieur}">
+                        <a class="fixture-team-name" href="./team?club=${fixture.club_exterieur}">
                             <div class="fixture-team-club">${fixture.club_exterieur}</div>
                             ${away_squad}
                         </a>
