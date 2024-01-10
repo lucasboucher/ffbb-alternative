@@ -64,7 +64,8 @@ for team in teams:
         lost_games = int(ranking_row[5].contents[0]) # Matchs perdus
         points_scored = int(ranking_row[15].contents[0]) # Différence de points
         points_cashed = int(ranking_row[16].contents[0]) # Différence de points
-        difference = int(ranking_row[17].contents[0]) # Différence de points
+        # difference = int(ranking_row[17].contents[0]) # Différence de points
+        difference = 0
         # Rencontres de l'équipes
         fixtures_url = 'https://resultats.ffbb.com/championnat/equipe/division/' + championship_id + pool_id + club_id + '.html'
         page = requests.get(fixtures_url)
@@ -73,14 +74,11 @@ for team in teams:
         fixtures_data = []
         for fixture in fixtures:
             all_fixtures = fixture.findAll('td')
-            # S'il n''y a pas au moins 6 cellules sur la ligne, ce n'est pas valide
-            if len(all_fixtures) < 6 :
+            if (len(all_fixtures) < 6): # Passe les lignes avec moins de 6 colonnes (Aller / Retour)
                 continue
             try:
-                # Si le contenu de la première cellule est "Jour", c'est un titre
-                if 'Jour' == all_fixtures[0].contents[0] :
+                if ('Jour' == all_fixtures[0].contents[0]): # Passe la ligne de titre
                     continue
-
                 matchday = int(all_fixtures[0].contents[0]) # Jour de la rencontre
                 date = all_fixtures[1].contents[0] # Date de la rencontre
                 hour = all_fixtures[2].contents[0] # Heure de la recontre
@@ -91,7 +89,6 @@ for team in teams:
                 home_squad = get_team_squad(home_team) # Numéro de l'équipe à domicile
                 away_squad = get_team_squad(away_team) # Numéro de l'équipe à l'extérieur
                 fixture_result = all_fixtures[5].contents[0] # Résultat de la rencontre
-
                 # Détermination si le match est joué
                 if (fixture_result != '-'):
                     fixture_played = True
@@ -101,7 +98,6 @@ for team in teams:
                     fixture_played = False
                     home_team_score = 0
                     away_team_score = 0
-
                 # Détermination si le match est à domicile
                 if (team_name == home_team):
                     home_game = True
@@ -122,5 +118,5 @@ championship_data = {'nom': championship_name, 'lien_championnat': championship_
 
 # Création du fichier JSON
 with open('data.json', 'w', encoding='latin-1') as f:
-    json.dump(championship_data, f, indent='\t', ensure_ascii=False) # remove indent and add separators to minimize the output
+    json.dump(championship_data, f, indent='\t', ensure_ascii=False)
 print(datetime.now().strftime('%H:%M:%S'), '- Data refreshes on JSON file')
