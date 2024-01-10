@@ -21,7 +21,7 @@ You can modify the configuration file:
     - requests
 - Vanilla JavaScript
     - Chart.js
-- HTML & CSS :)
+- HTML & CSS
 
 # Sources
 - Documentation BeautifulSoup: https://www.crummy.com/software/BeautifulSoup/bs4/doc/#searching-by-css-class
@@ -43,13 +43,10 @@ You can modify the configuration file:
 - Beter JS organization (ternary operator, setAttribute(), modules, ...)
 - Light theme
 - .ENV
+- Refresh animation with icon
 
 ## Bugs
 - Calendar title when all matchs are played
 - Animation for divided graphs
 - Pool selection
-
-# Notes
-- re.sub()
-- try: except:
-- css selectors
+- To validate : add penalty compability 
