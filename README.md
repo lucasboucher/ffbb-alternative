@@ -1,27 +1,26 @@
-Overview of this side-project just [here (https://lucasboucher.fr/ffbb)](https://lucasboucher.fr/ffbb/)
-
-
-# Docs
-Firstly, run scraper/main.py to refresh data.
-
-Need to run on a web server for JS Fetch API
-
-Example with Python locally:
+# Quickstart
+Launch development mode :
 ```bash
-python3 -m http.server
+python3 main.py
 ```
+🇫🇷 Code's comments and interface only in French for now
 
-# Config
-You can modify the configuration file:
+## Config
 - `./scraper/config.py` For the URL of the championship and pool ID
+- You can update data on interface.
 
-# Technology & Librairies:
-- Python (with JSON)
+
+# Technologies & Librairies:
+
+## Scraper
+- Python
     - BeautifulSoup
-    - requests
+    - Flask
+
+## Interface
 - Vanilla JavaScript
     - Chart.js
-- HTML & CSS
+
 
 # Sources
 - Documentation BeautifulSoup: https://www.crummy.com/software/BeautifulSoup/bs4/doc/#searching-by-css-class
@@ -31,6 +30,7 @@ You can modify the configuration file:
 - Onefootball design: https://onefootball.com/fr/competition/ligue-1-uber-eats-23/classement
 - Iconoir: https://iconoir.com
 
+
 # TODO
 - Time update
     - Sorting charts and all fixtures by date or by matchday (with ./team settings button)
@@ -38,12 +38,13 @@ You can modify the configuration file:
     - Print 6 last and next fixtures by time (with matchday indicator)
 - PR on GitHub
 - Championship and pool management
-- Refresh button / New server scheduling system (CRON ?)
+- New server scheduling system (CRON ?)
 - Sort an array teams by rank (and not by default) for display ranking
 - Beter JS organization (ternary operator, setAttribute(), modules, ...)
 - Light theme
 - .ENV
 - Refresh animation with icon
+- Handle proxy error on Scraper
 
 ## Bugs
 - Calendar title when all matchs are played
