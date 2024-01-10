@@ -81,8 +81,9 @@
           <path d="M6.758 17.243L12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243"></path>
         </svg>
       </div>
+      <div class="modal-title">Réglages</div>
       <div class="modal-container">
-        <div class="title">Équipe favorite</div>
+        <p class="modal-label">Équipe favorite</p>
         <div class="selection">
           <select id="team_selection"></select>
           <svg class="fixtures-downarrow">
@@ -91,45 +92,46 @@
         </div>
       </div>
       <div class="modal-container">
-        <div class="title">Outils développeur</div>
-        <div class="header-link">
-          <a href="./dev">
-            <svg viewBox="0 0 24 24">
-              <g>
-                <path
-                  d="M10.05 10.607l-7.07 7.07a2 2 0 000 2.83v0a2 2 0 002.828 0l7.07-7.072M10.05 10.607c-.844-2.153-.679-4.978 1.06-6.718 1.74-1.74 4.95-2.121 6.718-1.06l-3.04 3.04-.283 3.111 3.111-.282 3.04-3.041c1.062 1.768.68 4.978-1.06 6.717-1.74 1.74-4.564 1.905-6.717 1.061">
-                </path>
-              </g>
-            </svg>Calcul classement
-          </a>
-        </div>
-        <div class="header-link">
-          <a id="runScraperBtn" href="#">
-            <svg viewBox="0 0 24 24">
-              <path d="M21.1679 8C19.6247 4.46819 16.1006 2 11.9999 2C6.81459 2 2.55104 5.94668 2.04932 11"></path>
-              <path d="M17 8H21.4C21.7314 8 22 7.73137 22 7.4V3"></path>
-              <path d="M2.88146 16C4.42458 19.5318 7.94874 22 12.0494 22C17.2347 22 21.4983 18.0533 22 13"></path>
-              <path d="M7.04932 16H2.64932C2.31795 16 2.04932 16.2686 2.04932 16.6V21"></path>
-            </svg>Rafraîchir les données
-          </a>
+        <p class="modal-label">Outils développeur</p>
+        <div class="modal-tools">
+          <div class="header-link">
+            <a href="/dev">
+              <svg viewBox="0 0 24 24">
+                <g>
+                  <path
+                    d="M10.05 10.607l-7.07 7.07a2 2 0 000 2.83v0a2 2 0 002.828 0l7.07-7.072M10.05 10.607c-.844-2.153-.679-4.978 1.06-6.718 1.74-1.74 4.95-2.121 6.718-1.06l-3.04 3.04-.283 3.111 3.111-.282 3.04-3.041c1.062 1.768.68 4.978-1.06 6.717-1.74 1.74-4.564 1.905-6.717 1.061">
+                  </path>
+                </g>
+              </svg>Calcul classement
+            </a>
+          </div>
+          <div class="header-link">
+            <a id="runScraperBtn" href="#">
+              <svg viewBox="0 0 24 24">
+                <path d="M21.1679 8C19.6247 4.46819 16.1006 2 11.9999 2C6.81459 2 2.55104 5.94668 2.04932 11"></path>
+                <path d="M17 8H21.4C21.7314 8 22 7.73137 22 7.4V3"></path>
+                <path d="M2.88146 16C4.42458 19.5318 7.94874 22 12.0494 22C17.2347 22 21.4983 18.0533 22 13"></path>
+                <path d="M7.04932 16H2.64932C2.31795 16 2.04932 16.2686 2.04932 16.6V21"></path>
+              </svg>Rafraîchir les données
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    document.getElementById('runScraperBtn').addEventListener('click', async function () {
-      const response = await fetch('http://127.0.0.1:5000/scrape');
+    <script>
+      document.getElementById('runScraperBtn').addEventListener('click', async function () {
+        const response = await fetch('http://127.0.0.1:5000/scrape');
 
-      if (!response.ok) {
-        alert("Les données n'ont pas pu être transmises à l'application.")
-      }
+        if (!response.ok) {
+          alert("Les données n'ont pas pu être transmises à l'application.")
+        }
 
-      location.reload();
-    });
-  </script>
+        location.reload();
+      });
+    </script>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 
