@@ -36,14 +36,18 @@ You can modify the configuration file:
     - Sorting charts and all fixtures by date or by matchday (with ./team settings button)
     - Sort automatically next matchday fixtures by date
     - Print 6 last and next fixtures by time (with matchday indicator)
+- PR on GitHub
+- Championship and pool management
+- Refresh button / New server scheduling system (CRON ?)
+- Sort an array teams by rank (and not by default) for display ranking
+- Beter JS organization (ternary operator, setAttribute(), modules, ...)
+- Light theme
+- .ENV
 
 ## Bugs
 - Calendar title when all matchs are played
-
-## Improvements
-- Sort an array teams by rank (and not by default) for display ranking
-- New server scheduling system (CRON ?)
-- Beter JS organization (ternary operator, setAttribute(), ...)
+- Animation for divided graphs
+- Pool selection
 
 # Notes
 - re.sub()
