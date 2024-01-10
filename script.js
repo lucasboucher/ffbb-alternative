@@ -154,7 +154,7 @@ fetch('scraper/data.json')
             document.getElementsByClassName('ranking')[0].innerHTML +=
             `
             <li class="ranking-team">
-                <a href="./team/?club=${teams[team].club}">
+                <a href="./team?club=${teams[team].club}">
                     <div class="ranking-rank">${teams[team].classement}</div>
                     <div class="ranking-icon">${position_icon}</div>
                     <div class="ranking-name">
@@ -251,14 +251,14 @@ function display_fixtures(fixtures_data, main_class) {
             <div class="fixture">
                 <div class="fixture-teams">
                     <div class="fixture-team">
-                        <a class="fixture-team-name" href="./team/?club=${fixture.club_domicile}">
+                        <a class="fixture-team-name" href="./team?club=${fixture.club_domicile}">
                             <div class="fixture-team-club">${fixture.club_domicile}</div>
                             ${home_squad}
                         </a>
                         ${home_score}
                     </div>
                     <div class="fixture-team">
-                        <a class="fixture-team-name" href="./team/?club=${fixture.club_exterieur}">
+                        <a class="fixture-team-name" href="./team?club=${fixture.club_exterieur}">
                             <div class="fixture-team-club">${fixture.club_exterieur}</div>
                             ${away_squad}
                         </a>
