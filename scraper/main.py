@@ -64,8 +64,7 @@ for team in teams:
         lost_games = int(ranking_row[5].contents[0]) # Matchs perdus
         points_scored = int(ranking_row[15].contents[0]) # Différence de points
         points_cashed = int(ranking_row[16].contents[0]) # Différence de points
-        # difference = int(ranking_row[17].contents[0]) # Différence de points
-        difference = 0
+        difference = int(ranking_row[17].contents[0]) # Différence de points
         # Rencontres de l'équipes
         fixtures_url = 'https://resultats.ffbb.com/championnat/equipe/division/' + championship_id + pool_id + club_id + '.html'
         page = requests.get(fixtures_url)
