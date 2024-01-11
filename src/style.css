@@ -31,7 +31,7 @@ ul {
 
 @font-face {
   font-family: "Druk";
-  src: url("/fonts/Druk-Bold-Cy-Gr-subset.woff2") format("woff2");
+  src: url("assets/Druk-Bold-Cy-Gr-subset.woff2") format("woff2");
 }
 
 ::selection {
@@ -516,8 +516,8 @@ body {
 
 .ranking-ffbb {
   background-color: var(--color-grey);
-  -webkit-mask: url(/img/ffbb_logo.svg) no-repeat center / contain;
-  mask: url(/img/ffbb_logo.svg) no-repeat center / contain;
+  -webkit-mask: url(assets/ffbb_logo.svg) no-repeat center / contain;
+  mask: url(assets/ffbb_logo.svg) no-repeat center / contain;
 }
 
 .ranking-ffbb:hover {
