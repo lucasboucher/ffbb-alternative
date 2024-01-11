@@ -277,28 +277,6 @@ function display_fixtures(fixtures_data, main_class) {
   }
 }
 
-// |-----------|
-// |   Modal   |
-// |-----------|
-
-var modal = document.getElementById("modal");
-var button = document.getElementById("modal-button");
-var modal_close = document.getElementsByClassName("modal-close")[0];
-
-button.onclick = function () {
-  modal.style.display = "block";
-};
-
-modal_close.onclick = function () {
-  modal.style.display = "none";
-};
-
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
 // |------------|
 // |   Autres   |
 // |------------|
@@ -307,3 +285,14 @@ window.onclick = function (event) {
 const current_date = new Date();
 const current_year = current_date.getFullYear();
 document.getElementsByClassName("current-year")[0].innerHTML = current_year;
+
+// Bouton pour rafraîchir les données
+document.getElementById("refresh_data_btn").addEventListener("click", async function () {
+  const response = await fetch("http://127.0.0.1:5000/scrape");
+
+  if (!response.ok) {
+    alert("Les données n'ont pas pu être transmises à l'application.");
+  }
+
+  location.reload();
+});
