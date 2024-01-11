@@ -1,20 +1,26 @@
 
 #Imports
-from config import championship_url, pool_id
 from functions import get_club_id, get_team_club, get_team_link, get_team_squad
 from datetime import datetime
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv, find_dotenv
 import requests
 import json
 import re
 import os
+
+# Récupération des variables d'environnement
+load_dotenv(find_dotenv())
+CHAMPIONSHIP_URL = os.environ.get("CHAMPIONSHIP_URL")
+POOL_ID = os.environ.get("POOL_ID")
+print(CHAMPIONSHIP_URL)
 
 # Message de lancement du scraper
 print(datetime.now().strftime('%H:%M:%S'), '- Recovery of data in progress...')
 
 # Initialisation de la page
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15'}
-page = requests.get(championship_url, headers=headers)
+page = requests.get(CHAMPIONSHIP_URL, headers=headers)
 print(datetime.now().strftime('%H:%M:%S'), '- Page response : ', page)
 soup = BeautifulSoup(page.text, 'html.parser')
 
@@ -23,7 +29,7 @@ championship_name = soup.select_one('#idTdDivision')
 championship_name = championship_name.text
 
 # Lien du championnat
-championship_link = championship_url
+championship_link = CHAMPIONSHIP_URL
 
 # Comité de championnat
 championship_committee = soup.select('.cadre a')
@@ -38,11 +44,11 @@ championship_pool = championship_pool.group()
 championship_pool = re.sub(r'Poule ', '', championship_pool)
 
 # Récupération de l'ID du championnat
-championship_id = re.sub(r'^https://resultats.ffbb.com/championnat/', '', championship_url)
+championship_id = re.sub(r'^https://resultats.ffbb.com/championnat/', '', CHAMPIONSHIP_URL)
 championship_id = re.sub(r'.html', '', championship_id)
 
 # Équipes du championnat
-ranking_url = 'https://resultats.ffbb.com/championnat/classements/' + championship_id + pool_id + '.html'
+ranking_url = 'https://resultats.ffbb.com/championnat/classements/' + championship_id + POOL_ID + '.html'
 page = requests.get(ranking_url)
 soup = BeautifulSoup(page.text, 'html.parser')
 teams = soup.select('.liste tr')
@@ -68,7 +74,7 @@ for team in teams:
         points_cashed = int(ranking_row[15].contents[0]) # Différence de points
         difference = int(ranking_row[16].contents[0]) # Différence de points
         # Rencontres de l'équipes
-        fixtures_url = 'https://resultats.ffbb.com/championnat/equipe/division/' + championship_id + pool_id + club_id + '.html'
+        fixtures_url = 'https://resultats.ffbb.com/championnat/equipe/division/' + championship_id + POOL_ID + club_id + '.html'
         page = requests.get(fixtures_url)
         soup = BeautifulSoup(page.text, "html.parser")
         fixtures = soup.select(".liste tr")

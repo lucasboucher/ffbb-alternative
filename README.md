@@ -10,7 +10,7 @@ python3 main.py
 
 ## Config
 
-- `./server/config.py` For the URL of the championship and pool ID
+- Set `.env` file with `.env.sample` template
 - You can update data on interface.
 
 # Technologies & Librairies:
@@ -41,13 +41,14 @@ python3 main.py
   - Sorting charts and all fixtures by date or by matchday (with ./team settings button)
   - Sort automatically next matchday fixtures by date
   - Print 6 last and next fixtures by time (with matchday indicator)
-- PR on GitHub
 - Championship and pool management
+  - Input to set championship
+  - Select to set pool
+- PR on GitHub
 - New server scheduling system (CRON ?)
 - Sort an array teams by rank (and not by default) for display ranking
 - Beter JS organization (ternary operator, setAttribute(), modules, ...)
 - Light theme
-- .ENV
 - Refresh animation with icon
 - Handle proxy error on Scraper
 
