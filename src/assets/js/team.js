@@ -1,19 +1,14 @@
+// Recherche du club préféré
 selected_club_name = localStorage.getItem("selected_club_name");
 
-// |--------------|
-// |   Chart.js   |
-// |--------------|
-
+// Configuration de Chart.js
 Chart.defaults.font.size = 14;
 Chart.defaults.font.family =
   '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
 Chart.defaults.font.weight = 400;
 Chart.defaults.font.lineHeight = "1.4em";
 
-// |------------|
-// |   Équipe   |
-// |------------|
-
+// Récupération des données pour l'équipe
 fetch("http://127.0.0.1:5000/data")
   .then((response) => response.json())
   .then((data) => {
@@ -151,81 +146,6 @@ fetch("http://127.0.0.1:5000/data")
         display_charts(matchday_data, points_scored_data, points_cashed_data, opponents_teams_data)
       );
   });
-
-// |---------------|
-// |   Fonctions   |
-// |---------------|
-
-// Retoune la <div> s'il y a un numéro d'équipe
-function get_div_squad(squad) {
-  if (squad) {
-    return `<div class="team-number">${squad}</div>`;
-  } else {
-    return "";
-  }
-}
-
-// Affiche les rencontres sélectionné sur une classe CSS choisi
-function display_fixtures(fixtures_data, main_class) {
-  document.getElementById(main_class).innerHTML = "";
-  for (fixture in fixtures_data) {
-    fixture = fixtures_data[fixture];
-    played = fixture.match_joue;
-    indicator_team_selected_class = "";
-    if (played) {
-      home_score = fixture.resultat_equipe_domicile;
-      away_score = fixture.resultat_equipe_exterieur;
-      selected_team_status = fixture.match_domicile;
-      selected_team_class_if_home = "";
-      selected_team_class_if_away = "";
-      if (fixture.club_domicile == page_club_name) {
-        selected_team_class_if_home = " fixture-result-team-selected";
-      } else if (fixture.club_exterieur == page_club_name) {
-        selected_team_class_if_away = " fixture-result-team-selected";
-      }
-      home_score = `<div class="fixture-result${selected_team_class_if_home}">${home_score}</div>`;
-      away_score = `<div class="fixture-result${selected_team_class_if_away}">${away_score}</div>`;
-      time = "Terminé";
-    } else {
-      home_score = "";
-      away_score = "";
-      time = fixture.heure;
-    }
-    if (
-      page_club_name != selected_club_name &&
-      (fixture.club_domicile == selected_club_name || fixture.club_exterieur == selected_club_name)
-    ) {
-      indicator_team_selected_class = " fixture-matchday-team-selected";
-    }
-    home_squad = get_div_squad(fixture.equipe_domicile_numero);
-    away_squad = get_div_squad(fixture.equipe_exterieur_numero);
-    document.getElementById(main_class).innerHTML += `
-            <div class="fixture">
-                <div class="fixture-matchday${indicator_team_selected_class}">${fixture.jour}</div>
-                <div class="fixture-teams">
-                    <div class="fixture-team">
-                        <a class="fixture-team-name" href="../team?club=${fixture.club_domicile}">
-                            <div class="fixture-team-club">${fixture.club_domicile}</div>
-                            ${home_squad}
-                        </a>
-                        ${home_score}
-                    </div>
-                    <div class="fixture-team">
-                        <a class="fixture-team-name" href="../team?club=${fixture.club_exterieur}">
-                            <div class="fixture-team-club">${fixture.club_exterieur}</div>
-                            ${away_squad}
-                        </a>
-                        ${away_score}
-                    </div>
-                </div>
-                <div class="fixture-date">
-                    <div class="fixture-day">${fixture.date}</div>
-                    <div class="fixture-time">${time}</div>
-                </div>
-            </div>
-        `;
-  }
-}
 
 // Obtenir la configuration d'un graphique
 function get_chart_config(data_chart, title, opponents_teams) {
@@ -384,11 +304,72 @@ function display_charts(day_data, points_scored_data, points_cashed_data, oppone
   }
 }
 
-// |------------|
-// |   Autres   |
-// |------------|
+// Retoune la <div> s'il y a un numéro d'équipe
+function get_div_squad(squad) {
+  if (squad) {
+    return `<div class="team-number">${squad}</div>`;
+  } else {
+    return "";
+  }
+}
 
-// Actualisation automatique de l'année du copyright
-const current_date = new Date();
-const current_year = current_date.getFullYear();
-document.getElementsByClassName("current-year")[0].innerHTML = current_year;
+// Affiche les rencontres sélectionné sur une classe CSS choisi
+function display_fixtures(fixtures_data, main_class) {
+  document.getElementById(main_class).innerHTML = "";
+  for (fixture in fixtures_data) {
+    fixture = fixtures_data[fixture];
+    home_squad = get_div_squad(fixture.equipe_domicile_numero);
+    away_squad = get_div_squad(fixture.equipe_exterieur_numero);
+    indicator_team_selected = "";
+    if (fixture.match_joue) {
+      home_score = fixture.resultat_equipe_domicile;
+      away_score = fixture.resultat_equipe_exterieur;
+      selected_team_status = fixture.match_domicile;
+      selected_team_class_if_home = "";
+      selected_team_class_if_away = "";
+      if (fixture.club_domicile == selected_club_name) {
+        selected_team_class_if_home = " fixture-result-team-selected";
+      } else if (fixture.club_exterieur == selected_club_name) {
+        selected_team_class_if_away = " fixture-result-team-selected";
+      }
+      home_score = `<div class="fixture-result${selected_team_class_if_home}">${home_score}</div>`;
+      away_score = `<div class="fixture-result${selected_team_class_if_away}">${away_score}</div>`;
+      time = "Terminé";
+    } else {
+      home_score = "";
+      away_score = "";
+      time = fixture.heure;
+      if (
+        fixture.club_domicile == selected_club_name ||
+        fixture.club_exterieur == selected_club_name
+      ) {
+        indicator_team_selected = '<div class="fixture-indicator-team-selected"></div>';
+      }
+    }
+    document.getElementById(main_class).innerHTML += `
+                <div class="fixture">
+                    <div class="fixture-teams">
+                        <div class="fixture-team">
+                            <a class="fixture-team-name" href="/team?club=${fixture.club_domicile}">
+                                <div class="fixture-team-club">${fixture.club_domicile}</div>
+                                ${home_squad}
+                            </a>
+                            ${home_score}
+                        </div>
+                        <div class="fixture-team">
+                            <a class="fixture-team-name" href="/team?club=${fixture.club_exterieur}">
+                                <div class="fixture-team-club">${fixture.club_exterieur}</div>
+                                ${away_squad}
+                            </a>
+                            ${away_score}
+                        </div>
+                    </div>
+                    <div class="fixture-date">
+                        <div class="fixture-day">${fixture.date}</div>
+                        <div class="fixture-time">${time}</div>
+                    </div>
+                    ${indicator_team_selected}
+                </div>
+            `;
+  }
+}
