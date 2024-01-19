@@ -1,14 +1,14 @@
 fetch("http://127.0.0.1:5000/data")
   .then((response) => response.json())
   .then((data) => {
-    teams = data.equipes; // Toutes les équipes
+    const teams = data.equipes; // Toutes les équipes
 
     // Détermination de la journée actuelle
-    for (team in teams) {
-      fixtures = teams[team].rencontres;
-      for (fixture in fixtures) {
+    for (const team in teams) {
+      const fixtures = teams[team].rencontres;
+      for (let fixture in fixtures) {
         fixture = fixtures[fixture];
-        next_matchday = fixture.jour;
+        var next_matchday = fixture.jour;
         if (!fixture.match_joue) {
           break;
         }
@@ -19,20 +19,22 @@ fetch("http://127.0.0.1:5000/data")
     document.getElementsByClassName("ranking-pool")[0].innerHTML += ` ${next_matchday - 2}`;
 
     // Précédent classement
-    ranking = [];
-    for (team in teams) {
+    const ranking = [];
+    for (let team in teams) {
       team = teams[team];
-      club_id = team.club;
-      fixtures = team.rencontres;
-      team_points = 0;
-      team_difference = 0;
-      match_counter = 1;
-      for (fixture in fixtures) {
+      const club_id = team.club;
+      const fixtures = team.rencontres;
+      let team_points = 0;
+      let team_difference = 0;
+      let match_counter = 1;
+      for (let fixture in fixtures) {
         if (match_counter > next_matchday - 2) {
           break;
         }
         fixture = fixtures[fixture];
         if (fixture.match_joue) {
+          let team_score;
+          let opponent_score;
           if (fixture.match_domicile) {
             team_score = fixture.resultat_equipe_domicile;
             opponent_score = fixture.resultat_equipe_exterieur;
@@ -57,7 +59,7 @@ fetch("http://127.0.0.1:5000/data")
     ranking.sort((a, b) => b[1] - a[1]);
 
     // Affichage du classement précédent
-    for (team in ranking) {
+    for (const team in ranking) {
       document.getElementById("former_ranking").innerHTML += `
             <li class="ranking-team">
                 <a href="#">

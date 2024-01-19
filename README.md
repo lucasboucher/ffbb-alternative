@@ -47,7 +47,7 @@ python3 main.py
 - PR on GitHub
 - New server scheduling system (CRON ?)
 - Sort an array teams by rank (and not by default) for display ranking
-- Beter JS organization (ternary operator, setAttribute(), modules, ...)
+- Beter JS organization (ternary operator, setAttribute(), ...)
 - Light theme
 - Refresh animation with icon
 - Handle proxy error on Scraper

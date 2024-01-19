@@ -1,8 +1,10 @@
+import { get_div_squad, reload_new_team } from "./functions.js";
+
 // Récupération des données pour le classement
 fetch("http://127.0.0.1:5000/data")
   .then((response) => response.json())
   .then((data) => {
-    teams = data.equipes; // Toutes les équipes
+    const teams = data.equipes; // Toutes les équipes
 
     // Informations du championnat
     document.getElementsByClassName("header-subtitle")[0].innerHTML = data.comite; // Comité du championnat
@@ -11,18 +13,20 @@ fetch("http://127.0.0.1:5000/data")
     document.getElementsByClassName("ranking-ffbb")[0].href = data.lien_championnat; // Lien du classement FFBB officiel dans le logo FFBB de la tête de classement
 
     // Équipe sélectionné
-    selected_club_name = localStorage.getItem("selected_club_name");
+    const selected_club_name = localStorage.getItem("selected_club_name");
     if (!selected_club_name) {
       localStorage.setItem("selected_club_name", teams[0].club);
       selected_club_name = teams[0].club;
     }
 
     // Récupération de la balise de la sélection d'équipe
-    team_selection = document.getElementById("team_selection");
+    const team_selection = document.getElementById("team_selection");
 
     // Affichage des équipes dans la sélection
-    for (team in teams) {
-      club_name = teams[team].club;
+    let selected_team_indicator;
+    let team_selection_index;
+    for (const team in teams) {
+      const club_name = teams[team].club;
       if (club_name == selected_club_name) {
         selected_team_indicator = "💙 ";
         team_selection_index = team;
@@ -39,11 +43,11 @@ fetch("http://127.0.0.1:5000/data")
     team_selection.addEventListener("change", () => reload_new_team(team_selection.value));
 
     // Détermination de la journée actuelle
-    for (team in teams) {
-      fixtures = teams[team].rencontres;
-      for (fixture in fixtures) {
+    for (const team in teams) {
+      const fixtures = teams[team].rencontres;
+      for (let fixture in fixtures) {
         fixture = fixtures[fixture];
-        next_matchday = fixture.jour;
+        var next_matchday = fixture.jour;
         if (!fixture.match_joue) {
           break;
         }
@@ -51,10 +55,11 @@ fetch("http://127.0.0.1:5000/data")
     }
 
     // Récupération de la balise de la sélection de la journée
-    matchday_selection = document.getElementById("matchday_selection");
+    const matchday_selection = document.getElementById("matchday_selection");
 
     // Afficher le nombre de journées total
-    matchday_counter = data.equipes[0].rencontres.length;
+    const matchday_counter = data.equipes[0].rencontres.length;
+    let next_matchday_indicator;
     for (let i = 1; i <= matchday_counter; i++) {
       if (i == next_matchday) {
         next_matchday_indicator = "🗓️ ";
@@ -68,28 +73,30 @@ fetch("http://127.0.0.1:5000/data")
     matchday_selection.selectedIndex = next_matchday - 1;
 
     // Prochaine journée
-    load_matchday_fixtures(next_matchday);
+    load_matchday_fixtures(next_matchday, teams, selected_club_name);
 
     // Changement de journée
     matchday_selection.addEventListener("change", () =>
-      load_matchday_fixtures(matchday_selection.value)
+      load_matchday_fixtures(matchday_selection.value, teams, selected_club_name)
     );
 
     // Précédent classement
-    ranking = [];
-    for (team in teams) {
+    const ranking = [];
+    for (let team in teams) {
       team = teams[team];
-      club_id = team.club;
-      fixtures = team.rencontres;
-      team_points = 0;
-      team_difference = 0;
-      match_counter = 1;
-      for (fixture in fixtures) {
+      const club_id = team.club;
+      const fixtures = team.rencontres;
+      let team_points = 0;
+      let team_difference = 0;
+      let match_counter = 1;
+      for (let fixture in fixtures) {
         if (match_counter > next_matchday - 2) {
           break;
         }
         fixture = fixtures[fixture];
         if (fixture.match_joue) {
+          let team_score;
+          let opponent_score;
           if (fixture.match_domicile) {
             team_score = fixture.resultat_equipe_domicile;
             opponent_score = fixture.resultat_equipe_exterieur;
@@ -114,20 +121,21 @@ fetch("http://127.0.0.1:5000/data")
     ranking.sort((a, b) => b[1] - a[1]);
 
     // Classement générale
-    for (team in teams) {
-      for (ranking_team in ranking) {
+    for (const team in teams) {
+      for (let ranking_team in ranking) {
         if (ranking[ranking_team][0] == teams[team].club) {
-          former_rank = parseInt(ranking_team) + 1;
-          current_rank = parseInt(teams[team].classement);
+          const former_rank = parseInt(ranking_team) + 1;
+          const current_rank = parseInt(teams[team].classement);
           ranking_team = ranking[ranking_team];
-          team_icon_color_green = "rgb(29, 187, 121)";
-          team_icon_color_red = "rgb(255, 47, 84)";
-          team_icon_color_grey = "rgb(184, 184, 184)";
+          let team_icon_color_green = "rgb(29, 187, 121)";
+          let team_icon_color_red = "rgb(255, 47, 84)";
+          let team_icon_color_grey = "rgb(184, 184, 184)";
           if (teams[team].club == selected_club_name) {
             team_icon_color_green = "rgb(91, 186, 213)";
             team_icon_color_red = "rgb(91, 186, 213)";
             team_icon_color_grey = "rgb(91, 186, 213)";
           }
+          var position_icon;
           if (former_rank > current_rank) {
             position_icon = `<svg width="12px" height="12px" viewBox="0 0 12 12"><path d="M1 8l5-5 5 5" stroke="${team_icon_color_green}" stroke-width="2"/></svg>`;
           } else if (former_rank < current_rank) {
@@ -137,7 +145,7 @@ fetch("http://127.0.0.1:5000/data")
           }
         }
       }
-      div_squad = get_div_squad(teams[team].equipe); // Récupére la <div> du numéro de l'équipe si elle existe
+      const div_squad = get_div_squad(teams[team].equipe); // Récupére la <div> du numéro de l'équipe si elle existe
       document.getElementsByClassName("ranking")[0].innerHTML += `
             <li class="ranking-team">
                 <a href="/team?club=${teams[team].club}">
@@ -176,35 +184,23 @@ document.getElementById("refresh_data_btn").addEventListener("click", async func
   location.reload();
 });
 
-// Retoune la <div> s'il y a un numéro d'équipe
-function get_div_squad(squad) {
-  if (squad) {
-    return `<div class="team-number">${squad}</div>`;
-  } else {
-    return "";
-  }
-}
-
-// Change l'équipe favorite et rafraîchie la page
-function reload_new_team(new_team) {
-  localStorage.setItem("selected_club_name", new_team);
-  location.reload();
-}
-
 // Affiche les rencontres sélectionné sur une classe CSS choisi
-function display_fixtures(fixtures_data, main_class) {
+function display_fixtures(fixtures_data, main_class, selected_club_name) {
   document.getElementById(main_class).innerHTML = "";
-  for (fixture in fixtures_data) {
+  for (let fixture in fixtures_data) {
     fixture = fixtures_data[fixture];
-    home_squad = get_div_squad(fixture.equipe_domicile_numero);
-    away_squad = get_div_squad(fixture.equipe_exterieur_numero);
-    indicator_team_selected = "";
+    const home_squad = get_div_squad(fixture.equipe_domicile_numero);
+    const away_squad = get_div_squad(fixture.equipe_exterieur_numero);
+    let indicator_team_selected = "";
+    let home_score;
+    let away_score;
+    let time;
     if (fixture.match_joue) {
       home_score = fixture.resultat_equipe_domicile;
       away_score = fixture.resultat_equipe_exterieur;
-      selected_team_status = fixture.match_domicile;
-      selected_team_class_if_home = "";
-      selected_team_class_if_away = "";
+      // selected_team_status = fixture.match_domicile;
+      let selected_team_class_if_home = "";
+      let selected_team_class_if_away = "";
       if (fixture.club_domicile == selected_club_name) {
         selected_team_class_if_home = " fixture-result-team-selected";
       } else if (fixture.club_exterieur == selected_club_name) {
@@ -225,40 +221,40 @@ function display_fixtures(fixtures_data, main_class) {
       }
     }
     document.getElementById(main_class).innerHTML += `
-                <div class="fixture">
-                    <div class="fixture-teams">
-                        <div class="fixture-team">
-                            <a class="fixture-team-name" href="/team?club=${fixture.club_domicile}">
-                                <div class="fixture-team-club">${fixture.club_domicile}</div>
-                                ${home_squad}
-                            </a>
-                            ${home_score}
-                        </div>
-                        <div class="fixture-team">
-                            <a class="fixture-team-name" href="/team?club=${fixture.club_exterieur}">
-                                <div class="fixture-team-club">${fixture.club_exterieur}</div>
-                                ${away_squad}
-                            </a>
-                            ${away_score}
-                        </div>
-                    </div>
-                    <div class="fixture-date">
-                        <div class="fixture-day">${fixture.date}</div>
-                        <div class="fixture-time">${time}</div>
-                    </div>
-                    ${indicator_team_selected}
-                </div>
-            `;
+          <div class="fixture">
+              <div class="fixture-teams">
+                  <div class="fixture-team">
+                      <a class="fixture-team-name" href="./team/?club=${fixture.club_domicile}">
+                          <div class="fixture-team-club">${fixture.club_domicile}</div>
+                          ${home_squad}
+                      </a>
+                      ${home_score}
+                  </div>
+                  <div class="fixture-team">
+                      <a class="fixture-team-name" href="./team/?club=${fixture.club_exterieur}">
+                          <div class="fixture-team-club">${fixture.club_exterieur}</div>
+                          ${away_squad}
+                      </a>
+                      ${away_score}
+                  </div>
+              </div>
+              <div class="fixture-date">
+                  <div class="fixture-day">${fixture.date}</div>
+                  <div class="fixture-time">${time}</div>
+              </div>
+              ${indicator_team_selected}
+          </div>
+      `;
   }
 }
 
 // Rencontres de la prochaine journée
-function load_matchday_fixtures(selected_matchday) {
+export function load_matchday_fixtures(selected_matchday, teams, selected_club_name) {
   next_fixtures = [];
-  double_fixture_checking = [];
-  for (team in teams) {
-    fixtures = teams[team].rencontres;
-    for (fixture in fixtures) {
+  const double_fixture_checking = [];
+  for (const team in teams) {
+    const fixtures = teams[team].rencontres;
+    for (let fixture in fixtures) {
       fixture = fixtures[fixture];
       if (
         fixture.jour == selected_matchday &&
@@ -269,5 +265,5 @@ function load_matchday_fixtures(selected_matchday) {
       }
     }
   }
-  display_fixtures(next_fixtures, "next_fixtures");
+  display_fixtures(next_fixtures, "next_fixtures", selected_club_name);
 }
