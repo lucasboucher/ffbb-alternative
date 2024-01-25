@@ -250,7 +250,7 @@ function display_fixtures(fixtures_data, main_class, selected_club_name) {
 
 // Rencontres de la prochaine journée
 export function load_matchday_fixtures(selected_matchday, teams, selected_club_name) {
-  next_fixtures = [];
+  const next_fixtures = [];
   const double_fixture_checking = [];
   for (const team in teams) {
     const fixtures = teams[team].rencontres;

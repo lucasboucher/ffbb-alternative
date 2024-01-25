@@ -237,7 +237,9 @@ body {
   padding: 16px 16px;
   position: relative;
   margin-right: -12px;
-  padding-right: 64px;
+  padding-right: 48px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 600px) {
@@ -832,7 +834,6 @@ body {
   flex-direction: column;
   gap: 8px;
   margin-bottom: 32px;
-  padding-right: 8px;
 }
 
 .modal-title {
@@ -851,4 +852,28 @@ body {
 .modal-tools {
   display: flex;
   gap: 8px;
+}
+
+@media screen and (max-width: 900px) {
+  .modal-content {
+    width: 80%;
+  }
+
+  .modal-tools {
+    display: block;
+  }
+
+  .modal-tools .header-link a {
+    justify-content: center;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .modal-tools .header-link:first-child {
+    margin-bottom: 8px;
+  }
+
+  .modal-container select {
+    width: 100%;
+  }
 }
