@@ -54,6 +54,5 @@ python3 main.py
 
 ## Bugs
 
-- Calendar title when all matchs are played
 - Pool selection
 - To validate : add penalty compability

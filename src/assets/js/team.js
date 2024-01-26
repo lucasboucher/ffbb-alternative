@@ -47,12 +47,18 @@ fetch("http://127.0.0.1:5000/data")
     for (const team in teams) {
       const club_name = teams[team].club;
       if (club_name == page_club_name) {
+        let i = 0;
         const team_fixtures = teams[team].rencontres;
         const next_fixtures = [];
         for (const fixture in team_fixtures) {
           if (!team_fixtures[fixture].match_joue) {
+            i++
             next_fixtures.push(team_fixtures[fixture]);
           }
+        }
+        if (i === 0) {
+          const calendar_title = document.getElementById("calendar_fixtures_title")
+          calendar_title.style.display = "none"
         }
         display_fixtures(next_fixtures, "calendar_fixtures", page_club_name);
         break;
