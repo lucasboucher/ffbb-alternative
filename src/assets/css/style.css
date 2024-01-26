@@ -714,6 +714,7 @@ body {
 @media (max-width: 800px) {
   .charts {
     flex-direction: column;
+    gap: 16px;
   }
 }
 
@@ -722,13 +723,18 @@ body {
   border: solid 1px var(--color-background);
   padding: 8px 16px;
   height: 400px;
-  flex-grow: 1;
-  min-width: 43%;
+  width: 100%;
+}
+
+.chart canvas {
+  width: 100% !important;
 }
 
 @media screen and (max-width: 800px) {
   .chart {
     height: 200px;
+    width: unset;
+    flex-grow: 1;
   }
 }
 

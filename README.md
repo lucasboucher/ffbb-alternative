@@ -55,6 +55,5 @@ python3 main.py
 ## Bugs
 
 - Calendar title when all matchs are played
-- Animation for divided graphs
 - Pool selection
 - To validate : add penalty compability
