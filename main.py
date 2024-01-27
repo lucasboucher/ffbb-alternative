@@ -13,7 +13,7 @@ while True:
     except requests.ConnectionError:
         pass
 
-http_server_process = subprocess.Popen(['python3', '-m', 'http.server', '--directory', 'src'])
+http_server_process = subprocess.Popen(['python3', '-m', 'http.server', '80', '--directory', 'src'])
 
 http_server_process.wait()
 custom_server_process.wait()
