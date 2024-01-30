@@ -54,7 +54,7 @@ championship_id = re.sub(r'.html', '', championship_id)
 
 # Équipes du championnat
 ranking_url = 'https://resultats.ffbb.com/championnat/classements/' + championship_id + POOL_ID + '.html'
-page = requests.get(ranking_url)
+page = requests.get(ranking_url, headers=headers, proxies=proxy)
 soup = BeautifulSoup(page.text, 'html.parser')
 teams = soup.select('.liste tr')
 teams_data = []
@@ -80,7 +80,7 @@ for team in teams:
         difference = int(ranking_row[16].contents[0]) # Différence de points
         # Rencontres de l'équipes
         fixtures_url = 'https://resultats.ffbb.com/championnat/equipe/division/' + championship_id + POOL_ID + club_id + '.html'
-        page = requests.get(fixtures_url)
+        page = requests.get(fixtures_url, headers=headers, proxies=proxy)
         soup = BeautifulSoup(page.text, "html.parser")
         fixtures = soup.select(".liste tr")
         fixtures_data = []
