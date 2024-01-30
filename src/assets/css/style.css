@@ -93,7 +93,8 @@ body {
   gap: 16px;
   align-items: center;
   min-width: 0;
-  margin-left: 0 4vw;
+  margin-left: 4vw;
+  margin-right: 4vw;
 }
 
 .header-logo {
