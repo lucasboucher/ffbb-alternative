@@ -9,6 +9,11 @@ import json
 import re
 import os
 
+proxy = {
+    'http': 'http://62.210.114.201:8080',
+    'https': 'http://62.210.114.201:8080'
+}
+
 # Récupération des variables d'environnement
 load_dotenv(find_dotenv())
 CHAMPIONSHIP_URL = os.environ.get("CHAMPIONSHIP_URL")
@@ -20,7 +25,7 @@ print(datetime.now().strftime('%H:%M:%S'), '- Recovery of data in progress...')
 
 # Initialisation de la page
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15'}
-page = requests.get(CHAMPIONSHIP_URL, headers=headers)
+page = requests.get(CHAMPIONSHIP_URL, headers=headers, proxies=proxy)
 print(datetime.now().strftime('%H:%M:%S'), '- Page response : ', page)
 soup = BeautifulSoup(page.text, 'html.parser')
 
