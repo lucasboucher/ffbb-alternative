@@ -2,3 +2,4 @@ server/data.json
 .DS_Store
 __pycache__
 .env
+config.js

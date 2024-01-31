@@ -11,6 +11,7 @@ python3 main.py
 ## Config
 
 - Set `.env` file with `.env.sample` template
+- Set `config.js` file on `/src/assets/js` with `config.sample.js` template
 - You can update data on interface.
 
 # Technologies & Librairies:
@@ -51,6 +52,7 @@ python3 main.py
 - Light theme
 - Refresh animation with icon
 - Handle proxy error on Scraper
+- Loader
 
 ## Bugs
 

@@ -18,7 +18,6 @@ proxy = {
 load_dotenv(find_dotenv())
 CHAMPIONSHIP_URL = os.environ.get("CHAMPIONSHIP_URL")
 POOL_ID = os.environ.get("POOL_ID")
-print(CHAMPIONSHIP_URL)
 
 # Message de lancement du scraper
 print(datetime.now().strftime('%H:%M:%S'), '- Recovery of data in progress...')
@@ -26,6 +25,7 @@ print(datetime.now().strftime('%H:%M:%S'), '- Recovery of data in progress...')
 # Initialisation de la page
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15'}
 page = requests.get(CHAMPIONSHIP_URL, headers=headers, proxies=proxy)
+# page = requests.get(CHAMPIONSHIP_URL, headers=headers)
 print(datetime.now().strftime('%H:%M:%S'), '- Page response : ', page)
 soup = BeautifulSoup(page.text, 'html.parser')
 
@@ -55,6 +55,7 @@ championship_id = re.sub(r'.html', '', championship_id)
 # Équipes du championnat
 ranking_url = 'https://resultats.ffbb.com/championnat/classements/' + championship_id + POOL_ID + '.html'
 page = requests.get(ranking_url, headers=headers, proxies=proxy)
+# page = requests.get(ranking_url, headers=headers)
 soup = BeautifulSoup(page.text, 'html.parser')
 teams = soup.select('.liste tr')
 teams_data = []
@@ -81,6 +82,7 @@ for team in teams:
         # Rencontres de l'équipes
         fixtures_url = 'https://resultats.ffbb.com/championnat/equipe/division/' + championship_id + POOL_ID + club_id + '.html'
         page = requests.get(fixtures_url, headers=headers, proxies=proxy)
+        # page = requests.get(fixtures_url, headers=headers)
         soup = BeautifulSoup(page.text, "html.parser")
         fixtures = soup.select(".liste tr")
         fixtures_data = []

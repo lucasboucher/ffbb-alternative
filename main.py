@@ -1,7 +1,7 @@
 import subprocess
 import requests
 
-custom_server_process = subprocess.Popen(['gunicorn', '-w', '4', '-b', ':8001', 'server.api:api'])
+custom_server_process = subprocess.Popen(['gunicorn', '-w', '4', '-b', ':8001', '--timeout', '120', 'server.api:api'])
 
 while True:
     try:

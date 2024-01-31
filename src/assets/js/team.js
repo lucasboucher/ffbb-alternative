@@ -1,4 +1,5 @@
 import { get_div_squad } from "./functions.js";
+import { API_DOMAIN_NAME } from "./config.js";
 
 // Recherche du club préféré
 const selected_club_name = localStorage.getItem("selected_club_name");
@@ -11,7 +12,7 @@ Chart.defaults.font.weight = 400;
 Chart.defaults.font.lineHeight = "1.4em";
 
 // Récupération des données pour l'équipe
-fetch("http://localhost:8001/data")
+fetch(`http://${API_DOMAIN_NAME}:8001/data`)
   .then((response) => response.json())
   .then((data) => {
     const teams = data.equipes; // Toutes les équipes
@@ -52,13 +53,13 @@ fetch("http://localhost:8001/data")
         const next_fixtures = [];
         for (const fixture in team_fixtures) {
           if (!team_fixtures[fixture].match_joue) {
-            i++
+            i++;
             next_fixtures.push(team_fixtures[fixture]);
           }
         }
         if (i === 0) {
-          const calendar_title = document.getElementById("calendar_fixtures_title")
-          calendar_title.style.display = "none"
+          const calendar_title = document.getElementById("calendar_fixtures_title");
+          calendar_title.style.display = "none";
         }
         display_fixtures(next_fixtures, "calendar_fixtures", page_club_name);
         break;
