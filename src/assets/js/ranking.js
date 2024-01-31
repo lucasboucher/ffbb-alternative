@@ -14,7 +14,7 @@ fetch(`http://${API_DOMAIN_NAME}:8001/data`)
     document.getElementsByClassName("ranking-ffbb")[0].href = data.lien_championnat; // Lien du classement FFBB officiel dans le logo FFBB de la tête de classement
 
     // Équipe sélectionné
-    const selected_club_name = localStorage.getItem("selected_club_name");
+    let selected_club_name = localStorage.getItem("selected_club_name");
     if (!selected_club_name) {
       localStorage.setItem("selected_club_name", teams[0].club);
       selected_club_name = teams[0].club;
