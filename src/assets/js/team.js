@@ -11,7 +11,7 @@ Chart.defaults.font.weight = 400;
 Chart.defaults.font.lineHeight = "1.4em";
 
 // Récupération des données pour l'équipe
-fetch("http://127.0.0.1:5000/data")
+fetch("http://localhost:8001/data")
   .then((response) => response.json())
   .then((data) => {
     const teams = data.equipes; // Toutes les équipes

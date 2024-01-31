@@ -1,7 +1,7 @@
 import { get_div_squad, reload_new_team } from "./functions.js";
 
 // Récupération des données pour le classement
-fetch("http://127.0.0.1:5000/data")
+fetch("http://localhost:8001/data")
   .then((response) => response.json())
   .then((data) => {
     const teams = data.equipes; // Toutes les équipes
@@ -175,7 +175,7 @@ fetch("http://127.0.0.1:5000/data")
 
 // Bouton pour rafraîchir les données
 document.getElementById("refresh_data_btn").addEventListener("click", async function () {
-  const response = await fetch("http://127.0.0.1:5000/scrape");
+  const response = await fetch("http://localhost:8001/scrape");
 
   if (!response.ok) {
     alert("Les données n'ont pas pu être transmises à l'application.");
