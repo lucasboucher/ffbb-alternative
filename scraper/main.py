@@ -4,7 +4,6 @@ def run_scraper():
     from datetime import datetime
     from bs4 import BeautifulSoup
     from dotenv import load_dotenv, find_dotenv
-    from requests.exceptions import ConnectionError
     import requests
     import json
     import re
@@ -24,10 +23,7 @@ def run_scraper():
 
     # Initialisation de la page
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15'}
-    try:
-        page = requests.get(CHAMPIONSHIP_URL, headers=headers, proxies=proxy)
-    except ConnectionError:
-        print("Les données ont bien été générées")
+    page = requests.get(CHAMPIONSHIP_URL, headers=headers, proxies=proxy)
     print(datetime.now().strftime('%H:%M:%S'), '- Page response : ', page)
     soup = BeautifulSoup(page.text, 'html.parser')
 
@@ -56,10 +52,7 @@ def run_scraper():
 
     # Équipes du championnat
     ranking_url = 'https://resultats.ffbb.com/championnat/classements/' + championship_id + POOL_ID + '.html'
-    try:
-        page = requests.get(ranking_url, headers=headers, proxies=proxy)
-    except ConnectionError:
-        print("Les données ont bien été générées")
+    page = requests.get(ranking_url, headers=headers, proxies=proxy)
     soup = BeautifulSoup(page.text, 'html.parser')
     teams = soup.select('.liste tr')
     teams_data = []
@@ -85,10 +78,7 @@ def run_scraper():
             difference = int(ranking_row[16].contents[0]) # Différence de points
             # Rencontres de l'équipes
             fixtures_url = 'https://resultats.ffbb.com/championnat/equipe/division/' + championship_id + POOL_ID + club_id + '.html'
-            try:
-                page = requests.get(fixtures_url, headers=headers, proxies=proxy)
-            except ConnectionError:
-                print("Les données ont bien été générées")
+            page = requests.get(fixtures_url, headers=headers, proxies=proxy)
             soup = BeautifulSoup(page.text, "html.parser")
             fixtures = soup.select(".liste tr")
             fixtures_data = []
