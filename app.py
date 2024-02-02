@@ -29,6 +29,10 @@ def data():
 
 @app.route('/scrape')
 def scrape():
-    run_scraper()
-    response = make_response("Les données ont bien été générées", 200)
-    return response
+    try:
+        run_scraper()
+        response = make_response("Les données ont bien été générées", 200)
+        return response
+    except ConnectionRefusedError:
+        response = make_response("Les données n'ont pas correctement été générées", 502)
+        return response
