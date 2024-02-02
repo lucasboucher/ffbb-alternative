@@ -1,8 +1,7 @@
 import { get_div_squad, reload_new_team } from "./functions.js";
-import { API_DOMAIN_NAME } from "./config.js";
 
 // Récupération des données pour le classement
-fetch(`http://${API_DOMAIN_NAME}:8001/data`)
+fetch("/data")
   .then((response) => response.json())
   .then((data) => {
     const teams = data.equipes; // Toutes les équipes
@@ -176,7 +175,7 @@ fetch(`http://${API_DOMAIN_NAME}:8001/data`)
 
 // Bouton pour rafraîchir les données
 document.getElementById("refresh_data_btn").addEventListener("click", async function () {
-  const response = await fetch(`http://${API_DOMAIN_NAME}:8001/scrape`);
+  const response = await fetch(`/scrape`);
 
   if (!response.ok) {
     alert("Les données n'ont pas pu être transmises à l'application.");

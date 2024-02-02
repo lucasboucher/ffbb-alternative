@@ -1,5 +1,4 @@
 import { get_div_squad } from "./functions.js";
-import { API_DOMAIN_NAME } from "./config.js";
 
 // Recherche du club préféré
 const selected_club_name = localStorage.getItem("selected_club_name");
@@ -12,7 +11,7 @@ Chart.defaults.font.weight = 400;
 Chart.defaults.font.lineHeight = "1.4em";
 
 // Récupération des données pour l'équipe
-fetch(`http://${API_DOMAIN_NAME}:8001/data`)
+fetch("/data")
   .then((response) => response.json())
   .then((data) => {
     const teams = data.equipes; // Toutes les équipes

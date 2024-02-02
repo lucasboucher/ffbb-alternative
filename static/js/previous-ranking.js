@@ -1,6 +1,4 @@
-import { API_DOMAIN_NAME } from "./config.js";
-
-fetch(`http://${API_DOMAIN_NAME}:8001/data`)
+fetch("/data")
   .then((response) => response.json())
   .then((data) => {
     const teams = data.equipes; // Toutes les équipes

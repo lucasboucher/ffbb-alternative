@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FFBB Alternative - Équipe</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-  <link rel="mask-icon" href="../assets/img/ffbb_logo.svg" color="#5bbad5">
-  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="mask-icon" href="{{ url_for('static', filename='/img/ffbb_logo.svg') }}" color="#5bbad5">
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}" />
 </head>
 
 <body>
@@ -72,7 +72,8 @@
 
   <div class="footer">
     <div class="copyright">
-      <a href="https://lucasboucher.fr"><img src="../assets/img/lb_logo.svg" alt="Lucas Boucher logo"></a>
+      <a href="https://lucasboucher.fr"><img src="{{ url_for('static', filename='/img/lb_logo.svg') }}"
+          alt="Lucas Boucher logo"></a>
       <div>© <span class="current-year"></span> Lucas Boucher</div>
     </div>
     <ul class="links">
@@ -81,8 +82,8 @@
     </ul>
   </div>
 
-  <script src="../assets/js/main.js"></script>
-  <script src="../assets/js/team.js" type="module"></script>
+  <script src="{{ url_for('static', filename='/js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='/js/team.js') }}" type="module"></script>
 
 </body>
 

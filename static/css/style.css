@@ -30,8 +30,8 @@ ul {
 }
 
 @font-face {
-  font-family: "Druk";
-  src: url("../fonts/Druk-Bold-Cy-Gr-subset.woff2") format("woff2");
+  font-family: "Druk Bold";
+  src: url("../fonts/druk-bold.woff2") format("woff2");
 }
 
 ::selection {
@@ -139,7 +139,7 @@ body {
 }
 
 .header-title {
-  font-family: Druk, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+  font-family: Druk Bold, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 2.5rem;
   font-weight: 700;
