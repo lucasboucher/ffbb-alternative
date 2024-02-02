@@ -8,7 +8,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/team')
+@app.route('/team', strict_slashes=False)
 def team():
     return render_template('team.html')
 
