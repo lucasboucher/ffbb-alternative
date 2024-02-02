@@ -1,4 +1,4 @@
-server/data.json
+scraper/data.json
 .DS_Store
 __pycache__
 .env

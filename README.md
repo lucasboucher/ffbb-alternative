@@ -1,9 +1,17 @@
 # Quickstart
 
+Download all dependencies with `pip3 install -r requirements.txt`
+
 Launch development mode :
 
-```bash
-python3 main.py
+```sh
+flask run --debug
+```
+
+Launch production mode
+
+```sh
+gunicorn app:app --bind 0.0.0.0:8000
 ```
 
 🇫🇷 Code's comments and interface only in French for now
@@ -11,8 +19,7 @@ python3 main.py
 ## Config
 
 - Set `.env` file with `.env.sample` template
-- Set `config.js` file on `/src/assets/js` with `config.sample.js` template
-- You can update data on interface.
+- The scraper will be automatically launched when the project starts, but you can also update the data through the interface
 
 # Technologies & Librairies:
 
