@@ -8,7 +8,7 @@ Launch development mode :
 flask run --debug
 ```
 
-Launch production mode
+Launch production mode :
 
 ```sh
 gunicorn app:app --bind 0.0.0.0:8000
