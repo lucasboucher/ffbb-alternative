@@ -53,7 +53,7 @@ gunicorn app:app --bind 0.0.0.0:8000
   - Input to set championship
   - Select to set pool
 - PR on GitHub
-- New server scheduling system (CRON ?)
+- New server scheduling system, launch automatically at starting the scraper (CRON ?)
 - Sort an array teams by rank (and not by default) for display ranking
 - Beter JS organization (ternary operator, setAttribute(), ...)
 - Light theme

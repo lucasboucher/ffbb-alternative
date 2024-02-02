@@ -18,13 +18,17 @@ def previous_ranking():
 
 @app.route('/data')
 def data():
-    with open('scraper/data.json', 'r') as file:
-        data = json.load(file)
-    response = make_response(data, 200)
-    return response
+    try: 
+        with open('scraper/data.json', 'r') as file:
+            data = json.load(file)
+        response = make_response(data, 200)
+        return response
+    except FileNotFoundError:
+        response = make_response("Les données n'ont pas été retrouvées", 404)
+        return response
 
 @app.route('/scrape')
 def scrape():
     run_scraper()
-    response = make_response("OK", 200)
+    response = make_response("Les données ont bien été générées", 200)
     return response
